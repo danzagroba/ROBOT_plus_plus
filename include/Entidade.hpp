@@ -11,6 +11,8 @@ class Entidade: public Ente
     public:
         Entidade();
         ~Entidade();
+        void setX(const int xx);
+        void setY(const int yy);
         virtual void executar() = 0;
         virtual void salvar() = 0;
 };
