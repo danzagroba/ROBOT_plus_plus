@@ -1,5 +1,6 @@
 /SFML-2.6.1
 /mingw32
+/bin
 .vscode/c_cpp_properties.json
 .vscode/tasks.json
 *.exe
