@@ -1,7 +1,8 @@
 #include "Personagem.hpp"
 
 Personagem::Personagem():
-num_vidas(3)
+num_vidas(3),
+velocidade(0)
 {
 
 }
