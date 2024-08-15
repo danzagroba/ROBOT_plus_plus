@@ -18,3 +18,11 @@ void Entidade::setY(const int yy)
 {
     y = yy;
 }
+void Entidade::moveX(const int xx)
+{
+    x+=xx;
+}
+void Entidade::moveY(const int yy)
+{
+    y+=yy;
+}

@@ -3,17 +3,19 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++ build active file",
-            "command": "/usr/bin/g++",
+            "command": "C:\\Users\\danza\\OneDrive\\Pictures\\Documents\\GitHub\\simaojogo\\mingw32\\bin\\g++",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/src/*.cpp", 
+                "C:\\Users\\danza\\OneDrive\\Pictures\\Documents\\GitHub\\simaojogo\\src\\*.cpp",
+                "-I\"C:\\SFML-2.6.1\\include\"",
+                "-I\"C:\\Users\\danza\\OneDrive\\Pictures\\Documents\\GitHub\\simaojogo\\include\"",
+                "-L\"C:\\SFML-2.6.1\\lib\"",
                 "-o",
-                "${workspaceFolder}/bin/simao",
-                "-I${workspaceFolder}/include", 
+                "C:\\Users\\danza\\OneDrive\\Pictures\\Documents\\GitHub\\simaojogo\\bin\\simao.exe",
                 "-lsfml-graphics",
-                "-lsfml-window",
-                "-lsfml-system"
+                "-lsfml-system",
+                "-lsfml-window"
             ],
             "options": {
                 "cwd": "${fileDirname}"

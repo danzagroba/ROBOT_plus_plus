@@ -13,6 +13,8 @@ class Entidade: public Ente
         ~Entidade();
         void setX(const int xx);
         void setY(const int yy);
+        void moveX(const int xx);
+        void moveY(const int yy);
         virtual void executar() = 0;
         virtual void salvar() = 0;
 };
