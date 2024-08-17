@@ -9,7 +9,6 @@ Gerenciador_Grafico* Gerenciador_Grafico::pgergraf = NULL;
 Gerenciador_Grafico::Gerenciador_Grafico():
 window(NULL)
 {
-    window->setFramerateLimit(limitefps);
     cout<<"Gerenciador Gráfico criado"<<endl;
 }
 Gerenciador_Grafico::~Gerenciador_Grafico()
@@ -81,4 +80,14 @@ void Gerenciador_Grafico::configurar()
         exit(1);
     }
     window->setFramerateLimit(limitefps);
+}
+
+void Gerenciador_Grafico::processarEvento()
+{
+    if(!window)
+        return;
+    sf::Event event;
+    while(window->pollEvent(event))
+        if(event.type == sf::Event::Closed)
+            window->close();
 }

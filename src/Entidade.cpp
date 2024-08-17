@@ -1,8 +1,8 @@
 #include "Entidade.hpp"
 
-Entidade::Entidade():
-x(0),
-y(0)
+Entidade::Entidade(const sf::Vector2f& pos):
+Ente(),
+posicao(pos)
 {
 
 }
@@ -10,19 +10,18 @@ Entidade::~Entidade()
 {
 
 }
-void Entidade::setX(const int xx)
+void Entidade::setPos(const sf::Vector2f& pos)
 {
-    x = xx;
+    posicao = pos;
+    Figura.setPosition(posicao);
 }
-void Entidade::setY(const int yy)
+void Entidade::mover(const sf::Vector2f& deslocamento)
 {
-    y = yy;
+    posicao += deslocamento;
+    Figura.setPosition(posicao);
 }
-void Entidade::moveX(const int xx)
+const sf::Vector2f& Entidade::getPos() const
 {
-    x+=xx;
+    return posicao;
 }
-void Entidade::moveY(const int yy)
-{
-    y+=yy;
-}
+

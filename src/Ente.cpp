@@ -6,7 +6,7 @@
 
 
 
-Gerenciadores::Gerenciador_Grafico* Ente::pGG = NULL;
+Gerenciadores::Gerenciador_Grafico* Ente::pGG = Gerenciador_Grafico::getGerenciador_Grafico();
 
 Ente::Ente():
 id(-1)
@@ -20,9 +20,9 @@ Ente::~Ente()
 }
 void Ente::desenhar()
 {
-    Gerenciador_Grafico::getGerenciador_Grafico()->desenharEnte(this);
+    pGG->desenharEnte(this);
 }
-void Ente::setFigura(string& Sprite_Path)
+void Ente::setFigura(const std::string& Sprite_Path)
 {
 
     if (!Textura.loadFromFile(Sprite_Path))
@@ -33,5 +33,9 @@ void Ente::setFigura(string& Sprite_Path)
     Figura.setTexture(Textura);
 
 }
-sf::Sprite Ente::getFigura(){ return Figura; }
+const sf::Sprite& Ente::getFigura() const{ return Figura; }
+void Ente::setFiguraPos(const sf::Vector2f& pos)
+{
+    Figura.setPosition(pos);
+}
 

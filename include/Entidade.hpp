@@ -7,15 +7,14 @@ namespace Entidades
     class Entidade: public Ente
     {
         protected:
-            int x;
-            int y;
+            sf::Vector2f posicao;
+
         public:
-            Entidade();
-            ~Entidade();
-            void setX(const int xx);
-            void setY(const int yy);
-            void moveX(const int xx);
-            void moveY(const int yy);
+            Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
+            virtual ~Entidade();
+            void setPos(const sf::Vector2f& pos);
+            void mover(const sf::Vector2f& deslocamento);
+            const sf::Vector2f& getPos() const;
             virtual void executar() = 0;
             virtual void salvar() = 0;
     };

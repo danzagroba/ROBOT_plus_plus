@@ -1,8 +1,9 @@
 #include "Jogador.hpp"
 
-Jogador::Jogador():
+Jogador::Jogador(const float vel, const int nVidas, const sf::Vector2f& pos):
+Personagem(vel, nVidas, pos),
 pontos(0),
-nome(NULL)
+nome()
 {
 
 }
@@ -11,6 +12,10 @@ Jogador::~Jogador()
 
 }
 void Jogador::executar()
+{
+
+}
+void Jogador::salvar()
 {
 
 }

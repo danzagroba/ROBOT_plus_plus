@@ -15,9 +15,10 @@ class Ente
         sf::Sprite Figura;
     public:
         Ente();
-        ~Ente();
+        virtual ~Ente();
         virtual void executar() = 0;
         void desenhar();
-        void setFigura(string& Sprite_Path);
-        sf::Sprite getFigura();
+        void setFigura(const std::string& Sprite_Path);
+        void setFiguraPos(const sf::Vector2f& pos);
+        const sf::Sprite& getFigura() const;
 };

@@ -30,6 +30,7 @@ namespace Gerenciadores
             void clear();
             void display();
             void configurar();
+            void processarEvento();
 
     };
 } using namespace Gerenciadores;

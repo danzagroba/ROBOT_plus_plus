@@ -15,14 +15,13 @@ namespace Entidades
                 int pontos;
                 string nome;
             public:
-                Jogador();
+                Jogador(const float vel = 0.0f, const int nVidas = 0, const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
                 ~Jogador();
                 void executar();
-
+                void salvar();
         };
     } using namespace Personagens;
 } using namespace Entidades;
-
 
 
 #endif
