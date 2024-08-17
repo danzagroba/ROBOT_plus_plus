@@ -2,21 +2,23 @@
 #define _ENTIDADE_H_
 
 #include "Ente.hpp"
-
-class Entidade: public Ente
+namespace Entidades
 {
-    protected:
-        int x;
-        int y;
-    public:
-        Entidade();
-        ~Entidade();
-        void setX(const int xx);
-        void setY(const int yy);
-        void moveX(const int xx);
-        void moveY(const int yy);
-        virtual void executar() = 0;
-        virtual void salvar() = 0;
-};
+    class Entidade: public Ente
+    {
+        protected:
+            int x;
+            int y;
+        public:
+            Entidade();
+            ~Entidade();
+            void setX(const int xx);
+            void setY(const int yy);
+            void moveX(const int xx);
+            void moveY(const int yy);
+            virtual void executar() = 0;
+            virtual void salvar() = 0;
+    };
+}using namespace Entidades;
 
 #endif
