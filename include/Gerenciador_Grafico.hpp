@@ -12,8 +12,11 @@ namespace Gerenciadores
     class Gerenciador_Grafico
     {
         private:
+            int largura;
+            int altura;
+            int limitefps;
             static Gerenciador_Grafico* pgergraf;
-            sf::RenderWindow window;
+            sf::RenderWindow* window;
 
         private:
             Gerenciador_Grafico();
@@ -21,6 +24,12 @@ namespace Gerenciadores
         public:
             static Gerenciador_Grafico* getGerenciador_Grafico();
             void desenharEnte(Ente* pE);
+            bool getisOpen();
+            void setTamanhoJanela(int lar, int alt);
+            void setLimiteFPS(int lfps);
+            void clear();
+            void display();
+            void configurar();
 
     };
 } using namespace Gerenciadores;
