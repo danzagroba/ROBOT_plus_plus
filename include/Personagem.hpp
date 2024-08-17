@@ -2,18 +2,23 @@
 #define _PERSONAGEM_H_
 
 #include "Entidade.hpp"
-
-class Personagem: public Entidade 
+namespace Entidades
 {
-    protected:
-        int num_vidas;
-        int velocidade;
-    public:
-        Personagem();
-        ~Personagem();
-        void setNumVidas(const int nVidas);
-        virtual void executar() = 0;
-};
+    namespace Personagens 
+    {
+        class Personagem: public Entidade 
+        {
+            protected:
+                int num_vidas;
+                int velocidade;
+            public:
+                Personagem();
+                ~Personagem();
+                void setNumVidas(const int nVidas);
+                virtual void executar() = 0;
+        };  
+    } using namespace Personagens;
+} using namespace Entidades;
 
 
 #endif
