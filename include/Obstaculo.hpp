@@ -3,17 +3,19 @@
 
 #include "Entidade.hpp"
 #include "Jogador.hpp"
-
-namespace Obstaculos
+namespace Entidades
 {
-    class Obstaculo: public Entidade
+    namespace Obstaculos
     {
-        protected:
-            bool danoso;
-        public:
-            virtual void executar() = 0;
-            virtual void obstacular(Jogador* p) = 0;
-    };
-} using namespace Obstaculos;
+        class Obstaculo: public Entidade
+        {
+            protected:
+                bool danoso;
+            public:
+                virtual void executar() = 0;
+                virtual void obstacular(Jogador* p) = 0;
+        };
+    } using namespace Obstaculos;
+} using namespace Entidades;
 
 #endif
