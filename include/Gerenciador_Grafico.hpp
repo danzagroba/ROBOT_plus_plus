@@ -23,6 +23,7 @@ namespace Gerenciadores
             ~Gerenciador_Grafico();
         public:
             static Gerenciador_Grafico* getGerenciador_Grafico();
+            sf::RenderWindow* getJanela();
             void desenharEnte(Ente* pE);
             bool getisOpen();
             void setTamanhoJanela(int lar, int alt);

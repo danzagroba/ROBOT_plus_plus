@@ -14,6 +14,7 @@ namespace Entidades
             private:
                 int pontos;
                 string nome;
+                static bool doisjogadores;
             public:
                 Jogador(const float vel = 0.0f, const int nVidas = 0, const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
                 ~Jogador();

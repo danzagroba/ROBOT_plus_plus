@@ -36,6 +36,14 @@ Gerenciador_Grafico* Gerenciador_Grafico::getGerenciador_Grafico()
     }
     return pgergraf;
 }
+sf::RenderWindow* Gerenciador_Grafico::getJanela()
+{
+    if(pgergraf)
+    {
+        return this->window;
+    }
+    return NULL;
+}
 void Gerenciador_Grafico::desenharEnte(Ente* pE)
 {
     if(window)

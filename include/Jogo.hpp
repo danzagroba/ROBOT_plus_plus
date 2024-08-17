@@ -5,6 +5,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Gerenciador_Grafico.hpp"
+#include "Gerenciador_Inputs.hpp" 
 #include "Jogador.hpp"
 
 #define WINDOW_WIDTH 800
@@ -18,6 +19,7 @@ class Jogo
 {
 private:
     Gerenciadores::Gerenciador_Grafico* gerGraf;
+    Gerenciadores::Gerenciador_Inputs* gerInputs;
     float deltaTime;
     sf::Clock clock;    // Usado para medir deltaTime
     Entidades::Personagens::Jogador jogador;
