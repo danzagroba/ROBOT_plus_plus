@@ -5,20 +5,23 @@
 #include <string>
 using namespace std;
 
-namespace Personagens
+namespace Entidades
 {
-    class Jogador:public Personagem
+    namespace Personagens
     {
-        private:
-            int pontos;
-            string nome;
-        public:
-            Jogador();
-            ~Jogador();
-            void executar();
-
-    };
-} using namespace Personagens;
+        class Jogador:public Personagem
+        {
+            private:
+                int pontos;
+                string nome;
+            public:
+                Jogador(const float vel = 0.0f, const int nVidas = 0, const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
+                ~Jogador();
+                void executar();
+                void salvar();
+        };
+    } using namespace Personagens;
+} using namespace Entidades;
 
 
 
