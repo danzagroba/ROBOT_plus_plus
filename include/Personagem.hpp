@@ -18,6 +18,7 @@ namespace Entidades
                 const float getVel() const;
                 virtual void executar() = 0;
                 virtual void salvar() = 0;
+
         };  
     } using namespace Personagens;
 } using namespace Entidades;

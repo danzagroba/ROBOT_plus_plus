@@ -24,5 +24,4 @@ namespace Entidades
 } using namespace Entidades;
 
 
-
 #endif

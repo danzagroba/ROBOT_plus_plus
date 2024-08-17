@@ -39,4 +39,3 @@ void Ente::setFiguraPos(const sf::Vector2f& pos)
     Figura.setPosition(pos);
 }
 
-
