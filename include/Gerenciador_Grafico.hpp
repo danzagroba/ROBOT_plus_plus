@@ -2,9 +2,6 @@
 #include <iostream>
 using namespace std;
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-
 //Padrão de proj SINGLETON colocar na uml depois
 class Ente;
 namespace Gerenciadores 
@@ -17,6 +14,9 @@ namespace Gerenciadores
             int limitefps;
             static Gerenciador_Grafico* pgergraf;
             sf::RenderWindow* window;
+            sf::View camera;
+            float deltaTime;
+            sf::Clock clock;    // Usado para medir deltaTime
 
         private:
             Gerenciador_Grafico();
@@ -25,6 +25,7 @@ namespace Gerenciadores
             static Gerenciador_Grafico* getGerenciador_Grafico();
             sf::RenderWindow* getJanela();
             void desenharEnte(Ente* pE);
+            void desenhar(const sf::Drawable& desenho);
             bool getisOpen();
             void setTamanhoJanela(int lar, int alt);
             void setLimiteFPS(int lfps);
@@ -32,6 +33,9 @@ namespace Gerenciadores
             void display();
             void configurar();
             void processarEvento();
-
+            void setCamera(const sf::Vector2f& pos);
+            void atualizarDeltaTime();
+            const float getDeltaTime() const;
     };
 } using namespace Gerenciadores;
+

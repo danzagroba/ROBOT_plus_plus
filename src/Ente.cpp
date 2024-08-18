@@ -8,8 +8,12 @@
 
 Gerenciadores::Gerenciador_Grafico* Ente::pGG = Gerenciador_Grafico::getGerenciador_Grafico();
 
+int Ente::contador(0);
+
 Ente::Ente():
-id(-1)
+id(contador++),
+Figura(),
+Textura()
 {
 
 }
@@ -24,7 +28,6 @@ void Ente::desenhar()
 }
 void Ente::setFigura(const std::string& Sprite_Path)
 {
-
     if (!Textura.loadFromFile(Sprite_Path))
     {
         cout<<"Erro no caminho da pasta do sprite, textura não carregada"<<endl;
@@ -38,4 +41,5 @@ void Ente::setFiguraPos(const sf::Vector2f& pos)
 {
     Figura.setPosition(pos);
 }
+
 

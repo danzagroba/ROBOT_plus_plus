@@ -3,9 +3,8 @@
 Jogo::Jogo(): 
       gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()),
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
-      deltaTime(0.0f),
-      clock(),
-      jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f))
+      jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f)),
+      fase(LEVEL_PATH, gerGraf, &jogador, 64.0f)
 {
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -21,17 +20,10 @@ Jogo::Jogo():
 Jogo::~Jogo()
 {}
 
-void Jogo::atualizarDeltaTime()
-{
-    deltaTime = clock.restart().asMilliseconds();
-}
-
 void Jogo::processarEventos()
 {
 
     // inputs do jogador
-
-    jogador.mover(sf::Vector2f(0, 0));
 
     gerInputs->processainput(*gerGraf->getJanela());
     
@@ -49,12 +41,15 @@ void Jogo::executar()
 {
     while (gerGraf->getisOpen())
     {
-        atualizarDeltaTime();
+        gerGraf->atualizarDeltaTime();
         processarEventos();
+        gerGraf->setCamera(jogador.getPos());
         gerGraf->clear();
 
+        fase.desenhar();
         jogador.desenhar();
 
         gerGraf->display();
     }
 }
+

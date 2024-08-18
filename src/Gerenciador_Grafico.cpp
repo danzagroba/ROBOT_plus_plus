@@ -7,7 +7,13 @@
 Gerenciador_Grafico* Gerenciador_Grafico::pgergraf = NULL;
 
 Gerenciador_Grafico::Gerenciador_Grafico():
-window(NULL)
+largura(800),
+altura(600),
+limitefps(60),
+window(NULL),
+camera(),
+deltaTime(0.0f),
+clock()
 {
     cout<<"Gerenciador Gráfico criado"<<endl;
 }
@@ -51,11 +57,17 @@ void Gerenciador_Grafico::desenharEnte(Ente* pE)
         window->draw(pE->getFigura());
     }
 }
+void Gerenciador_Grafico::desenhar(const sf::Drawable& desenho)
+{
+    if(window)
+        window->draw(desenho);
+}
 bool Gerenciador_Grafico::getisOpen(){ return window->isOpen(); }
 void Gerenciador_Grafico::setTamanhoJanela(int lar, int alt)
 {
     largura = lar;
     altura = alt;
+    camera.setSize(lar, alt);
 }
 void Gerenciador_Grafico::setLimiteFPS(int lfps)
 {
@@ -99,3 +111,20 @@ void Gerenciador_Grafico::processarEvento()
         if(event.type == sf::Event::Closed)
             window->close();
 }
+
+void Gerenciador_Grafico::setCamera(const sf::Vector2f& centro)
+{
+    camera.setCenter(centro);
+    window->setView(camera);
+}
+
+void Gerenciador_Grafico::atualizarDeltaTime()
+{
+    deltaTime = clock.restart().asMilliseconds();
+}
+
+const float Gerenciador_Grafico::getDeltaTime() const
+{
+    return deltaTime;
+}
+

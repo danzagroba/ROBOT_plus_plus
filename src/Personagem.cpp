@@ -19,3 +19,4 @@ const float Personagem::getVel() const
 {
     return velocidade;
 }
+
