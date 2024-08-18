@@ -43,11 +43,11 @@ void Gerenciador_Inputs::processainput(sf::Window& window)
         if (event.type == sf::Event::Closed) {
         window.close();
         }
-        if (event.type == sf::Event::KeyPressed) {
-            map<sf::Keyboard::Key, std::function<void()>>::iterator it = tecla_comando.find(event.key.code);
-            if (it != tecla_comando.end()) {
-                it->second(); //essa função faz o comando conforme está no map
-            }
+
+    }
+    for (map<sf::Keyboard::Key, std::function<void()>>::iterator it = tecla_comando.begin(); it != tecla_comando.end(); ++it) {
+        if (sf::Keyboard::isKeyPressed(it->first)) {
+            it->second(); // Executa o comando associado à tecla
         }
     }
 }

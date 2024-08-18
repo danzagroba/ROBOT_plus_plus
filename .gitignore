@@ -1,7 +1,8 @@
-/SFML-2.6.1
-/mingw32
-/bin
-.vscode/c_cpp_properties.json
-.vscode/tasks.json
-*.exe
-/.vscode
+# Ignore SFML-2.6.1 folder
+SFML-2.6.1/
+
+# Ignore mingw32 folder
+mingw32/
+
+# Ignore .vscode folder
+.vscode/
