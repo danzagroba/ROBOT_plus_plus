@@ -1,10 +1,8 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
-namespace Gerenciadores
-{
-    class Gerenciador_Grafico;
-}using namespace Gerenciadores;
+
+#include "Gerenciador_Grafico.hpp"
 
 class Ente 
 {
@@ -13,6 +11,8 @@ class Ente
         static Gerenciadores::Gerenciador_Grafico* pGG;
         sf::Texture Textura;
         sf::Sprite Figura;
+        static int contador;
+
     public:
         Ente();
         virtual ~Ente();
@@ -22,3 +22,4 @@ class Ente
         void setFiguraPos(const sf::Vector2f& pos);
         const sf::Sprite& getFigura() const;
 };
+
