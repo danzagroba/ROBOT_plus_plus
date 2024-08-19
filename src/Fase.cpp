@@ -2,10 +2,11 @@
 
 namespace Fases
 {
-    Fase::Fase(const char* caminho, Gerenciadores::Gerenciador_Grafico* pGG, Entidades::Personagens::Jogador* jgdr, float comprimento)
+    Fase::Fase(const char* caminho, Gerenciadores::Gerenciador_Grafico* pGG, Entidades::Personagens::Jogador* jgdr,Entidades::Personagens::Jogador* jgdrdois, float comprimento)
         : mapa(caminho), 
           gerGraf(pGG), 
-          jogador(jgdr), 
+          jogador(jgdr),
+          jogadordois(jgdrdois),
           comprimentoTile(comprimento)
     {}
 

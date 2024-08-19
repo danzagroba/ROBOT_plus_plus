@@ -14,12 +14,14 @@ namespace Fases
         Mapa mapa;
         Gerenciadores::Gerenciador_Grafico* gerGraf;
         Entidades::Personagens::Jogador* jogador;
+        Entidades::Personagens::Jogador* jogadordois;
         float comprimentoTile;
 
     public:
         Fase(const char* caminho = nullptr, 
              Gerenciadores::Gerenciador_Grafico* pGG = nullptr,
              Entidades::Personagens::Jogador* jgdr = nullptr,
+             Entidades::Personagens::Jogador* jgdrdois = nullptr,
              float comprimento = 32.0f);
         ~Fase();
 

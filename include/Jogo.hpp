@@ -23,6 +23,7 @@ private:
     Gerenciadores::Gerenciador_Grafico* gerGraf;
     Gerenciadores::Gerenciador_Inputs* gerInputs;
     Entidades::Personagens::Jogador jogador;
+    Entidades::Personagens::Jogador* pjogadordois;
     Fases::Fase fase;
 
 private:
