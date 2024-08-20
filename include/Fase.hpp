@@ -33,4 +33,3 @@ namespace Fases
         void desenhar();
     };
 }
-

@@ -38,17 +38,13 @@ namespace Fases
         altura = jsonTiles.size();
         largura = jsonTiles.empty() ? 0 : jsonTiles[0].size();
 
-        tiles = new char*[altura];
+        tiles = new short int*[altura];
         for(int i = 0; i < altura; i++)
         {
-            tiles[i] = new char[largura];
+            tiles[i] = new short int[largura];
             for(int j = 0; j < largura; j++)
             {
-                std::string tileStr = jsonTiles[i][j];    // cada tile é representado como string de um caractere
-                if (!tileStr.empty())
-                    tiles[i][j] = tileStr[0];    // conversao para char
-                else
-                    tiles[i][j] = ' ';    // considera espaco vazio se nao houver tile
+                tiles[i][j] = jsonTiles[i][j];
             }
         }
 
@@ -82,19 +78,19 @@ namespace Fases
         return tiles && x >= 0 && x < largura && y >= 0 && y < altura;
     }
 
-    const char Mapa::getTile(const int x, const int y) const
+    // Retorna 0 se a posição não for válida
+    const short int Mapa::getTile(const int x, const int y) const
     {
-        // considera espaco vazio se a posicao nao for valida
         if(posicaoValida(x, y))
             return tiles[y][x];
-        return ' ';
+        return 0;
     }
 
     const bool Mapa::eMuro(const int x, const int y) const
     {
         if(!posicaoValida(x, y))
             return true;
-        return tiles[y][x] != ' ';
+        return tiles[y][x] == 1;
     }
 
     const bool Mapa::mapaCarregado() const
@@ -102,4 +98,3 @@ namespace Fases
         return tiles != nullptr;
     }
 }
-
