@@ -12,9 +12,11 @@ Entidade::~Entidade()
 {
 
 }
-void Entidade::setPos(const sf::Vector2f& pos)
+
+void Entidade::setPos(float xx, float yy)
 {
-    posicao = pos;
+    posicao.x = xx;
+    posicao.y = yy;
     Figura.setPosition(posicao);
 }
 void Entidade::mover(const sf::Vector2f& deslocamento)
@@ -23,9 +25,24 @@ void Entidade::mover(const sf::Vector2f& deslocamento)
     Figura.setPosition(posicao);
     std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
 }
+sf::FloatRect Entidade::getBoundingBox()
+{
+    return AreaColisao;
+}
 const sf::Vector2f& Entidade::getPos() const
 {
     return posicao;
+}
+void Entidade::setFigura(const std::string& Sprite_Path)
+{
+    if (!Textura.loadFromFile(Sprite_Path))
+    {
+        cout<<"Erro no caminho da pasta do sprite, textura não carregada"<<endl;
+        return;
+    }
+    Figura.setTexture(Textura);
+    AreaColisao = Figura.getGlobalBounds();
+
 }
 
 

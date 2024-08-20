@@ -12,6 +12,8 @@ namespace Entidades
             protected:
                 bool danoso;
             public:
+                Obstaculo();
+                ~Obstaculo();
                 virtual void executar() = 0;
                 virtual void obstacular(Jogador* p) = 0;
         };

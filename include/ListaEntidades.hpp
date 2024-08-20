@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Lista.hpp"
-
-class Entidade;
+#include "Entidade.hpp"
 
 namespace Listas
 {
@@ -24,6 +23,7 @@ namespace Listas
 
             Entidade* operator*();
             Iterator& operator++();
+
             const bool operator==(const Iterator& other) const;
             const bool operator!=(const Iterator& other) const;
 
@@ -49,4 +49,4 @@ namespace Listas
 
         Iterator apagar(Iterator& it);
     };
-}
+} using namespace Listas;

@@ -8,15 +8,20 @@ namespace Entidades
     {
         protected:
             sf::Vector2f posicao;
+            sf::FloatRect AreaColisao;
 
         public:
             Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();
-            void setPos(const sf::Vector2f& pos);
+            void setPos(float xx, float yy);
             void mover(const sf::Vector2f& deslocamento);
             const sf::Vector2f& getPos() const;
             virtual void executar() = 0;
             virtual void salvar() = 0;
+            void setFigura(const std::string& Sprite_Path);
+            sf::FloatRect getBoundingBox();
+            //virtual bool colidecomEntidade();
+            //virtual void aocolidir();
     };
 }using namespace Entidades;
 
