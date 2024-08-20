@@ -25,7 +25,12 @@ namespace Fases
              float comprimento = 32.0f);
         ~Fase();
 
+        const float getComprimentoTile() const;
+        const int getAltura() const;
+        const int getLargura() const;
+
         void carregar(const char* caminho);
         void desenhar();
     };
 }
+

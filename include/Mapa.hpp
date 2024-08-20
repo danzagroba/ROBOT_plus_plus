@@ -23,5 +23,8 @@ namespace Fases
         const bool posicaoValida(const int x, const int y) const;
         const char getTile(const int x, const int y) const;
         const bool eMuro(const int x, const int y) const;
+    
+        const bool mapaCarregado() const;
     };
 }
+

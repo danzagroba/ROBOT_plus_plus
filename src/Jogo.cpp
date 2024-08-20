@@ -31,6 +31,7 @@ Jogo::Jogo():
 
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
+    gerGraf->setMaximosCamera(fase.getLargura()*fase.getComprimentoTile(), fase.getAltura()*fase.getComprimentoTile());
     gerGraf->configurar();
 }
 
@@ -69,4 +70,5 @@ void Jogo::executar()
         gerGraf->display();
     }
 }
+
 

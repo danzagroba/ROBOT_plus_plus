@@ -51,6 +51,8 @@ namespace Fases
                     tiles[i][j] = ' ';    // considera espaco vazio se nao houver tile
             }
         }
+
+        std::cout << "altura: " << altura << " largura: " << largura << std::endl;
     }
 
     Mapa::Mapa(const char* caminho)
@@ -94,4 +96,10 @@ namespace Fases
             return true;
         return tiles[y][x] != ' ';
     }
+
+    const bool Mapa::mapaCarregado() const
+    {
+        return tiles != nullptr;
+    }
 }
+
