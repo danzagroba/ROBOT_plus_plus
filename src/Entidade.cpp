@@ -25,6 +25,10 @@ void Entidade::mover(const sf::Vector2f& deslocamento)
     Figura.setPosition(posicao);
     std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
 }
+sf::FloatRect Entidade::getBoundingBox()
+{
+    return AreaColisao;
+}
 const sf::Vector2f& Entidade::getPos() const
 {
     return posicao;

@@ -20,8 +20,8 @@ namespace Entidades
             virtual void salvar() = 0;
             void setFigura(const std::string& Sprite_Path);
             sf::FloatRect getBoundingBox();
-            virtual bool colidecomEntidade();
-            virtual void aocolidir();
+            //virtual bool colidecomEntidade();
+            //virtual void aocolidir();
     };
 }using namespace Entidades;
 

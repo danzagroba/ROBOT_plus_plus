@@ -22,12 +22,12 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
     }
     return pgercol;
 }
-const bool calculaColisao(Entidades::Entidade* e1, Entidades::Entidade* e2)
+bool Gerenciador_Colisoes::calculaColisao(Entidade* e1, Entidade* e2)
 {
     return e1->getBoundingBox().intersects(e2->getBoundingBox());
 }
 
-void Gerenciador_Colisoes::tratarColisao(Entidades::Entidade* e1, Entidades::Entidade* e2) {
+void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     //e1 seria um personagem, e2 há de ser um obstaculo ou chão 
     sf::FloatRect b1 = e1->getBoundingBox();
     sf::FloatRect b2 = e2->getBoundingBox();
@@ -51,7 +51,7 @@ void Gerenciador_Colisoes::tratarColisao(Entidades::Entidade* e1, Entidades::Ent
     }
 }
 
-void Gerenciador_Colisoes::inserirentidade(Entidades::Entidade* e)
+void Gerenciador_Colisoes::inserirentidade(Entidade* e)
 {
     //plistaentidades->inserirNoFim(e);
 }

@@ -23,7 +23,7 @@ namespace Gerenciadores
             bool calculaColisao(Entidade* e1, Entidade* e2);
             void inserirentidade(Entidade* e);
             void checarColisoesObstaculos();
-            void tratarColisao(Entidades::Entidade* e1, Entidades::Entidade* e2);
+            void tratarColisao(Entidade* e1, Entidade* e2);
 
     };
 } using namespace Gerenciadores;
