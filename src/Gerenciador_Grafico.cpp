@@ -60,7 +60,7 @@ sf::RenderWindow* Gerenciador_Grafico::getJanela()
 }
 void Gerenciador_Grafico::desenharEnte(Ente* pE)
 {
-    if(window)
+    if(window && pE)
     {
         window->draw(pE->getFigura());
     }

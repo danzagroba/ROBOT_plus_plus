@@ -53,11 +53,6 @@ namespace Fases
         int jFinal = (int)((gerGraf->getCamera().getCenter().x + gerGraf->getCamera().getSize().x / 2.0f) / comprimentoTile) + 1;
         if(jFinal > mapa.getLargura())
             jFinal = mapa.getLargura();
-
-        std::cout << "iInicial: " << iInicial << std::endl;
-        std::cout << "iFinal: " << iFinal << std::endl;
-        std::cout << "jInicial: " << jInicial << std::endl;
-        std::cout << "jFinal: " << jFinal << std::endl;
         
         sf::RectangleShape tile(sf::Vector2f(comprimentoTile, comprimentoTile));
         tile.setFillColor(sf::Color::White);
@@ -71,4 +66,3 @@ namespace Fases
                 }
     }
 }
-
