@@ -31,6 +31,7 @@ Jogo::Jogo():
 
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
+    gerGraf->setMaximosCamera(fase.getLargura()*fase.getComprimentoTile(), fase.getAltura()*fase.getComprimentoTile());
     gerGraf->configurar();
 }
 
@@ -59,12 +60,15 @@ void Jogo::executar()
     {
         gerGraf->atualizarDeltaTime();
         processarEventos();
-        gerGraf->setCamera((jogador.getPos()+(pjogadordois->getPos()))/2.0f);
+
+        sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (jogador.getPos()+(pjogadordois->getPos()))/2.0f : jogador.getPos();
+        gerGraf->setCamera(proxPos);
         gerGraf->clear();
 
         fase.desenhar();
         jogador.desenhar();
-        pjogadordois->desenhar();   
+        if(pjogadordois)
+            pjogadordois->desenhar();   
 
         gerGraf->display();
     }

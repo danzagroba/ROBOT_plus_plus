@@ -13,6 +13,21 @@ namespace Fases
     Fase::~Fase()
     {}
 
+    const float Fase::getComprimentoTile() const
+    {
+        return comprimentoTile;
+    }
+
+    const int Fase::getAltura() const
+    {
+        return mapa.getAltura();
+    }
+
+    const int Fase::getLargura() const
+    {
+        return mapa.getLargura();
+    }
+
     void Fase::carregar(const char* caminho)
     {
         mapa.carregar(caminho);
@@ -20,14 +35,32 @@ namespace Fases
 
     void Fase::desenhar()
     {
-        sf::RectangleShape tile;
-        for(int i = 0; i < mapa.getAltura(); i++)
-            for(int j = 0; j < mapa.getLargura(); j++)
+        if(!gerGraf || !mapa.mapaCarregado())
+            return;
+
+        int iInicial = (int)((gerGraf->getCamera().getCenter().y - gerGraf->getCamera().getSize().y / 2.0f) / comprimentoTile);
+        if(iInicial < 0)
+            iInicial = 0;
+        
+        int iFinal = (int)((gerGraf->getCamera().getCenter().y + gerGraf->getCamera().getSize().y / 2.0f) / comprimentoTile) + 1;
+        if(iFinal > mapa.getAltura())
+            iFinal = mapa.getAltura();
+
+        int jInicial = (int)((gerGraf->getCamera().getCenter().x - gerGraf->getCamera().getSize().x / 2.0f) / comprimentoTile);
+        if(jInicial < 0)
+            jInicial = 0;
+
+        int jFinal = (int)((gerGraf->getCamera().getCenter().x + gerGraf->getCamera().getSize().x / 2.0f) / comprimentoTile) + 1;
+        if(jFinal > mapa.getLargura())
+            jFinal = mapa.getLargura();
+        
+        sf::RectangleShape tile(sf::Vector2f(comprimentoTile, comprimentoTile));
+        tile.setFillColor(sf::Color::White);
+        
+        for(int i = iInicial; i < iFinal; ++i)
+            for(int j = jInicial; j < jFinal; ++j)
                 if(mapa.eMuro(j, i))
                 {
-                    // TODO: Usar texturas diferente para cada tile
-                    tile.setFillColor(sf::Color::White);
-                    tile.setSize(sf::Vector2f(comprimentoTile, comprimentoTile));
                     tile.setPosition(j * comprimentoTile, i * comprimentoTile);
                     gerGraf->desenhar(tile);
                 }

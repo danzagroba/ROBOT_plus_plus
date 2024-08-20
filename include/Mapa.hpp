@@ -7,7 +7,7 @@ namespace Fases
     private:
         int altura;
         int largura;
-        char** tiles;
+        short int** tiles;  // Updated to use short int**
 
     private:
         void destruirTiles();
@@ -21,7 +21,9 @@ namespace Fases
         const int getLargura() const;
     
         const bool posicaoValida(const int x, const int y) const;
-        const char getTile(const int x, const int y) const;
+        const short int getTile(const int x, const int y) const;
         const bool eMuro(const int x, const int y) const;
+    
+        const bool mapaCarregado() const;
     };
 }

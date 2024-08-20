@@ -59,7 +59,7 @@ namespace Listas
             }
         };
 
-    private:
+    protected:
         Elemento<T>* cabeca;
         Elemento<T>* cauda;
         int tam;
@@ -102,8 +102,10 @@ namespace Listas
                 return atual != outro.atual;
             }
 
-        public:
-            friend class Lista<T>;
+            Elemento<T>* getAtual() const
+            {
+                return atual;
+            }
         };
     
     public:
@@ -209,7 +211,7 @@ namespace Listas
             if(!cabeca || it == fim())
                 return fim();
 
-            Elemento<T>* temp = it.atual;
+            Elemento<T>* temp = it.getAtual();
 
             if(temp->getAnt())
                 temp->getAnt()->setProx(temp->getProx());
