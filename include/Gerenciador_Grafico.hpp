@@ -11,6 +11,11 @@ namespace Gerenciadores
         private:
             int largura;
             int altura;
+
+            // Limites da camera
+            float maxX;
+            float maxY;
+
             int limitefps;
             static Gerenciador_Grafico* pgergraf;
             sf::RenderWindow* window;
@@ -21,6 +26,9 @@ namespace Gerenciadores
         private:
             Gerenciador_Grafico();
             ~Gerenciador_Grafico();
+
+            const float lerp(const float a, const float b, const float t) const;
+
         public:
             static Gerenciador_Grafico* getGerenciador_Grafico();
             sf::RenderWindow* getJanela();
@@ -28,6 +36,7 @@ namespace Gerenciadores
             void desenhar(const sf::Drawable& desenho);
             bool getisOpen();
             void setTamanhoJanela(int lar, int alt);
+            void setMaximosCamera(float x, float y);
             void setLimiteFPS(int lfps);
             void clear();
             void display();
@@ -36,6 +45,8 @@ namespace Gerenciadores
             void setCamera(const sf::Vector2f& pos);
             void atualizarDeltaTime();
             const float getDeltaTime() const;
+            const sf::View& getCamera() const;
     };
 } using namespace Gerenciadores;
+
 

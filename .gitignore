@@ -6,3 +6,5 @@ mingw32/
 
 # Ignore .vscode folder
 .vscode/
+
+bin/

@@ -9,6 +9,8 @@ Gerenciador_Grafico* Gerenciador_Grafico::pgergraf = NULL;
 Gerenciador_Grafico::Gerenciador_Grafico():
 largura(800),
 altura(600),
+maxX(800),
+maxY(600),
 limitefps(60),
 window(NULL),
 camera(),
@@ -29,6 +31,12 @@ Gerenciador_Grafico::~Gerenciador_Grafico()
     }
     pgergraf = NULL;
 }
+
+const float Gerenciador_Grafico::lerp(const float a, const float b, const float t) const
+{
+    return a + t*(b - a);
+}
+
 Gerenciador_Grafico* Gerenciador_Grafico::getGerenciador_Grafico()
 {
     if(pgergraf == NULL)
@@ -68,6 +76,11 @@ void Gerenciador_Grafico::setTamanhoJanela(int lar, int alt)
     largura = lar;
     altura = alt;
     camera.setSize(lar, alt);
+}
+void Gerenciador_Grafico::setMaximosCamera(float x, float y)
+{
+    maxX = x;
+    maxY = y;
 }
 void Gerenciador_Grafico::setLimiteFPS(int lfps)
 {
@@ -114,7 +127,20 @@ void Gerenciador_Grafico::processarEvento()
 
 void Gerenciador_Grafico::setCamera(const sf::Vector2f& centro)
 {
-    camera.setCenter(centro);
+    sf::Vector2f novoCentro = sf::Vector2f( lerp(camera.getCenter().x, centro.x, 0.1f), 
+                                            lerp(camera.getCenter().y, centro.y, 0.1f) );
+
+    if(novoCentro.x < (float)largura/2.0f)
+        novoCentro.x = (float)largura/2.0f;
+    else if(novoCentro.x > maxX - (float)largura/2.0f)
+        novoCentro.x = maxX - (float)largura/2.0f;
+
+    if(novoCentro.y < (float)altura/2.0f)
+        novoCentro.y = (float)altura/2.0f;
+    else if(novoCentro.y > maxY - (float)altura/2.0f)
+        novoCentro.y = maxY - (float)altura/2.0f;
+
+    camera.setCenter(novoCentro);
     window->setView(camera);
 }
 
@@ -128,3 +154,7 @@ const float Gerenciador_Grafico::getDeltaTime() const
     return deltaTime;
 }
 
+const sf::View& Gerenciador_Grafico::getCamera() const
+{
+    return camera;
+}
