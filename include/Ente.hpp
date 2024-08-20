@@ -18,7 +18,9 @@ class Ente
         virtual ~Ente();
         virtual void executar() = 0;
         void desenhar();
-        void setFigura(const std::string& Sprite_Path);
+        int getid();
+        virtual void setFigura(const std::string& Sprite_Path);
+        sf::FloatRect getBoundingBox();
         void setFiguraPos(const sf::Vector2f& pos);
         const sf::Sprite& getFigura() const;
 };

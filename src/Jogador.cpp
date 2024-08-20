@@ -9,6 +9,7 @@ Personagem(vel, nVidas, pos),
 pontos(0),
 nome()
 {
+    id = 1; // ID utilizado pra jogadores
 
 }
 Jogador::~Jogador()

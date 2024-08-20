@@ -9,9 +9,10 @@
 Gerenciadores::Gerenciador_Grafico* Ente::pGG = Gerenciador_Grafico::getGerenciador_Grafico();
 
 int Ente::contador(0);
+//A principio não está sendo utilizado
 
 Ente::Ente():
-id(contador++),
+id(0),
 Figura(),
 Textura()
 {
@@ -41,5 +42,12 @@ void Ente::setFiguraPos(const sf::Vector2f& pos)
 {
     Figura.setPosition(pos);
 }
-
+int Ente::getid()
+{
+    return id;
+}
+sf::FloatRect Ente::getBoundingBox()
+{
+    return Figura.getGlobalBounds();
+}
 
