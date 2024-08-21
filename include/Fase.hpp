@@ -15,7 +15,7 @@ namespace Gerenciadores
 
 namespace Fases
 {
-    class Fase
+    class Fase : public Ente
     {
     private:
         Gerenciadores::Gerenciador_Grafico* gerGraf;
@@ -29,9 +29,6 @@ namespace Fases
         int altura;
         int largura;
         short int** tiles;
-
-        sf::Texture textura;
-        sf::Sprite tile;
 
     public:
         Fase(const char* caminho = nullptr, 
@@ -63,5 +60,9 @@ namespace Fases
 
         Entidades::Personagens::Jogador* getJogador() const;
         Entidades::Personagens::Jogador* getJogadorDois() const;
+
+        void executar();
+
+        void gerenciarColisoes();
     };
 }
