@@ -4,7 +4,7 @@ using namespace std;
 
 bool Jogador::doisjogadores = true;
 
-Jogador::Jogador(const float vel, 
+Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
                  const sf::Vector2f& pos, 
                  const sf::Vector2f& dimensoes)
