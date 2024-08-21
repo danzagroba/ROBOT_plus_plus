@@ -5,6 +5,13 @@
 #include "Jogador.hpp"
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Colisoes.hpp"
+#include "ListaEntidades.hpp"
+#include "Obstaculo.hpp"
+
+namespace Gerenciadores
+{
+    class Gerenciador_Colisoes;
+}
 
 namespace Fases
 {
@@ -14,8 +21,8 @@ namespace Fases
         Gerenciadores::Gerenciador_Grafico* gerGraf;
         Gerenciadores::Gerenciador_Colisoes* gerColisoes;
 
-        Entidades::Personagens::Jogador* jogador;
-        Entidades::Personagens::Jogador* jogadordois;
+        Listas::ListaEntidades obstaculos;
+        Listas::ListaEntidades jogadores;
 
         float comprimentoTile;
 
@@ -23,8 +30,8 @@ namespace Fases
         int largura;
         short int** tiles;
 
-    private:
-        void destruirTiles();
+        sf::Texture textura;
+        sf::Sprite tile;
 
     public:
         Fase(const char* caminho = nullptr, 
@@ -35,6 +42,11 @@ namespace Fases
              float comprimento = 32.0f);
         ~Fase();
 
+    private:
+        void destruirTiles();
+        void criarEntidades();
+
+    public:
         void carregar(const char* caminho);
 
         const float getComprimentoTile() const;
@@ -49,5 +61,7 @@ namespace Fases
     
         const bool mapaCarregado() const;
 
+        Entidades::Personagens::Jogador* getJogador() const;
+        Entidades::Personagens::Jogador* getJogadorDois() const;
     };
 }

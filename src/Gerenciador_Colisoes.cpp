@@ -1,16 +1,21 @@
 #include "Gerenciador_Colisoes.hpp"
 #include "Entidade.hpp"
+
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
+
 Gerenciador_Colisoes::Gerenciador_Colisoes()
-{
-    /*obstaculos->limpar();
-    jogadores->limpar();
-    inimigos->limpar();*/
-}
+    : obstaculos(NULL),
+      jogadores(NULL),
+      inimigos(NULL)
+{}
+
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
-    
+    inimigos = NULL;
+    jogadores = NULL;
+    obstaculos = NULL;
 }
+
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
 {
     if(pgercol == NULL)
@@ -24,6 +29,22 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
     }
     return pgercol;
 }
+
+void Gerenciador_Colisoes::setObstaculos(ListaEntidades* obst)
+{
+    obstaculos = obst;
+}
+
+void Gerenciador_Colisoes::setJogadores(ListaEntidades* jogs)
+{
+    jogadores = jogs;
+}
+
+void Gerenciador_Colisoes::setInimigos(ListaEntidades* inims)
+{
+    inimigos = inims;
+}
+
 bool Gerenciador_Colisoes::calculaColisao(Entidade* e1, Entidade* e2)
 {
     return e1->getBoundingBox().intersects(e2->getBoundingBox());
@@ -46,36 +67,26 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     float minspbX = fromLeft ? sbpesquerda : sbpdireita;
     float minspbY = fromTop ? sbpcima : sbpbaixo;
 
-    if (std::abs(minspbX) < std::abs(minspbY)) {
+    if (std::abs(minspbX) < std::abs(minspbY))
         e1->setPos(e1->getPos().x + minspbX * (fromLeft ? -1 : 1), e1->getPos().y);
-    } else {
+    else
         e1->setPos(e1->getPos().x, e1->getPos().y + minspbY * (fromTop ? -1 : 1));
-    }
 }
 
 void Gerenciador_Colisoes::inserirentidade(Entidade* e)
 {
     obstaculos->inserirNoFim(e);
 }
+
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {
     //Serve pra interações entre players e entidades, para com obstaculos
-    ListaEntidades::Iterator it = jogadores->inicio();
-    ListaEntidades::Iterator it2 = obstaculos->inicio();
-    for(it; it!=jogadores->fim(); ++it)
-    {   
-        for(it2; it2 != obstaculos->fim(); ++it2)
-        {
-            if(calculaColisao(*it, *it2))
-            {
+    for(ListaEntidades::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) 
+        for(ListaEntidades::Iterator it2 = obstaculos->inicio(); it2 != obstaculos->fim(); ++it2) 
+            if(calculaColisao(*it, *it2))          
                 tratarColisao(*it, *it2);
-            }
-        }
-    }
-    
+
 }
-
-
 /*
     ListaEntidades::Iterator it = jogadores->inicio();
     ListaEntidades::Iterator it2 = plistaentidades->inicio();

@@ -11,9 +11,13 @@ namespace Entidades
         {
             protected:
                 bool danoso;
+
             public:
-                Obstaculo();
+                Obstaculo(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
+                          const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f),
+                          bool dano = false);
                 ~Obstaculo();
+
                 virtual void executar();
                 virtual void obstacular(Jogador* p);
                 virtual void salvar();

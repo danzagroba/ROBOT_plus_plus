@@ -2,9 +2,10 @@
 
 #include <iostream>
 
-Entidade::Entidade(const sf::Vector2f& pos):
+Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& dimensoes):
 Ente(),
-posicao(pos)
+posicao(pos),
+AreaColisao(pos, dimensoes)
 {
     Figura.setPosition(posicao);
 }
@@ -18,21 +19,29 @@ void Entidade::setPos(float xx, float yy)
     posicao.x = xx;
     posicao.y = yy;
     Figura.setPosition(posicao);
+    AreaColisao.left = posicao.x;
+    AreaColisao.top = posicao.y;
 }
+
 void Entidade::mover(const sf::Vector2f& deslocamento)
 {
     posicao += deslocamento * pGG->getDeltaTime();
+    AreaColisao.left = posicao.x;
+    AreaColisao.top = posicao.y;
     Figura.setPosition(posicao);
-    std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
+    //std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
 }
+
 sf::FloatRect Entidade::getBoundingBox()
 {
     return AreaColisao;
 }
+
 const sf::Vector2f& Entidade::getPos() const
 {
     return posicao;
 }
+
 void Entidade::setFigura(const std::string& Sprite_Path)
 {
     if (!Textura.loadFromFile(Sprite_Path))
@@ -42,7 +51,6 @@ void Entidade::setFigura(const std::string& Sprite_Path)
     }
     Figura.setTexture(Textura);
     AreaColisao = Figura.getGlobalBounds();
-
 }
 
 
