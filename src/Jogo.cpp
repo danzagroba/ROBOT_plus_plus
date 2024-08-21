@@ -4,8 +4,8 @@ Jogo::Jogo():
       gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()),
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
       gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
-      jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f)),
-      pjogadordois(NULL),
+      jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(32.0f, 32.0f)),
+      pjogadordois(new Entidades::Jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(32.0f, 32.0f))),
       fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 64.0f)
 {
 
@@ -17,7 +17,7 @@ Jogo::Jogo():
     
     if(Entidades::Jogador::getdoisjogadores())
     {
-        pjogadordois = new Entidades::Jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f));
+        //pjogadordois = new Entidades::Jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f));
         if(pjogadordois==NULL)
         {
             cout<<"Erro ao alocar jogador dois"<<endl;
@@ -61,6 +61,7 @@ void Jogo::executar()
     {
         gerGraf->atualizarDeltaTime();
         processarEventos();
+        gerColisoes->checarColisoesObstaculos();
 
         sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (jogador.getPos()+(pjogadordois->getPos()))/2.0f : jogador.getPos();
         gerGraf->setCamera(proxPos);

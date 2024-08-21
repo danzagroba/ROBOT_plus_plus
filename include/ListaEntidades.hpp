@@ -27,7 +27,7 @@ namespace Listas
             const bool operator==(const Iterator& other) const;
             const bool operator!=(const Iterator& other) const;
 
-            friend class ListaEntidades;
+            Lista<Entidade*>::Iterator& getIt();
         };
 
     public:

@@ -11,7 +11,8 @@ namespace Entidades
             sf::FloatRect AreaColisao;
 
         public:
-            Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
+            Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
+                     const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();
             void setPos(float xx, float yy);
             void mover(const sf::Vector2f& deslocamento);

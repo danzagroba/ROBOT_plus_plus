@@ -34,6 +34,11 @@ namespace Listas
         return it != other.it;
     }
 
+    Lista<Entidade*>::Iterator& ListaEntidades::Iterator::getIt()
+    {
+        return it;
+    }
+
     ListaEntidades::ListaEntidades()
     {}
 
@@ -84,6 +89,6 @@ namespace Listas
 
     ListaEntidades::Iterator ListaEntidades::apagar(Iterator& it)
     {
-        return Iterator(lista.apagar(it.it));
+        return Iterator(lista.apagar(it.getIt()));
     }
 }

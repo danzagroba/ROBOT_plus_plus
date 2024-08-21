@@ -6,6 +6,43 @@
 
 namespace Fases
 {
+    Fase::Fase(const char* caminho, 
+               Gerenciadores::Gerenciador_Grafico* pGG, 
+               Gerenciadores::Gerenciador_Colisoes* pCO, 
+               Entidades::Personagens::Jogador* jgdr,
+               Entidades::Personagens::Jogador* jgdrdois, 
+               float comprimento)
+        : gerGraf(pGG), 
+          gerColisoes(pCO),
+          comprimentoTile(comprimento),
+          altura(0),
+          largura(0),
+          tiles(NULL),
+          obstaculos(),
+          jogadores(),
+          textura(),
+          tile()
+    {
+        if(jgdr)
+            jogadores.inserirNoFim(jgdr);
+        if(jgdrdois)
+            jogadores.inserirNoFim(jgdrdois);
+
+        if(caminho)
+            carregar(caminho);
+
+        textura.loadFromFile("../assets/stoneBrick.png");
+        tile.setTexture(textura);
+        tile.setScale(comprimentoTile / textura.getSize().x, comprimentoTile / textura.getSize().y);
+    }
+
+    Fase::~Fase()
+    {
+        destruirTiles();
+
+        for(Listas::ListaEntidades::Iterator it = obstaculos.inicio(); it != obstaculos.fim(); ++it)
+            delete *it;
+    }
 
     void Fase::destruirTiles()
     {
@@ -19,6 +56,65 @@ namespace Fases
         tiles = nullptr;
         altura = 0;
         largura = 0;
+    }
+
+    void Fase::criarEntidades()
+    {
+        if(!tiles)
+            return;
+        
+        bool eraMuro = false;
+        sf::Vector2i posicaoInicial(0, 0);
+        sf::Vector2i posicaoFinal(0, 0);
+
+        for(int i = 0; i < altura; ++i)
+        {
+            int j;
+            for(j = 0; j < largura; ++j)
+            {
+                if(eMuro(j, i))
+                {
+                    if(eraMuro)
+                    {
+                        posicaoFinal = sf::Vector2i(j, i);
+                    }
+                    else
+                    {
+                        posicaoInicial = sf::Vector2i(j, i);
+                        eraMuro = true;
+                    } 
+                }
+                else
+                {
+                    if(eraMuro)
+                    {
+                        posicaoFinal = sf::Vector2i(j, i+1);
+                        sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
+                        sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
+
+                        obstaculos.inserirNoFim(new Entidades::Obstaculo(posicao, dimensoes));
+                    }
+                    eraMuro = false;
+                }
+            }
+
+            if(eraMuro)
+            {
+                posicaoFinal = sf::Vector2i(j, i+1);
+                sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
+                sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
+
+                obstaculos.inserirNoFim(new Entidades::Obstaculo(posicao, dimensoes));
+            }
+            eraMuro = false;
+        }
+
+        if(gerColisoes)
+        {
+            gerColisoes->setObstaculos(&obstaculos);
+            gerColisoes->setJogadores(&jogadores);
+        }
+
     }
 
     void Fase::carregar(const char* caminho)
@@ -49,32 +145,7 @@ namespace Fases
             }
         }
 
-        std::cout << "altura: " << altura << " largura: " << largura << std::endl;
-    }
-
-
-    Fase::Fase(const char* caminho, 
-               Gerenciadores::Gerenciador_Grafico* pGG, 
-               Gerenciadores::Gerenciador_Colisoes* pCO, 
-               Entidades::Personagens::Jogador* jgdr,
-               Entidades::Personagens::Jogador* jgdrdois, 
-               float comprimento)
-        : gerGraf(pGG), 
-          gerColisoes(pCO),
-          jogador(jgdr),
-          jogadordois(jgdrdois),
-          comprimentoTile(comprimento),
-          altura(0),
-          largura(0),
-          tiles(NULL)
-    {
-        if(caminho)
-            carregar(caminho);
-    }
-
-    Fase::~Fase()
-    {
-        destruirTiles();
+        criarEntidades();
     }
 
     const float Fase::getComprimentoTile() const
@@ -114,8 +185,8 @@ namespace Fases
         if(jFinal > largura)
             jFinal = largura;
         
-        sf::RectangleShape tile(sf::Vector2f(comprimentoTile, comprimentoTile));
-        tile.setFillColor(sf::Color::White);
+        //sf::RectangleShape tile(sf::Vector2f(comprimentoTile, comprimentoTile));
+        //tile.setFillColor(sf::Color::White);
         
         for(int i = iInicial; i < iFinal; ++i)
             for(int j = jInicial; j < jFinal; ++j)
