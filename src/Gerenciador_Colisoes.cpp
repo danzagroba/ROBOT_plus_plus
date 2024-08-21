@@ -3,9 +3,9 @@
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 Gerenciador_Colisoes::Gerenciador_Colisoes()
 {
-    obstaculos->limpar();
+    /*obstaculos->limpar();
     jogadores->limpar();
-    inimigos->limpar();
+    inimigos->limpar();*/
 }
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
