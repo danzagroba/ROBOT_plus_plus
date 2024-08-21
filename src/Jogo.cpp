@@ -3,9 +3,10 @@
 Jogo::Jogo(): 
       gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()),
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
+      gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
       jogador(10.0f, 3, sf::Vector2f(100.0f, 100.0f)),
       pjogadordois(NULL),
-      fase(LEVEL_PATH, gerGraf, &jogador, pjogadordois, 64.0f)
+      fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 64.0f)
 {
 
     jogador.setFigura(SPRITE_PATH);

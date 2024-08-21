@@ -14,8 +14,9 @@ namespace Entidades
             public:
                 Obstaculo();
                 ~Obstaculo();
-                virtual void executar() = 0;
-                virtual void obstacular(Jogador* p) = 0;
+                virtual void executar();
+                virtual void obstacular(Jogador* p);
+                virtual void salvar();
         };
     } using namespace Obstaculos;
 } using namespace Entidades;

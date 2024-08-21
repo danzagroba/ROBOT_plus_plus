@@ -6,6 +6,7 @@
 
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Inputs.hpp" 
+#include "Gerenciador_Colisoes.hpp"
 #include "Jogador.hpp"
 #include "Fase.hpp"
 
@@ -14,7 +15,7 @@
 
 #define FPS 60
 
-#define SPRITE_PATH "../assets/subZero.png"
+#define SPRITE_PATH "../assets/player1.png"
 #define LEVEL_PATH "../levels/fase1.json"
 
 class Jogo
@@ -22,6 +23,7 @@ class Jogo
 private:
     Gerenciadores::Gerenciador_Grafico* gerGraf;
     Gerenciadores::Gerenciador_Inputs* gerInputs;
+    Gerenciadores::Gerenciador_Colisoes* gerColisoes;
     Entidades::Personagens::Jogador jogador;
     Entidades::Personagens::Jogador* pjogadordois;
     Fases::Fase fase;

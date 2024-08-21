@@ -3,7 +3,9 @@
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 Gerenciador_Colisoes::Gerenciador_Colisoes()
 {
-    //listaentidades->limpar();
+    obstaculos->limpar();
+    jogadores->limpar();
+    inimigos->limpar();
 }
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
@@ -53,7 +55,7 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
 
 void Gerenciador_Colisoes::inserirentidade(Entidade* e)
 {
-    //plistaentidades->inserirNoFim(e);
+    obstaculos->inserirNoFim(e);
 }
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {

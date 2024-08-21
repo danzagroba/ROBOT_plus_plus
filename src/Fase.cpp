@@ -1,14 +1,18 @@
 #include "Fase.hpp"
+#include "Plataforma.hpp"
 
 namespace Fases
 {
-    Fase::Fase(const char* caminho, Gerenciadores::Gerenciador_Grafico* pGG, Entidades::Personagens::Jogador* jgdr,Entidades::Personagens::Jogador* jgdrdois, float comprimento)
+    Fase::Fase(const char* caminho, Gerenciadores::Gerenciador_Grafico* pGG, Gerenciadores::Gerenciador_Colisoes* pCO, Entidades::Personagens::Jogador* jgdr,Entidades::Personagens::Jogador* jgdrdois, float comprimento)
         : mapa(caminho), 
           gerGraf(pGG), 
+          gerColisoes(pCO),
           jogador(jgdr),
           jogadordois(jgdrdois),
           comprimentoTile(comprimento)
-    {}
+    {
+
+    }
 
     Fase::~Fase()
     {}
