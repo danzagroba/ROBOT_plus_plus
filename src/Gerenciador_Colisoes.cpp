@@ -7,7 +7,9 @@ Gerenciador_Colisoes::Gerenciador_Colisoes()
     : obstaculos(NULL),
       jogadores(NULL),
       inimigos(NULL)
-{}
+{
+    cout<<"Gerenciador de Colisões criado"<<endl;
+}
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
