@@ -9,12 +9,14 @@ namespace Entidades
         protected:
             sf::Vector2f posicao;
             sf::FloatRect AreaColisao;
+            bool no_ar;
 
         public:
             Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
                      const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();
             void setPos(float xx, float yy);
+            void setno_ar(bool na);
             void mover(const sf::Vector2f& deslocamento);
             const sf::Vector2f& getPos() const;
             virtual void executar() = 0;

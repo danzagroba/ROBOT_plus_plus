@@ -19,7 +19,14 @@ Personagem::~Personagem()
 {
 
 }
-
+void Personagem::pulo()
+{
+    if(no_ar == false)
+    {
+        aplicarForcaY(-0.5f);
+        no_ar = true;
+    }
+}
 void Personagem::setNumVidas(const int nVidas)
 {
     num_vidas = nVidas;

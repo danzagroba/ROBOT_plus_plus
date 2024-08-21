@@ -22,7 +22,7 @@ namespace Entidades
                            const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
                            const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
                 virtual ~Personagem();
-                
+                void pulo();
                 void setNumVidas(const int nVidas);
 
                 const sf::Vector2f& getVel() const;

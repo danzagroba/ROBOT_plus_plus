@@ -10,8 +10,8 @@ Jogo::Jogo():
 {
 
     jogador.setFigura(SPRITE_PATH);
-    gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::aplicarForca, &jogador, sf::Vector2f(0, -2.5f)));
-    gerInputs->vincularcomando(sf::Keyboard::S, std::bind(&Personagem::aplicarForca, &jogador, sf::Vector2f(0, 0.5f)));
+    gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, &jogador));
+    //gerInputs->vincularcomando(sf::Keyboard::S, std::bind(&Personagem::aplicarForca, &jogador, sf::Vector2f(0, 0.5f)));
     gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::aplicarForca, &jogador, sf::Vector2f(-0.5f, 0)));
     gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::aplicarForca, &jogador, sf::Vector2f(0.5f, 0)));
     
@@ -24,8 +24,8 @@ Jogo::Jogo():
             exit(1);
         }
         pjogadordois->setFigura(SPRITE_PATH);
-        gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::aplicarForca, pjogadordois, sf::Vector2f(0, -5.0f)));
-        gerInputs->vincularcomando(sf::Keyboard::Down, std::bind(&Personagem::aplicarForca, pjogadordois, sf::Vector2f(0, 0.5f)));
+        gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::pulo, pjogadordois));
+        //gerInputs->vincularcomando(sf::Keyboard::Down, std::bind(&Personagem::aplicarForca, pjogadordois, sf::Vector2f(0, 0.5f)));
         gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::aplicarForca, pjogadordois, sf::Vector2f(-0.5f, 0)));
         gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::aplicarForca, pjogadordois, sf::Vector2f(0.5f, 0)));
     }

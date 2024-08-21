@@ -70,9 +70,23 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     float minspbY = fromTop ? sbpcima : sbpbaixo;
 
     if (std::abs(minspbX) < std::abs(minspbY))
+    {
         e1->setPos(e1->getPos().x + minspbX * (fromLeft ? -1 : 1), e1->getPos().y);
+    }
     else
-        e1->setPos(e1->getPos().x, e1->getPos().y + minspbY * (fromTop ? -1 : 1));
+    {
+        if(fromTop)
+        {
+            e1->setPos(e1->getPos().x, e1->getPos().y + minspbY * -1);
+            e1->setno_ar(false);    
+        }
+        else
+        {
+            e1->setPos(e1->getPos().x, e1->getPos().y + minspbY);
+        }
+        Personagem* ponteiropersonagem = dynamic_cast<Personagem*> (e1);
+        ponteiropersonagem->setYvel(0);
+    }
 }
 
 void Gerenciador_Colisoes::inserirentidade(Entidade* e)
@@ -85,8 +99,11 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
     //Serve pra interações entre players e entidades, para com obstaculos
     for(ListaEntidades::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) 
         for(ListaEntidades::Iterator it2 = obstaculos->inicio(); it2 != obstaculos->fim(); ++it2) 
-            if(calculaColisao(*it, *it2))          
-                tratarColisao(*it, *it2);
+            if(calculaColisao(*it, *it2))
+            {
+                tratarColisao(*it, *it2);             
+            }
+                
 
 }
 /*

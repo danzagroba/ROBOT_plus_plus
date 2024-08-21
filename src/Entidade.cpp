@@ -5,7 +5,8 @@
 Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& dimensoes):
 Ente(),
 posicao(pos),
-AreaColisao(pos, dimensoes)
+AreaColisao(pos, dimensoes),
+no_ar(true)
 {
     Figura.setPosition(posicao);
 }
@@ -22,7 +23,10 @@ void Entidade::setPos(float xx, float yy)
     AreaColisao.left = posicao.x;
     AreaColisao.top = posicao.y;
 }
-
+void Entidade::setno_ar(bool na)
+{
+    no_ar = na;
+}
 void Entidade::mover(const sf::Vector2f& deslocamento)
 {
     posicao += deslocamento * pGG->getDeltaTime();
