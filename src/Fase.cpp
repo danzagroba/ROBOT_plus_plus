@@ -6,6 +6,8 @@
 
 namespace Fases
 {
+    float Fase::gravidade(0.01);
+
     Fase::Fase(const char* caminho, 
                Gerenciadores::Gerenciador_Grafico* pGG, 
                Gerenciadores::Gerenciador_Colisoes* pCO, 
@@ -20,6 +22,8 @@ namespace Fases
           largura(0),
           tiles(NULL),
           obstaculos(),
+          jogador(jgdr),
+          jogadorDois(jgdrdois),
           jogadores()
     {
         if(jgdr)
@@ -227,5 +231,18 @@ namespace Fases
     void Fase::gerenciarColisoes()
     {
         gerColisoes->checarColisoesObstaculos();
+    }
+
+    void Fase::atualizarJogador(Entidades::Personagens::Jogador* jog)
+    {
+        (jog)->aplicarForcaY(gravidade);
+        jog->mover();
+        jog->setXvel(0.0f);
+    }
+
+    void Fase::atualizar()
+    {
+        atualizarJogador(jogador);
+        atualizarJogador(jogadorDois);
     }
 }

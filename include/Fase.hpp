@@ -18,11 +18,16 @@ namespace Fases
     class Fase : public Ente
     {
     private:
+        static float gravidade;
+
         Gerenciadores::Gerenciador_Grafico* gerGraf;
         Gerenciadores::Gerenciador_Colisoes* gerColisoes;
 
         Listas::ListaEntidades obstaculos;
         Listas::ListaEntidades jogadores;
+
+        Entidades::Personagens::Jogador* jogador;
+        Entidades::Personagens::Jogador* jogadorDois;
 
         float comprimentoTile;
 
@@ -58,11 +63,12 @@ namespace Fases
     
         const bool mapaCarregado() const;
 
-        Entidades::Personagens::Jogador* getJogador() const;
         Entidades::Personagens::Jogador* getJogadorDois() const;
 
         void executar();
 
         void gerenciarColisoes();
+        void atualizarJogador(Entidades::Personagens::Jogador* jog);
+        void atualizar();
     };
 }

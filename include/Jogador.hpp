@@ -17,7 +17,7 @@ namespace Entidades
                 static bool doisjogadores;
 
             public:
-                Jogador(const float vel = 0.0f, 
+                Jogador(const sf::Vector2f& vel = sf::Vector2f(0.0f, 0.0f), 
                         const int nVidas = 0, 
                         const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f),
                         const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
