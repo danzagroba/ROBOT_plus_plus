@@ -12,16 +12,15 @@ namespace Fases
                Entidades::Personagens::Jogador* jgdr,
                Entidades::Personagens::Jogador* jgdrdois, 
                float comprimento)
-        : gerGraf(pGG), 
+        : Ente(),
+          gerGraf(pGG), 
           gerColisoes(pCO),
           comprimentoTile(comprimento),
           altura(0),
           largura(0),
           tiles(NULL),
           obstaculos(),
-          jogadores(),
-          textura(),
-          tile()
+          jogadores()
     {
         if(jgdr)
             jogadores.inserirNoFim(jgdr);
@@ -31,9 +30,9 @@ namespace Fases
         if(caminho)
             carregar(caminho);
 
-        textura.loadFromFile("../assets/stoneBrick.png");
-        tile.setTexture(textura);
-        tile.setScale(comprimentoTile / textura.getSize().x, comprimentoTile / textura.getSize().y);
+        Textura.loadFromFile("../assets/stoneBrick.png");
+        Figura.setTexture(Textura);
+        Figura.setScale(comprimentoTile / Textura.getSize().x, comprimentoTile / Textura.getSize().y);
     }
 
     Fase::~Fase()
@@ -192,8 +191,8 @@ namespace Fases
             for(int j = jInicial; j < jFinal; ++j)
                 if(eMuro(j, i))
                 {
-                    tile.setPosition(j * comprimentoTile, i * comprimentoTile);
-                    gerGraf->desenhar(tile);
+                    Figura.setPosition(j * comprimentoTile, i * comprimentoTile);
+                    gerGraf->desenhar(Figura);
                 }
     }
 
@@ -220,5 +219,13 @@ namespace Fases
     const bool Fase::mapaCarregado() const
     {
         return tiles != nullptr;
+    }
+
+    void Fase::executar()
+    {}
+
+    void Fase::gerenciarColisoes()
+    {
+        gerColisoes->checarColisoesObstaculos();
     }
 }
