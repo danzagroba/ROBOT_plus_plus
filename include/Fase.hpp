@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Mapa.hpp"
 #include "Jogador.hpp"
 #include "Gerenciador_Grafico.hpp"
 
@@ -11,11 +10,19 @@ namespace Fases
     class Fase
     {
     private:
-        Mapa mapa;
         Gerenciadores::Gerenciador_Grafico* gerGraf;
+        
         Entidades::Personagens::Jogador* jogador;
         Entidades::Personagens::Jogador* jogadordois;
+        
         float comprimentoTile;
+
+        int altura;
+        int largura;
+        short int** tiles;
+
+    private:
+        void destruirTiles();
 
     public:
         Fase(const char* caminho = nullptr, 
@@ -25,11 +32,18 @@ namespace Fases
              float comprimento = 32.0f);
         ~Fase();
 
-        const float getComprimentoTile() const;
-        const int getAltura() const;
-        const int getLargura() const;
-
         void carregar(const char* caminho);
+
+        const float getComprimentoTile() const;
+        const int getAltura() const;    
+        const int getLargura() const;   
+
         void desenhar();
+    
+        const bool posicaoValida(const int x, const int y) const;
+        const short int getTile(const int x, const int y) const;
+        const bool eMuro(const int x, const int y) const;
+    
+        const bool mapaCarregado() const;
     };
 }
