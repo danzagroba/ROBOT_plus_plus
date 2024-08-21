@@ -9,16 +9,22 @@ namespace Entidades
         protected:
             sf::Vector2f posicao;
             sf::FloatRect AreaColisao;
-            bool no_ar;
+            sf::Vector2f velocidade;
+            static const float maxVel;
 
         public:
             Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
-                     const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
+                     const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f),
+                     const sf::Vector2f& vel = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();
             void setPos(float xx, float yy);
-            void setno_ar(bool na);
-            void mover(const sf::Vector2f& deslocamento);
+            void mover();
             const sf::Vector2f& getPos() const;
+            const sf::Vector2f& getVel() const;
+            const float getXVel() const;
+            const float getYVel() const;
+            void setXvel(const float vel);
+            void setYvel(const float vel);
             virtual void executar() = 0;
             virtual void salvar() = 0;
             void setFigura(const std::string& Sprite_Path);

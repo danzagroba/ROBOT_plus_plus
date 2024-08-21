@@ -2,11 +2,14 @@
 
 #include <iostream>
 
-Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& dimensoes):
+
+const float Entidade::maxVel(1.25f);
+
+Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, const sf::Vector2f& vel):
 Ente(),
 posicao(pos),
 AreaColisao(pos, dimensoes),
-no_ar(true)
+velocidade(vel)
 {
     Figura.setPosition(posicao);
 }
@@ -23,17 +26,39 @@ void Entidade::setPos(float xx, float yy)
     AreaColisao.left = posicao.x;
     AreaColisao.top = posicao.y;
 }
-void Entidade::setno_ar(bool na)
+
+void Entidade::mover()
 {
-    no_ar = na;
-}
-void Entidade::mover(const sf::Vector2f& deslocamento)
-{
-    posicao += deslocamento * pGG->getDeltaTime();
+    posicao += velocidade * pGG->getDeltaTime();
     AreaColisao.left = posicao.x;
     AreaColisao.top = posicao.y;
     Figura.setPosition(posicao);
     //std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
+}
+
+void Entidade::setXvel(const float vel)
+{
+    velocidade.x = vel;
+}
+
+void Entidade::setYvel(const float vel)
+{
+    velocidade.y = vel;
+}
+
+const sf::Vector2f& Entidade::getVel() const
+{
+    return velocidade;
+}
+
+const float Entidade::getXVel() const
+{
+    return velocidade.x;
+}
+
+const float Entidade::getYVel() const
+{
+    return velocidade.y;
 }
 
 sf::FloatRect Entidade::getBoundingBox()

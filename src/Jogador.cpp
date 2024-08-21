@@ -8,7 +8,7 @@ Jogador::Jogador(const sf::Vector2f& vel,
                  const int nVidas, 
                  const sf::Vector2f& pos, 
                  const sf::Vector2f& dimensoes)
-    : Personagem(vel, nVidas, pos, dimensoes),
+    : Personagem(nVidas, pos, dimensoes),
       pontos(0),
       nome()
 {

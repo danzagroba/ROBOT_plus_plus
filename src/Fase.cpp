@@ -94,8 +94,9 @@ namespace Fases
                         posicaoFinal = sf::Vector2i(j, i+1);
                         sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
                         sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
-
-                        obstaculos.inserirNoFim(new Entidades::Obstaculo(posicao, dimensoes));
+                        Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
+                        gerColisoes->inserirObstaculos(pobstaculo);
+                        obstaculos.inserirNoFim(pobstaculo);
                     }
                     eraMuro = false;
                 }
@@ -107,14 +108,15 @@ namespace Fases
                 sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
                 sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
 
-                obstaculos.inserirNoFim(new Entidades::Obstaculo(posicao, dimensoes));
+                Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
+                gerColisoes->inserirObstaculos(pobstaculo);
+                obstaculos.inserirNoFim(pobstaculo);
             }
             eraMuro = false;
         }
 
         if(gerColisoes)
         {
-            gerColisoes->setObstaculos(&obstaculos);
             gerColisoes->setJogadores(&jogadores);
         }
 

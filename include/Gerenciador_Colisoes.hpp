@@ -1,11 +1,14 @@
 #pragma once
 
 #include "ListaEntidades.hpp"
+#include "Obstaculo.hpp"
 #include "Entidade.hpp"
 #include "Fase.hpp"
 
+#include <list>
 #include <SFML/Window/Event.hpp>
 #include <iostream>
+using namespace std;
 
 using namespace std;
 
@@ -16,8 +19,9 @@ namespace Gerenciadores
     {
         private:
             static Gerenciador_Colisoes* pgercol;
-            
-            ListaEntidades* obstaculos;
+            //vector<Inimigo*> LIs;
+            list<Obstaculo*> LOs;
+            //ListaEntidades* obstaculos;
             ListaEntidades* jogadores;
             ListaEntidades* inimigos;
 
@@ -30,12 +34,11 @@ namespace Gerenciadores
         public:
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 
-            void setObstaculos(ListaEntidades* obst);
             void setJogadores(ListaEntidades* jogs);
             void setInimigos(ListaEntidades* inims);
 
             bool calculaColisao(Entidade* e1, Entidade* e2);
-            void inserirentidade(Entidade* e);
+            void inserirObstaculos(Obstaculo* e);
             void checarColisoesObstaculos();
             void tratarColisao(Entidade* e1, Entidade* e2);
     };
