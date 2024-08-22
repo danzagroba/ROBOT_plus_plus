@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace Listas
 {
     template <class T>
@@ -17,18 +19,22 @@ namespace Listas
             Elemento<Type>* ant;
 
         public:
-            Elemento(Type dat, Elemento<Type>* anterior = nullptr, Elemento<Type>* prx = nullptr)
-                : data(dat), ant(anterior), prox(prx)
+            Elemento(Type dat, Elemento<Type>* anterior = NULL, Elemento<Type>* prx = NULL)
+                : data(dat), 
+                  ant(anterior), 
+                  prox(prx)
             {}
 
             Elemento()
-                : data(Type()), ant(nullptr), prox(nullptr)
+                : data(Type()), 
+                  ant(NULL), 
+                  prox(NULL)
             {}
 
             ~Elemento()
             {
-                prox = nullptr;
-                ant = nullptr;
+                prox = NULL;
+                ant = NULL;
             }
 
             void setAnt(Elemento<Type>* anterior)
@@ -59,7 +65,7 @@ namespace Listas
             }
         };
 
-    protected:
+    private:
         Elemento<T>* cabeca;
         Elemento<T>* cauda;
         int tam;
@@ -71,13 +77,13 @@ namespace Listas
             Elemento<T>* atual;
 
         public:
-            Iterator(Elemento<T>* cabeca = nullptr)
+            Iterator(Elemento<T>* cabeca = NULL)
                 : atual(cabeca)
             {}
 
             ~Iterator()
             {
-                atual = nullptr;
+                atual = NULL;
             }
 
             T operator*()
@@ -110,7 +116,9 @@ namespace Listas
     
     public:
         Lista()
-            : cabeca(nullptr), cauda(nullptr), tam(0)
+            : cabeca(NULL), 
+              cauda(NULL), 
+              tam(0)
         {}
 
         ~Lista()
@@ -127,8 +135,8 @@ namespace Listas
                 cabeca = temp;
                 --tam;
             }
-            cabeca = nullptr;
-            cauda = nullptr;
+            cabeca = NULL;
+            cauda = NULL;
         }
 
         void inserirNoFim(const T data)
@@ -169,9 +177,9 @@ namespace Listas
                 return;
             Elemento<T>* temp = cabeca->getProx();
             if(temp)
-                temp->setAnt(nullptr);
+                temp->setAnt(NULL);
             else
-                cauda = nullptr;
+                cauda = NULL;
             delete cabeca;
             cabeca = temp;
             --tam;
@@ -183,9 +191,9 @@ namespace Listas
                 return;
             Elemento<T>* temp = cauda->getAnt();
             if(temp)
-                temp->setProx(nullptr);
+                temp->setProx(NULL);
             else
-                cabeca = nullptr;
+                cabeca = NULL;
             delete cauda;
             cauda = temp;
             --tam;
@@ -198,7 +206,7 @@ namespace Listas
 
         Iterator fim()
         {
-            return Iterator(nullptr);
+            return Iterator(NULL);
         }
 
         const int getTam() const

@@ -2,44 +2,9 @@
 
 namespace Listas
 {
-    ListaEntidades::Iterator::Iterator(Lista<Entidade*>::Iterator iter)
-        : it(iter)
-    {}
-
-    ListaEntidades::Iterator::Iterator()
-        : it()
-    {}
-
-    ListaEntidades::Iterator::~Iterator()
-    {}
-
-    Entidade* ListaEntidades::Iterator::operator*()
-    {
-        return *it;
-    }
-
-    ListaEntidades::Iterator& ListaEntidades::Iterator::operator++()
-    {
-        ++it;
-        return *this;
-    }
-
-    const bool ListaEntidades::Iterator::operator==(const Iterator& other) const
-    {
-        return it == other.it;
-    }
-
-    const bool ListaEntidades::Iterator::operator!=(const Iterator& other) const
-    {
-        return it != other.it;
-    }
-
-    Lista<Entidade*>::Iterator& ListaEntidades::Iterator::getIt()
-    {
-        return it;
-    }
-
     ListaEntidades::ListaEntidades()
+        : lista(),
+          it()
     {}
 
     ListaEntidades::~ListaEntidades()
@@ -52,14 +17,16 @@ namespace Listas
         lista.limpar();
     }
 
-    void ListaEntidades::inserirNoFim(Entidade* e)
+    void ListaEntidades::inserirNoFim(Entidade* ent)
     {
-        lista.inserirNoFim(e);
+        if(ent)
+            lista.inserirNoFim(ent);
     }
 
-    void ListaEntidades::inserirNoInicio(Entidade* e)
+    void ListaEntidades::inserirNoInicio(Entidade* ent)
     {
-        lista.inserirNoInicio(e);
+        if(ent)
+            lista.inserirNoInicio(ent);
     }
 
     void ListaEntidades::removerDoInicio()
@@ -72,23 +39,41 @@ namespace Listas
         lista.removerDoFim();
     }
 
-    ListaEntidades::Iterator ListaEntidades::inicio()
-    {
-        return Iterator(lista.inicio());
-    }
-
-    ListaEntidades::Iterator ListaEntidades::fim()
-    {
-        return Iterator(lista.fim());
-    }
-
     const int ListaEntidades::getTam() const
     {
         return lista.getTam();
     }
 
-    ListaEntidades::Iterator ListaEntidades::apagar(Iterator& it)
+    Lista<Entidade*>::Iterator ListaEntidades::apagar(Lista<Entidade*>::Iterator iter)
     {
-        return Iterator(lista.apagar(it.getIt()));
+        return lista.apagar(iter);
+    }
+
+    Lista<Entidade*>::Iterator ListaEntidades::inicio()
+    {
+        return lista.inicio();
+    }
+
+    Lista<Entidade*>::Iterator ListaEntidades::fim()
+    {
+        return lista.fim();
+    }
+
+    void ListaEntidades::executar()
+    {
+        for(it = inicio(); it != fim(); ++it)
+            (*it)->executar();
+    }
+
+    void ListaEntidades::desenhar()
+    {
+        for(it = inicio(); it != fim(); ++it)
+            (*it)->desenhar();
+    }
+
+    void ListaEntidades::salvar()
+    {
+        for(it = inicio(); it != fim(); ++it)
+            (*it)->salvar();
     }
 }

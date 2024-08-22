@@ -9,26 +9,7 @@ namespace Listas
     {
     private:
         Lista<Entidade*> lista;
-
-    public:
-        class Iterator
-        {
-        private:
-            Lista<Entidade*>::Iterator it;
-        
-        public:
-            Iterator(Lista<Entidade*>::Iterator iter);
-            Iterator();
-            ~Iterator();
-
-            Entidade* operator*();
-            Iterator& operator++();
-
-            const bool operator==(const Iterator& other) const;
-            const bool operator!=(const Iterator& other) const;
-
-            Lista<Entidade*>::Iterator& getIt();
-        };
+        Lista<Entidade*>::Iterator it;
 
     public:
         ListaEntidades();
@@ -36,17 +17,20 @@ namespace Listas
 
         void limpar();
 
-        void inserirNoFim(Entidade* e);
-        void inserirNoInicio(Entidade* e);
+        void inserirNoFim(Entidade* ent);
+        void inserirNoInicio(Entidade* ent);
 
         void removerDoInicio();
         void removerDoFim();
 
-        Iterator inicio();
-        Iterator fim();
-
         const int getTam() const;
+    
+        Lista<Entidade*>::Iterator apagar(Lista<Entidade*>::Iterator iter);
+        Lista<Entidade*>::Iterator inicio();
+        Lista<Entidade*>::Iterator fim();
 
-        Iterator apagar(Iterator& it);
+        void executar();
+        void desenhar();
+        void salvar();        
     };
 } using namespace Listas;

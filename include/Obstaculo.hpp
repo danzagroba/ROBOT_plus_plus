@@ -3,6 +3,7 @@
 
 #include "Entidade.hpp"
 #include "Jogador.hpp"
+
 namespace Entidades
 {
     namespace Obstaculos

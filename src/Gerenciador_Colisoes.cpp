@@ -80,7 +80,7 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
         if(fromTop)
         {
             ponteiropersonagem->setPos(e1->getPos().x, e1->getPos().y + minspbY * -1);
-            ponteiropersonagem->setno_ar(false);    
+            ponteiropersonagem->setno_ar(false); 
         }
         else
         {
@@ -100,7 +100,7 @@ void Gerenciador_Colisoes::inserirObstaculos(Obstaculo* e)
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {
     //Serve pra interações entre players e entidades, para com obstaculos
-    for(ListaEntidades::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) 
+    for(Listas::Lista<Entidade*>::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) 
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) 
             if(calculaColisao(*it, *it2))
             {
