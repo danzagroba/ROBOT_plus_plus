@@ -66,9 +66,7 @@ namespace Fases
         Entidades::Personagens::Jogador* getJogadorDois() const;
 
         void executar();
-
         void gerenciarColisoes();
         void atualizarJogador(Entidades::Personagens::Jogador* jog);
-        void atualizar();
     };
 }

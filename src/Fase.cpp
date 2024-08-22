@@ -6,7 +6,7 @@
 
 namespace Fases
 {
-    float Fase::gravidade(0.01);
+    float Fase::gravidade(0.03);
 
     Fase::Fase(const char* caminho, 
                Gerenciadores::Gerenciador_Grafico* pGG, 
@@ -43,7 +43,7 @@ namespace Fases
     {
         destruirTiles();
 
-        for(Listas::ListaEntidades::Iterator it = obstaculos.inicio(); it != obstaculos.fim(); ++it)
+        for(Listas::Lista<Entidade*>::Iterator it = obstaculos.inicio(); it != obstaculos.fim(); ++it)
             delete *it;
     }
 
@@ -73,7 +73,7 @@ namespace Fases
         for(int i = 0; i < altura; ++i)
         {
             int j;
-            for(j = 0; j < largura; ++j)
+            for(j = 1; j < largura-1; ++j)
             {
                 if(eMuro(j, i))
                 {
@@ -114,6 +114,14 @@ namespace Fases
             }
             eraMuro = false;
         }
+
+        Obstaculo* obstaculo = new Entidades::Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        gerColisoes->inserirObstaculos(obstaculo);
+        obstaculos.inserirNoFim(obstaculo);
+
+        obstaculo = new Entidades::Obstaculo(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        gerColisoes->inserirObstaculos(obstaculo);
+        obstaculos.inserirNoFim(obstaculo);
 
         if(gerColisoes)
         {
@@ -190,9 +198,6 @@ namespace Fases
         if(jFinal > largura)
             jFinal = largura;
         
-        //sf::RectangleShape tile(sf::Vector2f(comprimentoTile, comprimentoTile));
-        //tile.setFillColor(sf::Color::White);
-        
         for(int i = iInicial; i < iFinal; ++i)
             for(int j = jInicial; j < jFinal; ++j)
                 if(eMuro(j, i))
@@ -228,8 +233,11 @@ namespace Fases
     }
 
     void Fase::executar()
-    {}
-
+    {
+        atualizarJogador(jogador);
+        atualizarJogador(jogadorDois);
+    }
+    
     void Fase::gerenciarColisoes()
     {
         gerColisoes->checarColisoesObstaculos();
@@ -240,11 +248,5 @@ namespace Fases
         (jog)->aplicarForcaY(gravidade);
         jog->mover();
         jog->setXvel(0.0f);
-    }
-
-    void Fase::atualizar()
-    {
-        atualizarJogador(jogador);
-        atualizarJogador(jogadorDois);
     }
 }

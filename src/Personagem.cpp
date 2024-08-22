@@ -8,7 +8,8 @@ Personagem::Personagem(const int nVidas,
                        const sf::Vector2f& dimensoes)
     : Entidade(pos, dimensoes),
       num_vidas(nVidas),
-      no_ar(true)
+      no_ar(true),
+      puloBloqueado(false)
 {
 
 }
@@ -23,14 +24,26 @@ void Personagem::setno_ar(bool na)
     no_ar = na;
 }
 
+void Personagem::permitirPulo()
+{
+    puloBloqueado = false;
+}
+
 void Personagem::pulo()
 {
-    if(no_ar == false)
+    if(no_ar == false && puloBloqueado == false)
     {
-        aplicarForcaY(-0.5f);
+        aplicarForcaY(-1.0f);
         no_ar = true;
+        puloBloqueado = true;
     }
 }
+
+void Personagem::tomarDano(const int dano)
+{
+    num_vidas -= dano;
+}
+
 void Personagem::setNumVidas(const int nVidas)
 {
     num_vidas = nVidas;
@@ -44,6 +57,4 @@ void Personagem::aplicarForcaY(const float forca)
         velocidade.y = (novaVel < 0.0f) ? -maxVel : maxVel;
     else
         velocidade.y = novaVel;
-
-    std::cout << velocidade.y << std::endl;
 }
