@@ -15,9 +15,7 @@ Ente::Ente():
 id(0),
 Figura(),
 Textura()
-{
-
-}
+{}
 
 Ente::~Ente()
 {

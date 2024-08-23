@@ -6,6 +6,8 @@ Obstaculo::Obstaculo(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, con
 {
     AreaColisao.width = dimensoes.x;
     AreaColisao.height = dimensoes.y;
+
+    id = 2;
 }
 
 Obstaculo::~Obstaculo()

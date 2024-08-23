@@ -26,7 +26,10 @@ bool Jogador::getdoisjogadores()
 
 void Jogador::executar()
 {
-
+    aplicarForcaY(gravidade);
+    mover();
+    setXvel(0.0f);
+    desenhar();
 }
 
 void Jogador::salvar()

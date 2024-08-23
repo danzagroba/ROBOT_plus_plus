@@ -29,9 +29,6 @@ private:
     Entidades::Personagens::Jogador* pjogadordois;
     Fases::Fase fase;
 
-private:
-    void processarEventos();
-
 public:
     Jogo();
     ~Jogo();

@@ -5,7 +5,7 @@ Jogo::Jogo():
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
       gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
       jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f)),
-      pjogadordois(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f))),
+      pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f)) : NULL),
       fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 16.0f)
 {
 
@@ -39,40 +39,22 @@ Jogo::Jogo():
 Jogo::~Jogo()
 {
     if(pjogadordois)
-    {
         delete pjogadordois;
-    }
-}
-
-void Jogo::processarEventos()
-{
-
-    // inputs do jogador
-
-    gerInputs->processainput(*gerGraf->getJanela());
-
-
-    //jogador.mover(dir*deltaTime);
 }
 
 void Jogo::executar()
 {
     while (gerGraf->getisOpen())
     {
+        gerGraf->clear();
         gerGraf->atualizarDeltaTime();
-        processarEventos();
+        
+        gerInputs->processainput(*gerGraf->getJanela());
 
         fase.executar();
-        fase.gerenciarColisoes();
 
         sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (jogador.getPos()+(pjogadordois->getPos()))/2.0f : jogador.getPos();
         gerGraf->setCamera(proxPos);
-        gerGraf->clear();
-
-        fase.desenhar();
-        jogador.desenhar();
-        if(pjogadordois)
-            pjogadordois->desenhar();   
 
         gerGraf->display();
     }

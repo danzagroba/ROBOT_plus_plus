@@ -23,11 +23,7 @@ namespace Fases
         Gerenciadores::Gerenciador_Grafico* gerGraf;
         Gerenciadores::Gerenciador_Colisoes* gerColisoes;
 
-        Listas::ListaEntidades obstaculos;
-        Listas::ListaEntidades jogadores;
-
-        Entidades::Personagens::Jogador* jogador;
-        Entidades::Personagens::Jogador* jogadorDois;
+        Listas::ListaEntidades entidades;
 
         float comprimentoTile;
 
@@ -63,10 +59,6 @@ namespace Fases
     
         const bool mapaCarregado() const;
 
-        Entidades::Personagens::Jogador* getJogadorDois() const;
-
         void executar();
-        void gerenciarColisoes();
-        void atualizarJogador(Entidades::Personagens::Jogador* jog);
     };
 }

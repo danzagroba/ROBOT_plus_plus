@@ -10,7 +10,7 @@ Personagem::Personagem(const int nVidas,
       no_ar(true),
       puloBloqueado(false)
 {
-
+    id = 9;
 }
 
 Personagem::~Personagem()

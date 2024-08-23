@@ -5,6 +5,8 @@
 
 const float Entidade::maxVel(1.25f);
 
+float Entidade::gravidade(0.01);
+
 Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& vel):
 Ente(),
 posicao(pos),
@@ -12,6 +14,7 @@ velocidade(vel),
 AreaColisao(pos, sf::Vector2f(0.0f, 0.0f))
 {
     Figura.setPosition(posicao);
+    id = -1;
 }
 
 Entidade::~Entidade()
@@ -87,4 +90,7 @@ void Entidade::setFigura(const std::string& Sprite_Path)
     AreaColisao = Figura.getGlobalBounds();
 }
 
-
+void Entidade::setGravidade(float g)
+{
+    gravidade = g;
+}

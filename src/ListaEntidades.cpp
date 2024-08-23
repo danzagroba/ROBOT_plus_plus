@@ -65,12 +65,6 @@ namespace Listas
             (*it)->executar();
     }
 
-    void ListaEntidades::desenhar()
-    {
-        for(it = inicio(); it != fim(); ++it)
-            (*it)->desenhar();
-    }
-
     void ListaEntidades::salvar()
     {
         for(it = inicio(); it != fim(); ++it)

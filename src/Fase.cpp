@@ -21,15 +21,19 @@ namespace Fases
           altura(0),
           largura(0),
           tiles(NULL),
-          obstaculos(),
-          jogador(jgdr),
-          jogadorDois(jgdrdois),
-          jogadores()
+          entidades()
     {
         if(jgdr)
-            jogadores.inserirNoFim(jgdr);
+            entidades.inserirNoFim(static_cast<Entidade*>(jgdr));
         if(jgdrdois)
-            jogadores.inserirNoFim(jgdrdois);
+            entidades.inserirNoFim(static_cast<Entidade*>(jgdrdois));
+
+        if(gerColisoes)
+        {
+            gerColisoes->inserirJogadores(jgdr);
+            if(jgdrdois)
+                gerColisoes->inserirJogadores(jgdrdois);
+        }
 
         if(caminho)
             carregar(caminho);
@@ -37,14 +41,24 @@ namespace Fases
         Textura.loadFromFile("../assets/stoneBrick.png");
         Figura.setTexture(Textura);
         Figura.setScale(comprimentoTile / Textura.getSize().x, comprimentoTile / Textura.getSize().y);
+    
+        Entidades::Entidade::setGravidade(gravidade);
     }
 
     Fase::~Fase()
     {
         destruirTiles();
 
-        for(Listas::Lista<Entidade*>::Iterator it = obstaculos.inicio(); it != obstaculos.fim(); ++it)
+        entidades.removerDoInicio();
+        if(Entidades::Personagens::Jogador::getdoisjogadores())
+            entidades.removerDoInicio();
+
+        for(Listas::Lista<Entidade*>::Iterator it = entidades.inicio(); it != entidades.fim(); ++it)
+        {
             delete *it;
+        }
+
+        entidades.limpar();
     }
 
     void Fase::destruirTiles()
@@ -97,7 +111,7 @@ namespace Fases
 
                         Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
                         gerColisoes->inserirObstaculos(pobstaculo);
-                        obstaculos.inserirNoFim(pobstaculo);
+                        entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
                     }
                     eraMuro = false;
                 }
@@ -111,24 +125,18 @@ namespace Fases
 
                 Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
                 gerColisoes->inserirObstaculos(pobstaculo);
-                obstaculos.inserirNoFim(pobstaculo);
+                entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
             }
             eraMuro = false;
         }
 
         Obstaculo* obstaculo = new Entidades::Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
-        obstaculos.inserirNoFim(obstaculo);
+        entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
 
         obstaculo = new Entidades::Obstaculo(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
-        obstaculos.inserirNoFim(obstaculo);
-
-        if(gerColisoes)
-        {
-            gerColisoes->setJogadores(&jogadores);
-        }
-
+        entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
     }
 
     void Fase::carregar(const char* caminho)
@@ -235,19 +243,8 @@ namespace Fases
 
     void Fase::executar()
     {
-        atualizarJogador(jogador);
-        atualizarJogador(jogadorDois);
-    }
-    
-    void Fase::gerenciarColisoes()
-    {
+        desenhar();
+        entidades.executar();
         gerColisoes->checarColisoesObstaculos();
-    }
-
-    void Fase::atualizarJogador(Entidades::Personagens::Jogador* jog)
-    {
-        (jog)->aplicarForcaY(gravidade);
-        jog->mover();
-        jog->setXvel(0.0f);
     }
 }

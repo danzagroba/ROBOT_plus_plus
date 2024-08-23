@@ -9,7 +9,9 @@ namespace Entidades
                          const sf::Vector2f& pos,
                          const int maldade)
             : Personagem(nVidas, pos), nivelMaldade(maldade)
-        {}
+        {
+            id = 3;
+        }
         
         Inimigo::~Inimigo()
         {}

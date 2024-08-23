@@ -4,18 +4,21 @@
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 
 Gerenciador_Colisoes::Gerenciador_Colisoes():
-      jogadores(NULL),
+      LJs(),
+      LIs(),
+      LOs(),
       inimigos(NULL)
 {
     LIs.clear();
     LOs.clear();
+    LJs.clear();
     cout<<"Gerenciador de Colisões criado"<<endl;
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
-    inimigos = NULL;
-    jogadores = NULL;
+    //inimigos = NULL;
+    //jogadores = NULL;
 }
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
@@ -77,11 +80,6 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     }
 }
 
-void Gerenciador_Colisoes::setJogadores(ListaEntidades* jogs)
-{
-    jogadores = jogs;
-}
-
 void Gerenciador_Colisoes::inserirObstaculos(Obstaculo* e)
 {
     LOs.push_back(e);
@@ -93,10 +91,15 @@ void Gerenciador_Colisoes::inserirInimigos(Inimigo* e)
 }
 
 
+void Gerenciador_Colisoes::inserirJogadores(Jogador* e)
+{
+    LJs.push_back(e);
+}
+
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {
     //Serve pra interações entre players e entidades, para com obstaculos
-    for(Listas::Lista<Entidade*>::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) {
+    for(vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ++it) {
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {

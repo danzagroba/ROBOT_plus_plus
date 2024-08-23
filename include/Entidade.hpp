@@ -11,6 +11,7 @@ namespace Entidades
             sf::FloatRect AreaColisao;
             sf::Vector2f velocidade;
             static const float maxVel;
+            static float gravidade;
 
         public:
             Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
@@ -29,6 +30,7 @@ namespace Entidades
             virtual void salvar() = 0;
             void setFigura(const std::string& Sprite_Path);
             sf::FloatRect getBoundingBox();
+            static void setGravidade(float g);
             //virtual bool colidecomEntidade();
             //virtual void aocolidir();
     };
