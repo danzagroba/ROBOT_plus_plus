@@ -4,15 +4,15 @@ Jogo::Jogo():
       gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()),
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
       gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
-      jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(32.0f, 32.0f)),
-      pjogadordois(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(32.0f, 32.0f))),
-      fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 64.0f)
+      jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(32.0f, 32.0f)),
+      pjogadordois(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(32.0f, 32.0f))),
+      fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 16.0f)
 {
 
-    jogador.setFigura(SPRITE_PATH);
+    jogador.setFigura(SPRITE_PATHP1);
     gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, &jogador));
-    gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::setXvel, &jogador,(-0.5)));
-    gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::setXvel, &jogador,(0.5)));
+    gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::setXvel, &jogador,(-0.1)));
+    gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::setXvel, &jogador,(0.1)));
     gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::W, std::bind(&Personagem::permitirPulo, &jogador));
 
     if(Entidades::Jogador::getdoisjogadores())
@@ -23,10 +23,10 @@ Jogo::Jogo():
             cout<<"Erro ao alocar jogador dois"<<endl;
             exit(1);
         }
-        pjogadordois->setFigura(SPRITE_PATH);
+        pjogadordois->setFigura(SPRITE_PATHP2);
         gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::pulo, pjogadordois));
-        gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::setXvel, pjogadordois,(-0.5)));
-        gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::setXvel, pjogadordois,(0.5)));
+        gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::setXvel, pjogadordois,(-0.1)));
+        gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::setXvel, pjogadordois,(0.1)));
         gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::Up, std::bind(&Personagem::permitirPulo, pjogadordois));
     }
 
