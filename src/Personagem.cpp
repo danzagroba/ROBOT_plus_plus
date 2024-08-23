@@ -33,7 +33,7 @@ void Personagem::pulo()
 {
     if(no_ar == false && puloBloqueado == false)
     {
-        aplicarForcaY(-1.0f);
+        aplicarForcaY(-0.3f);
         no_ar = true;
         puloBloqueado = true;
     }

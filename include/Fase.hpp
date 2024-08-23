@@ -41,7 +41,7 @@ namespace Fases
              Gerenciadores::Gerenciador_Colisoes* pCO = nullptr,
              Entidades::Personagens::Jogador* jgdr = nullptr,
              Entidades::Personagens::Jogador* jgdrdois = nullptr,
-             float comprimento = 32.0f);
+             float comprimento = 16.0f);
         ~Fase();
 
     private:

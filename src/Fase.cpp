@@ -6,7 +6,7 @@
 
 namespace Fases
 {
-    float Fase::gravidade(0.03);
+    float Fase::gravidade(0.01);
 
     Fase::Fase(const char* caminho, 
                Gerenciadores::Gerenciador_Grafico* pGG, 

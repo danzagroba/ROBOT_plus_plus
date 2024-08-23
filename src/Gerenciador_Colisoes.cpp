@@ -7,6 +7,7 @@ Gerenciador_Colisoes::Gerenciador_Colisoes():
       jogadores(NULL),
       inimigos(NULL)
 {
+    LIs.clear();
     LOs.clear();
     cout<<"Gerenciador de Colisões criado"<<endl;
 }
@@ -31,27 +32,12 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
     return pgercol;
 }
 
-/*void Gerenciador_Colisoes::setObstaculos(ListaEntidades* obst)
-{
-    obstaculos = obst;
-}*/
-
-void Gerenciador_Colisoes::setJogadores(ListaEntidades* jogs)
-{
-    jogadores = jogs;
-}
-
-void Gerenciador_Colisoes::setInimigos(ListaEntidades* inims)
-{
-    inimigos = inims;
-}
 
 bool Gerenciador_Colisoes::calculaColisao(Entidade* e1, Entidade* e2)
 {
     return e1->getBoundingBox().intersects(e2->getBoundingBox());
 }
 
-//FAZER OUTRO PRA INIMIGO
 void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     //e1 seria um personagem, e2 há de ser um obstaculo ou chão 
     sf::FloatRect b1 = e1->getBoundingBox();
@@ -91,39 +77,40 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     }
 }
 
+void Gerenciador_Colisoes::setJogadores(ListaEntidades* jogs)
+{
+    jogadores = jogs;
+}
+
 void Gerenciador_Colisoes::inserirObstaculos(Obstaculo* e)
 {
     LOs.push_back(e);
+}
+
+void Gerenciador_Colisoes::inserirInimigos(Inimigo* e)
+{
+    LIs.push_back(e);
 }
 
 
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {
     //Serve pra interações entre players e entidades, para com obstaculos
-    for(Listas::Lista<Entidade*>::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) 
-        for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) 
+    for(Listas::Lista<Entidade*>::Iterator it = jogadores->inicio(); it!=jogadores->fim(); ++it) {
+        for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
                 tratarColisao(*it, *it2);             
             }
-                
-
-}
-/*
-    ListaEntidades::Iterator it = jogadores->inicio();
-    ListaEntidades::Iterator it2 = plistaentidades->inicio();
-    ++it2;
-    for(it; it!=plistaentidades->fim(); ++it)
-    {   
-        it2 = it;
-        ++it2;
-        for(it2; it2 != plistaentidades->fim(); ++it2)
-        {
-            if(calculaColisao(*it, *it2))
-            {
-                //tratarcolisao;
-                //it->getID();
-            }
         }
     }
-*/
+    for(vector<Inimigo*>::iterator it = LIs.begin(); it!=LIs.end(); ++it) {
+        for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
+            if(calculaColisao(*it, *it2))
+            {
+                tratarColisao(*it, *it2);             
+            }
+        }
+    }           
+
+}

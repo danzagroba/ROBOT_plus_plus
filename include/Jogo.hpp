@@ -15,7 +15,8 @@
 
 #define FPS 60
 
-#define SPRITE_PATH "../assets/player1.png"
+#define SPRITE_PATHP1 "../assets/player1.png"
+#define SPRITE_PATHP2 "../assets/player2.png"
 #define LEVEL_PATH "../levels/fase1.json"
 
 class Jogo
