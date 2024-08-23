@@ -14,7 +14,6 @@ namespace Entidades
 
         public:
             Entidade(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
-                     const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f),
                      const sf::Vector2f& vel = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();
             void setPos(float xx, float yy);
@@ -25,6 +24,7 @@ namespace Entidades
             const float getYVel() const;
             void setXvel(const float vel);
             void setYvel(const float vel);
+            void setBoundingBox();
             virtual void executar() = 0;
             virtual void salvar() = 0;
             void setFigura(const std::string& Sprite_Path);

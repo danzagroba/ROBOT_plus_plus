@@ -1,5 +1,4 @@
-#ifndef _OBSTACULO_H_
-#define _OBSTACULO_H_
+#pragma once
 
 #include "Entidade.hpp"
 #include "Jogador.hpp"
@@ -14,9 +13,9 @@ namespace Entidades
                 bool danoso;
 
             public:
-                Obstaculo(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
+                Obstaculo(const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f),
                           const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f),
-                          bool dano = false);
+                          const bool dano = false);
                 virtual ~Obstaculo();
 
                 virtual void executar();
@@ -26,4 +25,3 @@ namespace Entidades
     } using namespace Obstaculos;
 } using namespace Entidades;
 
-#endif

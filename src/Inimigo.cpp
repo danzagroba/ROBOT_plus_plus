@@ -6,10 +6,9 @@ namespace Entidades
     {        
         
         Inimigo::Inimigo(const int nVidas, 
-                         const sf::Vector2f& pos, 
-                         const sf::Vector2f& dimensoes, 
+                         const sf::Vector2f& pos,
                          const int maldade)
-            : Personagem(nVidas, pos, dimensoes), nivelMaldade(maldade)
+            : Personagem(nVidas, pos), nivelMaldade(maldade)
         {}
         
         Inimigo::~Inimigo()

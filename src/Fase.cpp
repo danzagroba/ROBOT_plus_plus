@@ -107,7 +107,6 @@ namespace Fases
                 posicaoFinal = sf::Vector2i(j, i+1);
                 sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
                 sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
-
                 Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
                 gerColisoes->inserirObstaculos(pobstaculo);
                 obstaculos.inserirNoFim(pobstaculo);
