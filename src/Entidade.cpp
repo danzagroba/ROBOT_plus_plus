@@ -5,14 +5,14 @@
 
 const float Entidade::maxVel(1.25f);
 
-Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, const sf::Vector2f& vel):
+Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& vel):
 Ente(),
 posicao(pos),
-AreaColisao(pos, dimensoes),
 velocidade(vel)
 {
     Figura.setPosition(posicao);
 }
+
 Entidade::~Entidade()
 {
 
@@ -44,6 +44,10 @@ void Entidade::setXvel(const float vel)
 void Entidade::setYvel(const float vel)
 {
     velocidade.y = vel;
+}
+void Entidade::setBoundingBox()
+{
+    AreaColisao = Figura.getGlobalBounds();
 }
 
 const sf::Vector2f& Entidade::getVel() const

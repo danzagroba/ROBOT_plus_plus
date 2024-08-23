@@ -18,8 +18,7 @@ namespace Entidades
 
             public:
                 Personagem(const int nVidas = 0, 
-                           const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f), 
-                           const sf::Vector2f& dimensoes = sf::Vector2f(0.0f, 0.0f));
+                           const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
                 virtual ~Personagem();
                 
                 void pulo();

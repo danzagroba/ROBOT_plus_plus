@@ -4,9 +4,8 @@
 
 
 Personagem::Personagem(const int nVidas, 
-                       const sf::Vector2f& pos, 
-                       const sf::Vector2f& dimensoes)
-    : Entidade(pos, dimensoes),
+                       const sf::Vector2f& pos)
+    : Entidade(pos),
       num_vidas(nVidas),
       no_ar(true),
       puloBloqueado(false)

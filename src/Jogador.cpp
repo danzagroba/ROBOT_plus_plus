@@ -6,9 +6,8 @@ bool Jogador::doisjogadores = true;
 
 Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
-                 const sf::Vector2f& pos, 
-                 const sf::Vector2f& dimensoes)
-    : Personagem(nVidas, pos, dimensoes),
+                 const sf::Vector2f& pos)
+    : Personagem(nVidas, pos),
       pontos(0),
       nome()
 {
