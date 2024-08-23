@@ -29,8 +29,6 @@ namespace Gerenciadores
             Gerenciador_Colisoes();
             ~Gerenciador_Colisoes();
 
-            const bool colidiuComTile(const sf::FloatRect& bBox);
-
         public:
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 

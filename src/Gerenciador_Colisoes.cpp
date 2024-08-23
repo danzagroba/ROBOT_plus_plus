@@ -100,7 +100,6 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
-                std::cout << "Colisão detectada entre entidades" << std::endl;
                 tratarColisao(*it, *it2);             
             }
         }

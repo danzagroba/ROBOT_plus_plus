@@ -8,7 +8,8 @@ const float Entidade::maxVel(1.25f);
 Entidade::Entidade(const sf::Vector2f& pos, const sf::Vector2f& vel):
 Ente(),
 posicao(pos),
-velocidade(vel)
+velocidade(vel),
+AreaColisao(pos, sf::Vector2f(0.0f, 0.0f))
 {
     Figura.setPosition(posicao);
 }
