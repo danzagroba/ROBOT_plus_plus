@@ -113,6 +113,13 @@ void Gerenciador_Colisoes::tratarColisaoInimigo(Entidade* e1, Entidade* e2) {
         ponteirogumbot->trocalado();
     }
 }
+void Gerenciador_Colisoes::tratarColisaoJogadorInimigo(Entidade* e1, Entidade* e2)
+{
+    Jogador* ponteiropersonagem = dynamic_cast<Jogador*> (e1);
+    Inimigo* ponteiroinimigo = dynamic_cast<Inimigo*> (e2);
+    
+    ponteiroinimigo->danificar(ponteiropersonagem);
+}
 void Gerenciador_Colisoes::inserirObstaculos(Obstaculo* e)
 {
     LOs.push_back(e);
@@ -140,6 +147,7 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
             }
         }
     }
+    //Serve pra interações entre inimigos, para com obstaculos
     for(vector<Inimigo*>::iterator it = LIs.begin(); it!=LIs.end(); ++it) {
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
@@ -147,6 +155,13 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 tratarColisao(*it, *it2);             
             }
         }
+    }
+    for(vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ++it) {
+        for(vector<Inimigo*>::iterator it2 = LIs.begin(); it2!=LIs.end(); ++it2) {
+            if(calculaColisao(*it, *it2))
+            {
+                tratarColisaoJogadorInimigo(*it, *it2);             
+            }
+        }
     }           
-
 }

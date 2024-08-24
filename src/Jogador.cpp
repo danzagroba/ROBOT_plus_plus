@@ -33,7 +33,9 @@ void Jogador::executar()
 }
 void Jogador::tomarDano(const int dano)
 {
+    cout<<"Dano tomado! vidas:"<<num_vidas<<endl;
     num_vidas -= dano;
+    permitirPulo();
     pulo();
 }
 void Jogador::salvar()

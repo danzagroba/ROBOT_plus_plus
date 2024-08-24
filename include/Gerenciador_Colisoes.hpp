@@ -41,5 +41,6 @@ namespace Gerenciadores
             void checarColisoesObstaculos();
             void tratarColisao(Entidade* e1, Entidade* e2);
             void tratarColisaoInimigo(Entidade* e1, Entidade* e2);
+            void tratarColisaoJogadorInimigo(Entidade* e1, Entidade* e2);
     };
 } using namespace Gerenciadores;
