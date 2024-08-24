@@ -38,6 +38,7 @@ void Entidade::mover()
     AreaColisao.top = posicao.y;
     Figura.setPosition(posicao);
     //std::cout << "pos: " << posicao.x << " " << posicao.y << std::endl;
+    //std::cout << "velocidade y:" << velocidade.y << std::endl;
 }
 
 void Entidade::setXvel(const float vel)

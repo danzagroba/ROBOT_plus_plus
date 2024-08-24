@@ -1,6 +1,7 @@
 #include "Fase.hpp"
 #include "json.hpp"
 #include "Gumbot.hpp"
+#include "Agua.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -104,6 +105,12 @@ namespace Fases
                 }
                 else
                 {
+                    if(getTile(j, i) == 2)
+                    {
+                        Entidades::Obstaculos::Agua* agua = new Entidades::Obstaculos::Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
+                        gerColisoes->inserirObstaculos(agua);
+                        entidades.inserirNoFim(static_cast<Entidade*>(agua));
+                    }
                     if(eraMuro)
                     {
                         posicaoFinal = sf::Vector2i(j, i+1);

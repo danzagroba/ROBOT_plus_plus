@@ -13,6 +13,11 @@ Obstaculo::Obstaculo(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, con
 Obstaculo::~Obstaculo()
 {}
 
+const bool Obstaculo::eDanoso() const
+{
+    return danoso;
+}
+
 void Obstaculo::executar()
 {
 
