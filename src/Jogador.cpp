@@ -42,6 +42,8 @@ void Jogador::tomarDano(const int dano)
     {
         cout<<"Dano tomado! vidas:"<<num_vidas<<endl;
         num_vidas -= dano;
+        no_ar = false;
+        setYvel(0.0);
         permitirPulo();
         pulo();
         relogio.restart();
