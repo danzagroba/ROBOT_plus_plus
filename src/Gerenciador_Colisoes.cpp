@@ -63,6 +63,11 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     if (std::abs(minspbX) < std::abs(minspbY))
     {
         e1->setPos(e1->getPos().x + minspbX * (fromLeft ? -1 : 1), e1->getPos().y);
+        if(e1->getid()==5)
+        {
+            Gumbot* ponteirogumbot = dynamic_cast<Gumbot*> (e1);
+            ponteirogumbot->trocalado();
+        }
     }
     else
     {
@@ -80,6 +85,34 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     }
 }
 
+void Gerenciador_Colisoes::tratarColisaoInimigo(Entidade* e1, Entidade* e2) {
+    //e1 seria um inimigo, e2 há de ser um obstaculo ou chão 
+    sf::FloatRect b1 = e1->getBoundingBox();
+    sf::FloatRect b2 = e2->getBoundingBox();     
+
+
+    //Calcuando sobreposições
+    float sbpesquerda = (b1.left + b1.width) - b2.left;
+    float sbpdireita = (b2.left + b2.width) - b1.left;
+    float sbpcima = (b1.top + b1.height) - b2.top;
+    float sbpbaixo = (b2.top + b2.height) - b1.top;
+
+    bool fromLeft = std::abs(sbpesquerda) < std::abs(sbpdireita);
+    bool fromTop = std::abs(sbpcima) < std::abs(sbpbaixo);
+
+    float minspbX = fromLeft ? sbpesquerda : sbpdireita;
+    float minspbY = fromTop ? sbpcima : sbpbaixo;
+
+    if (std::abs(minspbX) < std::abs(minspbY))
+    {
+        e1->setPos(e1->getPos().x + minspbX * (fromLeft ? -1 : 1), e1->getPos().y);
+    }
+    if(e1->getid()==5)
+    {
+        Gumbot* ponteirogumbot = dynamic_cast<Gumbot*> (e1);
+        ponteirogumbot->trocalado();
+    }
+}
 void Gerenciador_Colisoes::inserirObstaculos(Obstaculo* e)
 {
     LOs.push_back(e);

@@ -23,6 +23,7 @@ namespace Entidades
                 ~Jogador();
                 
                 static bool getdoisjogadores();
+                void tomarDano(const int dano);
                 void executar();
                 void salvar();
         };

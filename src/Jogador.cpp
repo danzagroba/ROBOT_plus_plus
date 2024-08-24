@@ -31,7 +31,11 @@ void Jogador::executar()
     setXvel(0.0f);
     desenhar();
 }
-
+void Jogador::tomarDano(const int dano)
+{
+    num_vidas -= dano;
+    pulo();
+}
 void Jogador::salvar()
 {
 

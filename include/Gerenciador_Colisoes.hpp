@@ -4,6 +4,7 @@
 #include "Obstaculo.hpp"
 #include "Inimigo.hpp"
 #include "Fase.hpp"
+#include "Gumbot.hpp"
 
 #include <list>
 #include <SFML/Window/Event.hpp>
@@ -39,5 +40,6 @@ namespace Gerenciadores
             void inserirJogadores(Jogador* e);
             void checarColisoesObstaculos();
             void tratarColisao(Entidade* e1, Entidade* e2);
+            void tratarColisaoInimigo(Entidade* e1, Entidade* e2);
     };
 } using namespace Gerenciadores;

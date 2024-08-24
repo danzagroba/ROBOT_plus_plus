@@ -1,5 +1,6 @@
 #include "Fase.hpp"
 #include "json.hpp"
+#include "Gumbot.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -128,6 +129,7 @@ namespace Fases
                 entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
             }
             eraMuro = false;
+            
         }
 
         Obstaculo* obstaculo = new Entidades::Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
@@ -137,6 +139,11 @@ namespace Fases
         obstaculo = new Entidades::Obstaculo(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
+        Gumbot* pgumbot = new Gumbot(sf::Vector2f(25.0f, 25.0f));
+        gerColisoes->inserirInimigos(pgumbot);
+        entidades.inserirNoFim(static_cast<Entidade*>(pgumbot));
+        
+        std::cout<<"gumbot criado"<<endl;
     }
 
     void Fase::carregar(const char* caminho)
@@ -214,6 +221,7 @@ namespace Fases
                     Figura.setPosition(j * comprimentoTile, i * comprimentoTile);
                     gerGraf->desenhar(Figura);
                 }
+
     }
 
     const bool Fase::posicaoValida(const int x, const int y) const

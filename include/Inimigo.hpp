@@ -18,7 +18,8 @@ namespace Entidades
             virtual ~Inimigo();
 
             void danificar(Jogador* pJog);
-            virtual void executar() = 0;
+            virtual void salvar() = 0;
+            virtual void executar() =0;
         };
     }
 }

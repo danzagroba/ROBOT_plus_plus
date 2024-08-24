@@ -1,5 +1,4 @@
-#ifndef _PERSONAGEM_H_
-#define _PERSONAGEM_H_
+#pragma once
 
 #include "Entidade.hpp"
 
@@ -25,7 +24,7 @@ namespace Entidades
                 void setno_ar(bool na);
                 void permitirPulo();
 
-                void tomarDano(const int dano);
+                virtual void tomarDano(const int dano);
                 void setNumVidas(const int nVidas);
 
                 void aplicarForcaY(const float forca);
@@ -36,6 +35,4 @@ namespace Entidades
     } using namespace Personagens;
 } using namespace Entidades;
 
-
-#endif
 
