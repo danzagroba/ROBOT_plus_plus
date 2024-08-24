@@ -70,4 +70,10 @@ namespace Listas
         for(it = inicio(); it != fim(); ++it)
             (*it)->salvar();
     }
+
+    void ListaEntidades::desenhar()
+    {
+        for(it = inicio(); it != fim(); ++it)
+            (*it)->desenhar();
+    }
 }

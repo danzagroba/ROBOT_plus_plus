@@ -30,6 +30,7 @@ namespace Listas
         Lista<Entidade*>::Iterator fim();
 
         void executar();
-        void salvar();        
+        void salvar();   
+        void desenhar();     
     };
 } using namespace Listas;

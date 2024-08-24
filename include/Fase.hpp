@@ -51,6 +51,7 @@ namespace Fases
         const int getAltura() const;
         const int getLargura() const;
 
+        void desenharVidas();
         void desenhar();
         
         const bool posicaoValida(const int x, const int y) const;
