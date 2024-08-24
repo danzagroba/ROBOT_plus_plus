@@ -11,6 +11,7 @@ Personagem::Personagem(const int nVidas,
       puloBloqueado(false)
 {
     id = 9;
+    relogio.restart();
 }
 
 Personagem::~Personagem()
@@ -40,7 +41,11 @@ void Personagem::pulo()
 
 void Personagem::tomarDano(const int dano)
 {
-    num_vidas -= dano;
+    if((relogio.getElapsedTime()).asSeconds()>0.5)
+    {
+        num_vidas -= dano;
+        relogio.restart();
+    }
 }
 
 void Personagem::setNumVidas(const int nVidas)

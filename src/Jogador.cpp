@@ -33,10 +33,14 @@ void Jogador::executar()
 }
 void Jogador::tomarDano(const int dano)
 {
-    cout<<"Dano tomado! vidas:"<<num_vidas<<endl;
-    num_vidas -= dano;
-    permitirPulo();
-    pulo();
+    if((relogio.getElapsedTime()).asSeconds()>0.5)
+    {
+        cout<<"Dano tomado! vidas:"<<num_vidas<<endl;
+        num_vidas -= dano;
+        permitirPulo();
+        pulo();
+        relogio.restart();
+    }
 }
 void Jogador::salvar()
 {

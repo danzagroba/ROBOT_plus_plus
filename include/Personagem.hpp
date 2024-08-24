@@ -14,6 +14,7 @@ namespace Entidades
                 int num_vidas;
                 bool no_ar;
                 bool puloBloqueado;
+                sf::Clock relogio;
 
             public:
                 Personagem(const int nVidas = 0, 
