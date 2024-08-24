@@ -4,13 +4,14 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        int Agua::dano(3);
+        int Agua::dano(1);
 
         Agua::Agua(const sf::Vector2f& pos)
             : Obstaculo(pos, sf::Vector2f(16.0f, 16.0f), true)
         {
             id = 9;
             setFigura("../assets/water.png");
+            setPos(posicao.x, posicao.y+1);
         }
         
         Agua::~Agua()
@@ -18,12 +19,11 @@ namespace Entidades
         
         void Agua::executar() 
         {
-            desenhar();
+            //desenhar();
         }
         
         void Agua::obstacular() 
         {
-            // rodar animação?
         }
 
         const int Agua::getDano()

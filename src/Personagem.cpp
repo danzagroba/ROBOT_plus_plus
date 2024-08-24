@@ -53,6 +53,11 @@ void Personagem::setNumVidas(const int nVidas)
     num_vidas = nVidas;
 }
 
+const int Personagem::getNumVidas() const
+{
+    return num_vidas;
+}
+
 void Personagem::aplicarForcaY(const float forca)
 {
     float novaVel = velocidade.y+forca;

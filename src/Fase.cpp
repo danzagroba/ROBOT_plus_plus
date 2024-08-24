@@ -199,6 +199,37 @@ namespace Fases
         return largura;
     }
 
+    void Fase::desenharVidas()
+    {
+        if(!gerGraf)
+            return;
+
+        int playerIndex = 0; // Player sendo processado
+
+        for(Listas::Lista<Entidade*>::Iterator it = entidades.inicio(); it != entidades.fim(); ++it)
+        {
+            Entidades::Personagens::Jogador* pjogador = dynamic_cast<Entidades::Personagens::Jogador*>(*it);
+            if(pjogador)
+            {
+                float comprimento = pjogador->getTextureVida().getSize().x;
+                float offsetX;
+
+                if (playerIndex == 0)
+                    offsetX = -gerGraf->getCamera().getSize().x / 2.0f;
+                else
+                    offsetX = gerGraf->getCamera().getSize().x / 2.0f - comprimento * pjogador->getNumVidas();
+
+                for(int i = 0; i < pjogador->getNumVidas(); ++i)
+                {
+                    pjogador->setSpriteVidaPos(sf::Vector2f(gerGraf->getCamera().getCenter().x + offsetX + i * comprimento, 
+                                                            gerGraf->getCamera().getCenter().y - gerGraf->getCamera().getSize().y / 2.0f));
+                    gerGraf->desenhar(pjogador->getSpriteVida());
+                }
+
+                ++playerIndex;
+            }
+        }
+    }
 
     void Fase::desenhar()
     {
@@ -259,7 +290,9 @@ namespace Fases
     void Fase::executar()
     {
         desenhar();
+        desenharVidas();
         entidades.executar();
         gerColisoes->checarColisoesObstaculos();
+        entidades.desenhar();
     }
 }

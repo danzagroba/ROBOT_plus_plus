@@ -6,12 +6,17 @@ bool Jogador::doisjogadores = true;
 
 Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
-                 const sf::Vector2f& pos)
+                 const sf::Vector2f& pos,
+                 const string& caminhoParaVida)
     : Personagem(nVidas, pos),
       pontos(0),
-      nome()
+      nome(),
+      texturaVida(),
+      spriteVida()
 {
     id = 1; // ID utilizado pra jogadores
+    texturaVida.loadFromFile(caminhoParaVida);
+    spriteVida.setTexture(texturaVida);
 }
 
 Jogador::~Jogador()
@@ -29,7 +34,7 @@ void Jogador::executar()
     aplicarForcaY(gravidade);
     mover();
     setXvel(0.0f);
-    desenhar();
+    //desenhar();
 }
 void Jogador::tomarDano(const int dano)
 {
@@ -47,3 +52,17 @@ void Jogador::salvar()
 
 }
 
+void Jogador::setSpriteVidaPos(const sf::Vector2f& pos)
+{
+    spriteVida.setPosition(pos);
+}
+
+const sf::Texture& Jogador::getTextureVida() const
+{
+    return texturaVida;
+}
+
+const sf::Sprite& Jogador::getSpriteVida() const
+{
+    return spriteVida;
+}

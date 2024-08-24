@@ -32,7 +32,7 @@ void Gumbot::executar()
     aplicarForcaY(gravidade);
     andarlado();
     mover();
-    desenhar();
+    //desenhar();
 }
 void Gumbot::salvar()
 {

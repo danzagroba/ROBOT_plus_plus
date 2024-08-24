@@ -27,6 +27,7 @@ namespace Entidades
 
                 virtual void tomarDano(const int dano);
                 void setNumVidas(const int nVidas);
+                const int getNumVidas() const;
 
                 void aplicarForcaY(const float forca);
 
