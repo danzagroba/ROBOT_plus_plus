@@ -47,7 +47,6 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
     sf::FloatRect b2 = e2->getBoundingBox();        
     Personagem* ponteiropersonagem = dynamic_cast<Personagem*> (e1);
 
-
     //Calcuando sobreposições
     float sbpesquerda = (b1.left + b1.width) - b2.left;
     float sbpdireita = (b2.left + b2.width) - b1.left;
