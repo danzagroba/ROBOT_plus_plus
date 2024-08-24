@@ -5,14 +5,14 @@
             "name": "C/C++: g++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "C:\\Samuel\\simaoJogo\\bin\\simao.exe",
+            "program": "C:\\Samuel\\jogo\\bin\\simao.exe",
             "args": [],
             "stopAtEntry": true, // Change to true to stop at the entry point
-            "cwd": "C:\\Samuel\\simaoJogo\\bin",
+            "cwd": "C:\\Samuel\\jogo\\bin",
             "environment": [],
             "externalConsole": true, // Use external console to view output
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\Samuel\\simaoJogo\\mingw32\\bin\\gdb.exe",
+            "miDebuggerPath": "C:\\Samuel\\jogo\\mingw32\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

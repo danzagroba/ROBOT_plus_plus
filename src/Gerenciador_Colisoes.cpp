@@ -1,5 +1,6 @@
 #include "Gerenciador_Colisoes.hpp"
 #include "Entidade.hpp"
+#include "Agua.hpp"
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 
@@ -142,7 +143,10 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
-                tratarColisao(*it, *it2);             
+                if((*it2)->eDanoso())
+                    (*it)->tomarDano(Entidades::Obstaculos::Agua::getDano());
+                else
+                    tratarColisao(*it, *it2);  
             }
         }
     }

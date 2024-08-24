@@ -18,6 +18,8 @@ namespace Entidades
                           const bool dano = false);
                 virtual ~Obstaculo();
 
+                const bool eDanoso() const;
+
                 virtual void executar();
                 virtual void obstacular(Jogador* p);
                 virtual void salvar();
