@@ -5,6 +5,7 @@
 #include "Inimigo.hpp"
 #include "Fase.hpp"
 #include "Gumbot.hpp"
+#include "Projetil.hpp"
 
 #include <list>
 #include <SFML/Window/Event.hpp>
@@ -23,9 +24,7 @@ namespace Gerenciadores
             vector<Inimigo*> LIs;
             list<Obstaculo*> LOs;
             vector<Jogador*> LJs;
-            //ListaEntidades* obstaculos;
-            //ListaEntidades* jogadores;
-            ListaEntidades* inimigos;
+            list<Projetil*> LPs;
 
         private:
             Gerenciador_Colisoes();
@@ -35,9 +34,12 @@ namespace Gerenciadores
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 
             bool calculaColisao(Entidade* e1, Entidade* e2);
+            
             void inserirInimigos(Inimigo* e);
             void inserirObstaculos(Obstaculo* e);
             void inserirJogadores(Jogador* e);
+            void inserirProjetil(Projetil* e);
+
             void checarColisoesObstaculos();
             void tratarColisao(Entidade* e1, Entidade* e2);
             void tratarColisaoInimigo(Entidade* e1, Entidade* e2);
