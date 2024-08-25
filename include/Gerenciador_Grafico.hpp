@@ -1,5 +1,7 @@
 #pragma once
+
 #include <iostream>
+
 using namespace std;
 
 //Padrão de proj SINGLETON colocar na uml depois
