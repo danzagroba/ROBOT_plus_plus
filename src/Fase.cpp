@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include "Gumbot.hpp"
 #include "Agua.hpp"
+#include "ProjectileBot.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -146,10 +147,17 @@ namespace Fases
         obstaculo = new Entidades::Obstaculo(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
+        
         Gumbot* pgumbot = new Gumbot(sf::Vector2f(25.0f, 25.0f));
         gerColisoes->inserirInimigos(pgumbot);
         entidades.inserirNoFim(static_cast<Entidade*>(pgumbot));
-        
+
+        ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(4.0f*comprimentoTile, 25.0f));
+        gerColisoes->inserirInimigos(pprojectilebot);
+        entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
+        gerColisoes->inserirProjetil(pprojectilebot->getProjetil());
+        entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot->getProjetil()));
+
         std::cout<<"gumbot criado"<<endl;
     }
 

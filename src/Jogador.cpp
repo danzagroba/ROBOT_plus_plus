@@ -36,6 +36,7 @@ void Jogador::executar()
     setXvel(0.0f);
     //desenhar();
 }
+
 void Jogador::tomarDano(const int dano)
 {
     if((relogio.getElapsedTime()).asSeconds()>0.5)
@@ -49,6 +50,7 @@ void Jogador::tomarDano(const int dano)
         relogio.restart();
     }
 }
+
 void Jogador::salvar()
 {
 

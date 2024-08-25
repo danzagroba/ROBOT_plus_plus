@@ -8,18 +8,21 @@ Gerenciador_Colisoes::Gerenciador_Colisoes():
       LJs(),
       LIs(),
       LOs(),
-      inimigos(NULL)
+      LPs()
 {
     LIs.clear();
     LOs.clear();
     LJs.clear();
+    LPs.clear();
     cout<<"Gerenciador de Colisões criado"<<endl;
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
-    //inimigos = NULL;
-    //jogadores = NULL;
+    LIs.clear();
+    LOs.clear();
+    LJs.clear();
+    LPs.clear();
 }
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
@@ -88,8 +91,7 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
 void Gerenciador_Colisoes::tratarColisaoInimigo(Entidade* e1, Entidade* e2) {
     //e1 seria um inimigo, e2 há de ser um obstaculo ou chão 
     sf::FloatRect b1 = e1->getBoundingBox();
-    sf::FloatRect b2 = e2->getBoundingBox();     
-
+    sf::FloatRect b2 = e2->getBoundingBox();
 
     //Calcuando sobreposições
     float sbpesquerda = (b1.left + b1.width) - b2.left;
@@ -130,10 +132,14 @@ void Gerenciador_Colisoes::inserirInimigos(Inimigo* e)
     LIs.push_back(e);
 }
 
-
 void Gerenciador_Colisoes::inserirJogadores(Jogador* e)
 {
     LJs.push_back(e);
+}
+
+void Gerenciador_Colisoes::inserirProjetil(Projetil* e)
+{
+    LPs.push_back(e);
 }
 
 void Gerenciador_Colisoes::checarColisoesObstaculos()
@@ -166,5 +172,26 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 tratarColisaoJogadorInimigo(*it, *it2);             
             }
         }
-    }           
+    }   
+
+    //Serve pra interações entre projeteis, para com obstaculos
+    for(list<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+        for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
+            if(calculaColisao(*it, *it2))
+            {
+                (*it)->resetar();            
+            }
+        }
+    }       
+
+    //Serve pra interações entre projeteis, para com jogaodres
+    for(list<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+        for(vector<Jogador*>::iterator it2 = LJs.begin(); it2 != LJs.end(); ++it2) {
+            if(calculaColisao(*it, *it2))
+            {
+                (*it)->resetar();
+                (*it2)->tomarDano((*it)->getDano());
+            }
+        }
+    } 
 }
