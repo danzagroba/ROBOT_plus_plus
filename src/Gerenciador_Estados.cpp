@@ -1,5 +1,6 @@
 #include "Gerenciador_Estados.hpp"
 
+Gerenciador_Estados* Gerenciador_Estados::pgerestados = NULL;
 Gerenciador_Estados::Gerenciador_Estados()
 {
 
