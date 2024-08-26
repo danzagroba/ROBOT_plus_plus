@@ -51,10 +51,9 @@ void Jogo::executar()
         gerInputs->processainput(*gerGraf->getJanela());
 
         fase.executar();
-
         sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (jogador.getPos()+(pjogadordois->getPos()))/2.0f : jogador.getPos();
         gerGraf->setCamera(proxPos);
-
+        
         gerGraf->display();
     }
 }

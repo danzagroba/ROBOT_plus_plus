@@ -8,6 +8,7 @@ namespace Entidades
           dano(danoProjetil),
           inserido(false)
     {
+        posicao.y+=8;
         setFigura(PROJETIL_SPRITE_PATH);
         velocidade = forca;
         id = 10;
