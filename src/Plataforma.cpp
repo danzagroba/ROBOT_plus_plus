@@ -1,15 +1,19 @@
 #include "Plataforma.hpp"
 
-Plataforma::Plataforma():
-Obstaculo()
+Plataforma::Plataforma(const sf::Vector2f& pos, const sf::Vector2f& dimensoes)
+    : Obstaculo(pos, dimensoes, false)
 {
-    danoso = false;
     id = 8;
-    setFigura("../assets/plataforma.png");
 }
-Plataforma::~Plataforma()
-{
 
-}
-void Plataforma::executar() {}
-void Plataforma::obstacular() {}
+Plataforma::~Plataforma()
+{}
+
+void Plataforma::executar() 
+{}
+
+void Plataforma::obstacular() 
+{}
+
+void Plataforma::salvar()
+{}   

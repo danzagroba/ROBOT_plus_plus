@@ -9,6 +9,7 @@
 #include "Gerenciador_Colisoes.hpp"
 #include "Jogador.hpp"
 #include "Fase.hpp"
+#include "FaseDia.hpp"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -27,7 +28,7 @@ private:
     Gerenciadores::Gerenciador_Colisoes* gerColisoes;
     Entidades::Personagens::Jogador jogador;
     Entidades::Personagens::Jogador* pjogadordois;
-    Fases::Fase fase;
+    Fases::FaseDia fase;
 
 public:
     Jogo();

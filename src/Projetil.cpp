@@ -36,7 +36,6 @@ namespace Entidades
     {
         mover();
         velocidade.y += gravidade;
-        std::cout << "projetil executando" << getBoundingBox().left << ", " << getBoundingBox().top << std::endl;
     }
 
     void Projetil::salvar()

@@ -6,7 +6,7 @@ Jogo::Jogo():
       gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
       jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart1.png"),
       pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart2.png") : NULL),
-      fase(LEVEL_PATH, gerGraf, gerColisoes, &jogador, pjogadordois, 16.0f)
+      fase(gerGraf, gerColisoes, &jogador, pjogadordois, 16.0f)
 {
     jogador.setFigura(SPRITE_PATHP1);
     gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, &jogador));

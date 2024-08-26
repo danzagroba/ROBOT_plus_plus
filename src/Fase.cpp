@@ -3,6 +3,7 @@
 #include "Gumbot.hpp"
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
+#include "Plataforma.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -78,7 +79,17 @@ namespace Fases
         largura = 0;
     }
 
-    void Fase::criarEntidades()
+    void Fase::criarPlataforma(const sf::Vector2i& posicaoFinal, const sf::Vector2i& posicaoInicial)
+    {
+        sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
+        sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
+
+        Plataforma* pobstaculo = new Plataforma(posicao, dimensoes);
+        gerColisoes->inserirObstaculos(pobstaculo);
+        entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
+    }
+
+    void Fase::criarPlataformas()
     {
         if(!tiles)
             return;
@@ -95,9 +106,7 @@ namespace Fases
                 if(eMuro(j, i))
                 {
                     if(eraMuro)
-                    {
                         posicaoFinal = sf::Vector2i(j, i);
-                    }
                     else
                     {
                         posicaoInicial = sf::Vector2i(j, i);
@@ -106,21 +115,10 @@ namespace Fases
                 }
                 else
                 {
-                    if(getTile(j, i) == 2)
-                    {
-                        Entidades::Obstaculos::Agua* agua = new Entidades::Obstaculos::Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
-                        gerColisoes->inserirObstaculos(agua);
-                        entidades.inserirNoFim(static_cast<Entidade*>(agua));
-                    }
                     if(eraMuro)
                     {
                         posicaoFinal = sf::Vector2i(j, i+1);
-                        sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
-                        sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
-
-                        Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
-                        gerColisoes->inserirObstaculos(pobstaculo);
-                        entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
+                        criarPlataforma(posicaoFinal, posicaoInicial);
                     }
                     eraMuro = false;
                 }
@@ -129,25 +127,27 @@ namespace Fases
             if(eraMuro)
             {
                 posicaoFinal = sf::Vector2i(j, i+1);
-                sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
-                sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
-
-                Obstaculo* pobstaculo = new Entidades::Obstaculo(posicao, dimensoes);
-                gerColisoes->inserirObstaculos(pobstaculo);
-                entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
+                criarPlataforma(posicaoFinal, posicaoInicial);
             }
             eraMuro = false;
-            
         }
 
-        Obstaculo* obstaculo = new Entidades::Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        Plataforma* obstaculo = new Plataforma(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
 
-        obstaculo = new Entidades::Obstaculo(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        obstaculo = new Plataforma(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
+    }
+
+    void Fase::criarEntidades()
+    {
+        if(!tiles)
+            return;
         
+        criarPlataformas();
+
         Gumbot* pgumbot = new Gumbot(sf::Vector2f(25.0f, 25.0f));
         gerColisoes->inserirInimigos(pgumbot);
         entidades.inserirNoFim(static_cast<Entidade*>(pgumbot));
@@ -288,11 +288,6 @@ namespace Fases
         if(!posicaoValida(x, y))
             return true;
         return tiles[y][x] == 1;
-    }
-
-    const bool Fase::mapaCarregado() const
-    {
-        return tiles != nullptr;
     }
 
     void Fase::executar()

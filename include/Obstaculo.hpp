@@ -20,9 +20,9 @@ namespace Entidades
 
                 const bool eDanoso() const;
 
-                virtual void executar();
-                virtual void obstacular(Jogador* p);
-                virtual void salvar();
+                virtual void executar() = 0;
+                virtual void obstacular() = 0;
+                virtual void salvar() = 0;
         };
     } using namespace Obstaculos;
 } using namespace Entidades;

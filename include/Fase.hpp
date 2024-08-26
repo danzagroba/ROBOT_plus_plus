@@ -17,7 +17,7 @@ namespace Fases
 {
     class Fase : public Ente
     {
-    private:
+    protected:
         static float gravidade;
 
         Gerenciadores::Gerenciador_Grafico* gerGraf;
@@ -38,11 +38,13 @@ namespace Fases
              Entidades::Personagens::Jogador* jgdr = nullptr,
              Entidades::Personagens::Jogador* jgdrdois = nullptr,
              float comprimento = 16.0f);
-        ~Fase();
+        virtual ~Fase();
 
-    private:
+    protected:
         void destruirTiles();
-        void criarEntidades();
+        void criarPlataforma(const sf::Vector2i& posicaoFinal, const sf::Vector2i& posicaoInicial);
+        void criarPlataformas();
+        virtual void criarEntidades();
 
     public:
         void carregar(const char* caminho);
@@ -58,8 +60,6 @@ namespace Fases
         const short int getTile(const int x, const int y) const;
         const bool eMuro(const int x, const int y) const;
     
-        const bool mapaCarregado() const;
-
         void executar();
     };
 }

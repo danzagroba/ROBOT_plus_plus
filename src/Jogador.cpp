@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-bool Jogador::doisjogadores = true;
+bool Jogador::doisjogadores = false;
 
 Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
