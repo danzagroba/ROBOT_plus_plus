@@ -1,39 +1,57 @@
 #include "ProjectileBot.hpp"
 
+std::list<Projetil*> ProjectileBot::projeteis;
 namespace Entidades
 {
     namespace Personagens
     {
-        const int ProjectileBot::nProjeteis(3);
 
         ProjectileBot::ProjectileBot(const sf::Vector2f& pos)
-            : Inimigo(3, pos, 1),
-              projetil(NULL)
+            : Inimigo(3, pos, 1)
         {
             id = 12;
             setFigura(PROJECTILEBOT_SPRITE_PATH);
-            projetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.0f));
+            tempo.restart();
         }
         
         ProjectileBot::~ProjectileBot()
         {
-            // O projetil e deletado na lista de entidades por enquanto
-            // delete projetil;
-            projetil = NULL;
+            
         }
         
+        void ProjectileBot::criartiro()
+        {
+            if(tempo.getElapsedTime().asSeconds()>1.5)
+            {
+                Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f));
+                if(pprojetil)
+                {
+                    projeteis.push_back(pprojetil);
+                }
+                tempo.restart();
+            }
+        }
+
+        void ProjectileBot::removertiro(Projetil* ep)
+        {
+            list<Projetil*>::iterator it = std::find(projeteis.begin(), projeteis.end(), ep);
+            if (it != projeteis.end()) {
+                projeteis.erase(it);
+            }
+        }
+
         void ProjectileBot::executar()
         {
             aplicarForcaY(gravidade);
+            criartiro();
             mover();
         }
-    
+
+        list<Projetil*>* ProjectileBot::getprojeteis() {
+            return &projeteis;
+        }
+        
         void ProjectileBot::salvar()
         {}
-
-        Projetil* ProjectileBot::getProjetil()
-        {
-            return projetil;
-        }
     }
 }

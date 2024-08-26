@@ -4,10 +4,11 @@ namespace Entidades
 {
     Projetil::Projetil(Entidade* donoDoProjetil, const int danoProjetil, const sf::Vector2f& forcaInicial)
         : Entidade(donoDoProjetil ? donoDoProjetil->getPos() : sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f)),
-          dono(donoDoProjetil), 
           forca(forcaInicial),
-          dano(danoProjetil)
+          dano(danoProjetil),
+          inserido(false)
     {
+        posicao.y+=8;
         setFigura(PROJETIL_SPRITE_PATH);
         velocidade = forca;
         id = 10;
@@ -15,7 +16,7 @@ namespace Entidades
 
     Projetil::~Projetil()
     {
-        dono = NULL;
+
     }
 
     const int Projetil::getDano() const
@@ -25,13 +26,16 @@ namespace Entidades
 
     void Projetil::resetar()
     {
-        if(!dono)
-            return;
-
-        posicao = dono->getPos();
-        velocidade = forca;
+        id = 0;
     }
-
+    bool Projetil::getinserido()
+    {
+        return inserido;
+    }
+    void Projetil::inseridonalista()
+    {
+        inserido = true;
+    }
     void Projetil::executar()
     {
         mover();
