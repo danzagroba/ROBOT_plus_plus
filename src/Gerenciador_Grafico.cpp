@@ -70,12 +70,17 @@ void Gerenciador_Grafico::desenhar(const sf::Drawable& desenho)
     if(window)
         window->draw(desenho);
 }
+void Gerenciador_Grafico::desenhartxt(sf::Text* txt)
+{
+    if(window)
+        window->draw(*txt);
+}
 bool Gerenciador_Grafico::getisOpen(){ return window->isOpen(); }
 void Gerenciador_Grafico::setTamanhoJanela(int lar, int alt)
 {
     largura = lar;
     altura = alt;
-    camera.setSize(lar/4, alt/4); 
+    camera.setSize(lar/4, alt/4);
 }
 void Gerenciador_Grafico::setMaximosCamera(float x, float y)
 {
@@ -106,7 +111,7 @@ void Gerenciador_Grafico::configurar()
     {
         delete window;
     }
-    window = new sf::RenderWindow(sf::VideoMode(largura, altura), "simao");
+    window = new sf::RenderWindow(sf::VideoMode(largura, altura), "ROBOT++", sf::Style::Titlebar | sf::Style::Close);
     if(!window)
     {
         cout<<"Erro ao configurar janela, fechando execução"<<endl;

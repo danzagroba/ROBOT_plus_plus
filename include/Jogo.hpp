@@ -7,6 +7,10 @@
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Inputs.hpp" 
 #include "Gerenciador_Colisoes.hpp"
+#include "Gerenciador_Estados.hpp"
+
+#include"MenuPrincipal.hpp"
+
 #include "Jogador.hpp"
 #include "Fase.hpp"
 #include "FaseDia.hpp"
@@ -26,6 +30,7 @@ private:
     Gerenciadores::Gerenciador_Grafico* gerGraf;
     Gerenciadores::Gerenciador_Inputs* gerInputs;
     Gerenciadores::Gerenciador_Colisoes* gerColisoes;
+    Gerenciadores::Gerenciador_Estados* gerEstados;
     Entidades::Personagens::Jogador jogador;
     Entidades::Personagens::Jogador* pjogadordois;
     Fases::FaseDia fase;

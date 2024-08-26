@@ -36,6 +36,7 @@ namespace Gerenciadores
             sf::RenderWindow* getJanela();
             void desenharEnte(Ente* pE);
             void desenhar(const sf::Drawable& desenho);
+            void desenhartxt(sf::Text* txt);
             bool getisOpen();
             void setTamanhoJanela(int lar, int alt);
             void setMaximosCamera(float x, float y);
