@@ -76,4 +76,21 @@ namespace Listas
         for(it = inicio(); it != fim(); ++it)
             (*it)->desenhar();
     }
+    
+    void ListaEntidades::desalocar()
+    {
+        it = inicio();
+        while(it != fim())
+        {
+            if((*it)->getid() == 0)
+            {
+                Entidade* temp = *it;
+                std::cout<<"apagando entidade"<<*it<<std::endl;
+                it = apagar(it);
+                delete temp;
+            }
+            else
+                ++it;
+        }
+    }
 }

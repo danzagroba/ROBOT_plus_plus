@@ -155,8 +155,7 @@ namespace Fases
         ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(4.0f*comprimentoTile, 25.0f));
         gerColisoes->inserirInimigos(pprojectilebot);
         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
-        gerColisoes->inserirProjetil(pprojectilebot->getProjetil());
-        entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot->getProjetil()));
+        //entidades.inserirNoFim(static_cast<Entidade*>());
 
         std::cout<<"gumbot criado"<<endl;
     }
@@ -269,6 +268,21 @@ namespace Fases
                 }
 
     }
+    void Fase::atualizarprojeteis()
+    {
+        for(list<Projetil*>::iterator it = ProjectileBot::getprojeteis()->begin(); it!= ProjectileBot::getprojeteis()->end();it++)
+        {
+            if(*it)
+            {
+                if ((*it)->getinserido()==false)
+                {
+                    gerColisoes->inserirProjetil(*it);
+                    entidades.inserirNoFim(*it);
+                    (*it)->inseridonalista();
+                }
+            }
+        }
+    }
 
     const bool Fase::posicaoValida(const int x, const int y) const
     {
@@ -294,8 +308,10 @@ namespace Fases
     {
         desenhar();
         desenharVidas();
+        atualizarprojeteis();
         entidades.executar();
         gerColisoes->checarColisoesObstaculos();
         entidades.desenhar();
+        entidades.desalocar();
     }
 }

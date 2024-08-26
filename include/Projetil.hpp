@@ -10,7 +10,7 @@ namespace Entidades
     {
     private:
         int dano;
-        Entidade* dono;
+        bool inserido;
         sf::Vector2f forca;
 
     public:
@@ -21,7 +21,8 @@ namespace Entidades
 
         const int getDano() const;
         void resetar();    // Reseta a posição do projetil para a posicao do dono do projetil
-        
+        bool getinserido();
+        void inseridonalista();
         void executar();    // Atualiza a posição do projetil
         void salvar();
     };

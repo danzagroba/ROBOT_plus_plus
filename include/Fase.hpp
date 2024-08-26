@@ -55,6 +55,7 @@ namespace Fases
 
         void desenharVidas();
         void desenhar();
+        void atualizarprojeteis();
         
         const bool posicaoValida(const int x, const int y) const;
         const short int getTile(const int x, const int y) const;
