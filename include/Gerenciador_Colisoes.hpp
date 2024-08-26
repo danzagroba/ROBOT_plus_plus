@@ -8,6 +8,7 @@
 #include "Projetil.hpp"
 
 #include <list>
+#include <set>
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 using namespace std;
@@ -24,7 +25,7 @@ namespace Gerenciadores
             vector<Inimigo*> LIs;
             list<Obstaculo*> LOs;
             vector<Jogador*> LJs;
-            list<Projetil*> LPs;
+            set<Projetil*> LPs;
 
         private:
             Gerenciador_Colisoes();

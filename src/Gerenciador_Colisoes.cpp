@@ -1,6 +1,7 @@
 #include "Gerenciador_Colisoes.hpp"
 #include "Entidade.hpp"
 #include "Agua.hpp"
+#include "ProjectileBot.hpp"
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 
@@ -139,7 +140,10 @@ void Gerenciador_Colisoes::inserirJogadores(Jogador* e)
 
 void Gerenciador_Colisoes::inserirProjetil(Projetil* e)
 {
-    LPs.push_back(e);
+    if((LPs.find(e)==LPs.end()))
+    {
+        LPs.insert(e);
+    }
 }
 
 void Gerenciador_Colisoes::checarColisoesObstaculos()
@@ -175,22 +179,26 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
     }   
 
     //Serve pra interações entre projeteis, para com obstaculos
-    for(list<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+    for(set<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
-                (*it)->resetar();            
+                (*it)->resetar();
+                LPs.erase(*it);
+                ProjectileBot::removertiro(*it);
             }
         }
     }       
 
     //Serve pra interações entre projeteis, para com jogaodres
-    for(list<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+    for(set<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
         for(vector<Jogador*>::iterator it2 = LJs.begin(); it2 != LJs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
-                (*it)->resetar();
                 (*it2)->tomarDano((*it)->getDano());
+                (*it)->resetar();
+                LPs.erase(*it);
+                ProjectileBot::removertiro(*it);
             }
         }
     } 

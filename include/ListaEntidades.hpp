@@ -31,6 +31,7 @@ namespace Listas
 
         void executar();
         void salvar();   
-        void desenhar();     
+        void desenhar();   
+        void desalocar();  
     };
 } using namespace Listas;
