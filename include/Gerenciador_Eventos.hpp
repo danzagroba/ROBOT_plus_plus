@@ -14,12 +14,13 @@ namespace Gerenciadores
 
     public:
         Gerenciador_Eventos();
-        virtual ~Gerenciador_Eventos();
+        ~Gerenciador_Eventos();
 
         static Gerenciador_Eventos* getGerenciador_Eventos();
 
-        void executar(sf::RenderWindow& window);
+        void executar(sf::RenderWindow* window);
 
         void notificarTecla(sf::Keyboard::Key key, const bool pressionado);
+        void notificarMouse(sf::Vector2i pos);
     };
 }

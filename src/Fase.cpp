@@ -12,31 +12,50 @@ namespace Fases
 {
     float Fase::gravidade(0.01);
 
-    Fase::Fase(const char* caminho, 
-               Gerenciadores::Gerenciador_Grafico* pGG, 
-               Gerenciadores::Gerenciador_Colisoes* pCO, 
-               Entidades::Personagens::Jogador* jgdr,
-               Entidades::Personagens::Jogador* jgdrdois, 
-               float comprimento)
+    Fase::Fase(const char* caminho, float comprimento)
         : Ente(),
-          gerGraf(pGG), 
-          gerColisoes(pCO),
+          gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()), 
+          gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
+          gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
+          gerEventos(Gerenciador_Eventos::getGerenciador_Eventos()),
+          gerEstados(Gerenciador_Estados::getGerenciador_Estados()),
           comprimentoTile(comprimento),
           altura(0),
           largura(0),
           tiles(NULL),
-          entidades()
+          entidades(),
+          pjogadorum(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart1.png")),
+        pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart2.png") : NULL)
     {
-        if(jgdr)
-            entidades.inserirNoFim(static_cast<Entidade*>(jgdr));
-        if(jgdrdois)
-            entidades.inserirNoFim(static_cast<Entidade*>(jgdrdois));
-
         if(gerColisoes)
         {
-            gerColisoes->inserirJogadores(jgdr);
-            if(jgdrdois)
-                gerColisoes->inserirJogadores(jgdrdois);
+            pjogadorum->setFigura(SPRITE_PATHP1);
+            gerColisoes->inserirJogadores(pjogadorum);
+            entidades.inserirNoFim(pjogadorum);
+
+            gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, pjogadorum));
+            gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::setXvel, pjogadorum,(-0.1)));
+            gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::setXvel, pjogadorum,(0.1)));
+            gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::W, std::bind(&Personagem::permitirPulo, pjogadorum));
+
+            if(Entidades::Jogador::getdoisjogadores())
+            {
+                if(pjogadordois==NULL)
+                {
+                    cerr<<"Erro ao alocar jogador dois"<<endl;
+                    exit(1);
+                }
+                else
+                {
+                    pjogadordois->setFigura(SPRITE_PATHP2);
+                    gerColisoes->inserirJogadores(pjogadordois);
+                    entidades.inserirNoFim(pjogadordois);
+                    gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::pulo, pjogadordois));
+                    gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::setXvel, pjogadordois,(-0.1)));
+                    gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::setXvel, pjogadordois,(0.1)));
+                    gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::Up, std::bind(&Personagem::permitirPulo, pjogadordois));
+                }
+            }
         }
 
         if(caminho)
@@ -52,10 +71,6 @@ namespace Fases
     Fase::~Fase()
     {
         destruirTiles();
-
-        entidades.removerDoInicio();
-        if(Entidades::Personagens::Jogador::getdoisjogadores())
-            entidades.removerDoInicio();
 
         for(Listas::Lista<Entidade*>::Iterator it = entidades.inicio(); it != entidades.fim(); ++it)
         {

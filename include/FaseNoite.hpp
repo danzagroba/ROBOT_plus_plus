@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #pragma once
 
@@ -21,4 +21,4 @@ namespace Fases
     protected:
         void criarEntidades();
     };
-} using namespace Fases;
+} using namespace Fases;*/

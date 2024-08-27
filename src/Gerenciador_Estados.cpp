@@ -15,10 +15,12 @@ void Gerenciador_Estados::executar()
 {
     getEstadoatual()->executar();
 }
+
 void Gerenciador_Estados::adicionarEstado(Estado* ea)
 {
     pilhaestados.push(ea);
 }
+
 void Gerenciador_Estados::popEstadoatual()
 {
     pilhaestados.pop();
@@ -36,7 +38,17 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
     }
     return pgerestados;
 }
+
+void Gerenciador_Estados::criarEstadojogar()
+{
+    adicionarEstado(new JogarFase());
+}
+
 Estado* Gerenciador_Estados::getEstadoatual()
 {
     return pilhaestados.top();
+}
+const int Gerenciador_Estados::getidEstadoatual()
+{
+    return (getEstadoatual())->getid();
 }

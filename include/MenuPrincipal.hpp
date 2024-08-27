@@ -14,8 +14,6 @@
 #include <iostream>
 using namespace std;
 
-#include "Estado.hpp"
-
 namespace Estados
 {
     class MenuPrincipal: public Estado

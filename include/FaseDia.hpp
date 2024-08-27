@@ -9,11 +9,7 @@ namespace Fases
     class FaseDia : public Fase
     {
     public:
-        FaseDia(Gerenciadores::Gerenciador_Grafico* pGG = nullptr,
-                Gerenciadores::Gerenciador_Colisoes* pCO = nullptr,
-                Entidades::Personagens::Jogador* jgdr = nullptr,
-                Entidades::Personagens::Jogador* jgdrdois = nullptr,
-                float comprimento = 16.0f);
+        FaseDia(float comprimento = 16.0f);
         ~FaseDia();
 
     protected:

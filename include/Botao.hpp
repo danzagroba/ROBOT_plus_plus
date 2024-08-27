@@ -18,6 +18,7 @@ namespace Estados
             public:
                 Botao(string txt, sf::Vector2f pos);
                 ~Botao();
+                sf::RectangleShape getretangulo();
                 void setbotaopos(sf::Vector2f pos);
                 void desenhar();
                 void executar();

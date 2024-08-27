@@ -3,12 +3,8 @@
 
 namespace Fases
 {
-    FaseDia::FaseDia(Gerenciadores::Gerenciador_Grafico* pGG,
-                     Gerenciadores::Gerenciador_Colisoes* pCO,
-                     Entidades::Personagens::Jogador* jgdr,
-                     Entidades::Personagens::Jogador* jgdrdois,
-                     float comprimento)
-        : Fase(FASE_DIA_PATH, pGG, pCO, jgdr, jgdrdois, comprimento)
+    FaseDia::FaseDia(float comprimento)
+        : Fase(FASE_DIA_PATH, comprimento)
     {}
 
     FaseDia::~FaseDia()

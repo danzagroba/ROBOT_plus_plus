@@ -1,9 +1,10 @@
 #include "JogarFase.hpp"
 
 JogarFase::JogarFase():
+Estado(10),
 faseescolhida(1),
-pfasedia(NULL),
-pfasenoite(NULL)
+pfasedia(NULL)//,
+//pfasenoite(NULL)
 {
     if(faseescolhida==1)
     {
@@ -16,12 +17,12 @@ pfasenoite(NULL)
     }
     else if(faseescolhida == 2)
     {
-        pfasenoite = new FaseNoite;
+        /*pfasenoite = new FaseNoite;
         if(pfasenoite == NULL)
         {
             cerr<<"Erro ao criar fase noite"<<endl;
             exit(1);
-        }
+        }*/
     }
 }
 
@@ -38,7 +39,7 @@ void JogarFase::executar()
     }
     else if(faseescolhida==2)
     {
-        pfasenoite->executar();
+        //pfasenoite->executar();
     }
 
 }

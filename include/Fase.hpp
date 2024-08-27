@@ -4,12 +4,17 @@
 
 #include "Jogador.hpp"
 #include "Gerenciador_Grafico.hpp"
-#include "Gerenciador_Colisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "Obstaculo.hpp"
 
+#define SPRITE_PATHP1 "../assets/player1.png"
+#define SPRITE_PATHP2 "../assets/player2.png"
+
+
 namespace Gerenciadores
 {
+    class Gerenciador_Inputs;
+    class Gerenciador_Eventos;
     class Gerenciador_Colisoes;
 }
 
@@ -22,7 +27,11 @@ namespace Fases
 
         Gerenciadores::Gerenciador_Grafico* gerGraf;
         Gerenciadores::Gerenciador_Colisoes* gerColisoes;
-
+        Gerenciadores::Gerenciador_Inputs* gerInputs;
+        Gerenciadores::Gerenciador_Eventos* gerEventos;
+        Gerenciadores::Gerenciador_Estados* gerEstados;
+        Entidades::Personagens::Jogador* pjogadorum;
+        Entidades::Personagens::Jogador* pjogadordois;
         Listas::ListaEntidades entidades;
 
         float comprimentoTile;
@@ -32,12 +41,7 @@ namespace Fases
         short int** tiles;
 
     public:
-        Fase(const char* caminho = nullptr, 
-             Gerenciadores::Gerenciador_Grafico* pGG = nullptr,
-             Gerenciadores::Gerenciador_Colisoes* pCO = nullptr,
-             Entidades::Personagens::Jogador* jgdr = nullptr,
-             Entidades::Personagens::Jogador* jgdrdois = nullptr,
-             float comprimento = 16.0f);
+        Fase(const char* caminho = nullptr, float comprimento = 16.0f);
         virtual ~Fase();
 
     protected:

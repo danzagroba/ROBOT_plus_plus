@@ -29,7 +29,10 @@ selecionado(false)
 }
 Botao::~Botao()
 {
-
+}
+sf::RectangleShape Botao::getretangulo()
+{
+    return retanguloprincipal;
 }
 void Botao::setbotaopos(sf::Vector2f pos)
 {
@@ -53,6 +56,7 @@ void Botao::desenhar()
     pgergraf->desenhar(retangulosecundario);
     textobotao.desenhar();
 }
+
 void Botao::executar()
 {
     desenhar();

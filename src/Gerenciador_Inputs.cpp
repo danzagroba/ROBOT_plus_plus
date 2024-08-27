@@ -2,8 +2,8 @@
 using namespace std;
 #include <iostream>
 
-Gerenciador_Inputs* Gerenciador_Inputs::pgerinputs = NULL;
-
+Gerenciador_Inputs* Gerenciador_Inputs::pGI = NULL;
+Gerenciador_Estados* Gerenciador_Inputs::pGE = Gerenciador_Estados::getGerenciador_Estados();
 Gerenciador_Inputs::Gerenciador_Inputs() 
 {
     tecla_comando.clear();
@@ -27,37 +27,68 @@ void Gerenciador_Inputs::vincularcomandoTeclaSolta(sf::Keyboard::Key tcl, const 
     tecla_soltou_comando[tcl] = cmnd; // Associa o comando à tecla solta
 }
 
+void Gerenciador_Inputs::vincularcomandobotao(Botao* pbotao, const Command& cmnd) 
+{
+    botao_comando[pbotao] = cmnd;
+}
+
 Gerenciador_Inputs* Gerenciador_Inputs::getGerenciador_Inputs() 
 {
-    if(pgerinputs == NULL) 
+    if(pGI == NULL) 
     {
-        pgerinputs = new Gerenciador_Inputs();
-        if(pgerinputs == NULL) 
+        pGI = new Gerenciador_Inputs();
+        if(pGI == NULL) 
         {
             cout<<"Erro ao alocar gerenciador de inputs, fechando execução"<<endl;
             exit(1);
         }
     }
-    return pgerinputs;
+    return pGI;
 }
 
 void Gerenciador_Inputs::processainput(sf::Keyboard::Key key, const bool pressionado) 
 {
     // Check if the key is pressed
-    if(pressionado) 
+    if(pGE->getidEstadoatual()==10)
     {
-        map<sf::Keyboard::Key, std::function<void()>>::iterator it = tecla_comando.find(key);
-        if (it != tecla_comando.end()) 
+        if(pressionado) 
         {
-            it->second();
+            map<sf::Keyboard::Key, std::function<void()>>::iterator it = tecla_comando.find(key);
+            if (it != tecla_comando.end()) 
+            {
+                it->second();
+            }
+        }
+        else 
+        {
+            map<sf::Keyboard::Key, std::function<void()>>::iterator it  = tecla_soltou_comando.find(key);
+            if (it != tecla_soltou_comando.end()) 
+            {
+                it->second();
+            }
         }
     }
-    else 
+}
+
+void Gerenciador_Inputs::processainput(sf::Vector2i pos) 
+{
+    if(pGE->getidEstadoatual() == 1)
     {
-        map<sf::Keyboard::Key, std::function<void()>>::iterator it  = tecla_soltou_comando.find(key);
-        if (it != tecla_soltou_comando.end()) 
+        for(vector<Botao*>::iterator it = ((pGE->getEstadoatual())->getvetorbotoes())->begin(); it!=(pGE->getEstadoatual())->getvetorbotoes()->end(); ++it)
         {
-            it->second();
+            if(*it)
+            {
+                if((*it)->getretangulo().getGlobalBounds().contains(static_cast<sf::Vector2f>(pos)))
+                {
+                    map<Botao*, std::function<void()>>::iterator mapit = botao_comando.find(*it);
+                    if (mapit != botao_comando.end()) 
+                    {
+                        mapit->second();
+                    }
+                    cout<<"esta funcionando"<<endl;
+                }
+            }
+            
         }
     }
 }

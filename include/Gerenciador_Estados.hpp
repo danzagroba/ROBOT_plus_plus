@@ -1,6 +1,7 @@
 #pragma once
 
 #include<Estado.hpp>
+#include "JogarFase.hpp"
 
 #include <iostream>
 #include <stack>
@@ -15,14 +16,14 @@ namespace Gerenciadores {
             void adicionarEstado(Estado* ea);
             void popEstadoatual();            
             void criarEstadojogar();
-            void criarMenuprincipal();
+            //void criarMenuprincipal();
             Estado* getEstadoatual();
+            const int getidEstadoatual();
 
         private:
             static Gerenciador_Estados* pgerestados;
-            int idestado;
             stack<Estado*> pilhaestados;
-            
+    
             Gerenciador_Estados();
             ~Gerenciador_Estados();
     };

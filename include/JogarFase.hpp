@@ -2,15 +2,16 @@
 
 #include "Estado.hpp"
 #include "FaseDia.hpp"
-#include "FaseNoite.hpp"
+//#include "FaseNoite.hpp"
 
+//STATE
 namespace Estados
 {
     class JogarFase: public Estado
     {
         private:
             FaseDia* pfasedia;
-            FaseNoite* pfasenoite;
+            //FaseNoite* pfasenoite;
             int faseescolhida;
         public:
             JogarFase();
