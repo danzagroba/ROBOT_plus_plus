@@ -2,7 +2,7 @@
 
 
 MenuPrincipal::MenuPrincipal():
-novojogo("Novo Jogo",sf::Vector2f(350.0f,300.0f))
+novojogo("Novo Jogo",sf::Vector2f(300.0f,300.0f))
 {
     titulo.settexto("ROBOT++");
     titulo.tamanhofonte(70);

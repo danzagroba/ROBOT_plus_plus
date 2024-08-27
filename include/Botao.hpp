@@ -12,7 +12,8 @@ namespace Estados
             private:
                 static Gerenciador_Grafico* pgergraf;
                 Texto textobotao;
-                sf::RectangleShape retangulo;
+                sf::RectangleShape retanguloprincipal;
+                sf::RectangleShape retangulosecundario;
                 bool selecionado;
             public:
                 Botao(string txt, sf::Vector2f pos);
