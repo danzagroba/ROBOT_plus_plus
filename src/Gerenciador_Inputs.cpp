@@ -41,31 +41,23 @@ Gerenciador_Inputs* Gerenciador_Inputs::getGerenciador_Inputs()
     return pgerinputs;
 }
 
-void Gerenciador_Inputs::processainput(sf::Window& window) 
+void Gerenciador_Inputs::processainput(sf::Keyboard::Key key, const bool pressionado) 
 {
-    sf::Event event;
-    while(window.pollEvent(event)) 
+    // Check if the key is pressed
+    if(pressionado) 
     {
-        if (event.type == sf::Event::Closed) 
+        map<sf::Keyboard::Key, std::function<void()>>::iterator it = tecla_comando.find(key);
+        if (it != tecla_comando.end()) 
         {
-            window.close();
-        }
-
-        if (event.type == sf::Event::KeyReleased) 
-        {
-            auto it = tecla_soltou_comando.find(event.key.code);
-            if (it != tecla_soltou_comando.end()) 
-            {
-                it->second(); // Executa o comando associado à tecla solta
-            }
+            it->second();
         }
     }
-
-    for (auto it = tecla_comando.begin(); it != tecla_comando.end(); ++it) 
+    else 
     {
-        if (sf::Keyboard::isKeyPressed(it->first)) 
+        map<sf::Keyboard::Key, std::function<void()>>::iterator it  = tecla_soltou_comando.find(key);
+        if (it != tecla_soltou_comando.end()) 
         {
-            it->second(); // Executa o comando associado à tecla pressionada
+            it->second();
         }
     }
 }
