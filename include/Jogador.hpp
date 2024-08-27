@@ -33,6 +33,7 @@ namespace Entidades
                 void setSpriteVidaPos(const sf::Vector2f& pos);
                 const sf::Texture& getTextureVida() const;
                 const sf::Sprite& getSpriteVida() const;
+                //void processarInput(const sf::Keyboard::Key tecla, const bool pressionada);
         };
     } using namespace Personagens;
 } using namespace Entidades;

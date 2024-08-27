@@ -1,4 +1,4 @@
-#include "FaseNoite.hpp"
+/*#include "FaseNoite.hpp"
 #include "ProjectileBot.hpp"
 
 namespace Fases
@@ -33,4 +33,4 @@ namespace Fases
         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot->getProjetil()));
 
     }
-}
+}*/

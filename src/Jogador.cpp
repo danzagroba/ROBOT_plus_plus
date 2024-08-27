@@ -70,3 +70,26 @@ const sf::Sprite& Jogador::getSpriteVida() const
 {
     return spriteVida;
 }
+
+/*void Jogador::processarInput(const sf::Keyboard::Key tecla, const bool pressionada)
+{
+    if(pressionada)
+    {
+        switch(tecla)
+        {
+            case sf::Keyboard::Space:
+                pulo();
+                break;
+            case sf::Keyboard::Left:
+                setXvel(-0.1f);
+                break;
+            case sf::Keyboard::Right:
+                setXvel(0.1f);
+                break;
+            default:
+                break;
+        }
+    }
+    else if(tecla == sf::Keyboard::W)
+        puloBloqueado = false;
+}*/
