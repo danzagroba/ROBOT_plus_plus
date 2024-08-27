@@ -21,4 +21,4 @@ namespace Fases
     protected:
         void criarEntidades();
     };
-}
+} using namespace Fases;

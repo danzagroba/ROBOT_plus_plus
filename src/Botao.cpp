@@ -23,6 +23,7 @@ selecionado(false)
 
     x = rectpBounds.left + (rectpBounds.width - textBounds.width) / 2.0f;
     y = rectpBounds.top + (rectpBounds.height - textBounds.height) / 2.0f;
+    y-=5;
     textobotao.settextopos(sf::Vector2f(x,y));
 
 }

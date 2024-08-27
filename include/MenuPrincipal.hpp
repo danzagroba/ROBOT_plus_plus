@@ -23,6 +23,9 @@ namespace Estados
         private:
             Texto titulo;
             Botao novojogo;
+            Botao continuar;
+            Botao ranking;
+            Botao sair;
             
 
         public:
