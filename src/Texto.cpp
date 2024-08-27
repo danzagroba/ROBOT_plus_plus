@@ -29,6 +29,10 @@ void Texto::settextopos(sf::Vector2f pos)
 {
     texto.setPosition(pos);
 }
+sf::FloatRect Texto::gettamanho()
+{
+    return texto.getGlobalBounds();
+}
 void Texto::desenhar()
 {
     pgergraf->desenhartxt(&texto);

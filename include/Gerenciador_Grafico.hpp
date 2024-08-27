@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-
+#include "SFML/Graphics.hpp"
 using namespace std;
 
 //Padrão de proj SINGLETON colocar na uml depois
@@ -45,7 +45,7 @@ namespace Gerenciadores
             void display();
             void configurar();
             void processarEvento();
-            void setCamera(const sf::Vector2f& pos);
+            void setCamera(const sf::Vector2f& centro);
             void atualizarDeltaTime();
             const float getDeltaTime() const;
             const sf::View& getCamera() const;

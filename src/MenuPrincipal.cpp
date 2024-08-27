@@ -1,6 +1,8 @@
 #include "MenuPrincipal.hpp"
 
-MenuPrincipal::MenuPrincipal()
+
+MenuPrincipal::MenuPrincipal():
+novojogo("Novo Jogo",sf::Vector2f(350.0f,300.0f))
 {
     titulo.settexto("ROBOT++");
     titulo.tamanhofonte(70);
@@ -18,4 +20,5 @@ void MenuPrincipal::executar()
 void MenuPrincipal::desenhar()
 {
     titulo.desenhar();
+    novojogo.desenhar();
 }

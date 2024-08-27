@@ -9,6 +9,7 @@
 #include "Gerenciador_Colisoes.hpp"
 #include "Gerenciador_Estados.hpp"
 #include "Texto.hpp"
+#include "Botao.hpp"
 
 #include <iostream>
 using namespace std;
@@ -21,6 +22,7 @@ namespace Estados
     {
         private:
             Texto titulo;
+            Botao novojogo;
             
 
         public:

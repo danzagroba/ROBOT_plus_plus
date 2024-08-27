@@ -9,6 +9,5 @@ namespace Estados
             Estado();
             virtual ~Estado();
             virtual void executar() = 0;
-
     };
 }using namespace Estados;
