@@ -25,12 +25,12 @@ namespace Fases
         gerColisoes->inserirInimigos(pgumbot);
         entidades.inserirNoFim(static_cast<Entidade*>(pgumbot));
 
+
         ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(4.0f*comprimentoTile, 25.0f));
         gerColisoes->inserirInimigos(pprojectilebot);
         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
         gerColisoes->inserirProjetil(pprojectilebot->getProjetil());
         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot->getProjetil()));
 
-        std::cout<<"gumbot criado"<<endl;
     }
 }

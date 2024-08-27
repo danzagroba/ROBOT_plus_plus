@@ -5,10 +5,15 @@ Gerenciador_Estados::Gerenciador_Estados():
 pilhaestados()
 {
 
+
 }
 Gerenciador_Estados::~Gerenciador_Estados()
 {
     
+}
+void Gerenciador_Estados::executar()
+{
+    getEstadoatual()->executar();
 }
 void Gerenciador_Estados::adicionarEstado(Estado* ea)
 {
