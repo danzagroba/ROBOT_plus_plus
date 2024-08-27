@@ -18,7 +18,7 @@ namespace Gerenciadores {
         void vincularcomando(sf::Keyboard::Key tcl, const Command& cmnd);
         void vincularcomandoTeclaSolta(sf::Keyboard::Key tcl, const Command& cmnd); // Adicionado para teclas soltas
 
-        void processainput(sf::Window& window);
+        void processainput(sf::Keyboard::Key key, const bool pressionado);
 
     private:
         Gerenciador_Inputs();

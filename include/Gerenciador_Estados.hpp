@@ -17,6 +17,7 @@ namespace Gerenciadores {
             void criarEstadojogar();
             void criarMenuprincipal();
             Estado* getEstadoatual();
+
         private:
             static Gerenciador_Estados* pgerestados;
             int idestado;
@@ -24,7 +25,6 @@ namespace Gerenciadores {
             
             Gerenciador_Estados();
             ~Gerenciador_Estados();
-    
     };
 } 
 using namespace Gerenciadores;
