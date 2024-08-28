@@ -34,7 +34,6 @@ Botao::~Botao()
 }
 sf::RectangleShape Botao::getretangulo()
 {
-    std::cout << "vai crashar\n";
     return retanguloprincipal;
 }
 void Botao::setbotaopos(sf::Vector2f pos)

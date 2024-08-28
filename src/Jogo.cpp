@@ -9,7 +9,7 @@ Jogo::Jogo():
 
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
-    gerGraf->setMaximosCamera(800*16, 600*16);
+    //gerGraf->setMaximosCamera(, 300.0f);
     gerGraf->configurar();
 
     gerEstados->adicionarEstado(new MenuPrincipal());

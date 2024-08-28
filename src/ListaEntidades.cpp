@@ -86,7 +86,6 @@ namespace Listas
             if((*it)->getid() == 0)
             {
                 Entidade* temp = *it;
-                std::cout<<"apagando entidade"<<*it<<std::endl;
                 it = apagar(it);
                 delete temp;
             }
