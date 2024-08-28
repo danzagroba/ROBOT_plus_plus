@@ -30,6 +30,8 @@ Gerenciador_Grafico::~Gerenciador_Grafico()
         delete pgergraf;
     }
     pgergraf = NULL;
+
+    std::cout << "gerenciador grafico destruido\n";
 }
 
 const float Gerenciador_Grafico::lerp(const float a, const float b, const float t) const

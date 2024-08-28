@@ -17,7 +17,9 @@ namespace Fases
     {}
 
     FaseDia::~FaseDia()
-    {}
+    {
+        std::cout << "fase dia destruida\n";
+    }
 
     void FaseDia::criarEntidades()
     {

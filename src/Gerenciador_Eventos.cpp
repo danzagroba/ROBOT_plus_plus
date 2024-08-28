@@ -11,7 +11,9 @@ namespace Gerenciadores
     {}
 
     Gerenciador_Eventos::~Gerenciador_Eventos()
-    {}
+    {
+        std::cout << "gerenciador de eventos destruido\n";
+    }
 
     Gerenciador_Eventos* Gerenciador_Eventos::getGerenciador_Eventos() 
     {

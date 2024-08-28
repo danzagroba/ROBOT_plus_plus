@@ -73,6 +73,9 @@ namespace Fases
         Figura.setScale(comprimentoTile / Textura.getSize().x, comprimentoTile / Textura.getSize().y);
     
         Entidades::Entidade::setGravidade(gravidade);
+
+
+        std::cout << "a criar fase\n";
     }
 
     Fase::~Fase()
@@ -85,6 +88,8 @@ namespace Fases
         }
 
         entidades.limpar();
+
+        std::cout << "fase destruida\n";
     }
 
     void Fase::destruirTiles()

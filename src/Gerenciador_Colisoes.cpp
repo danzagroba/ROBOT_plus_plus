@@ -24,6 +24,8 @@ Gerenciador_Colisoes::~Gerenciador_Colisoes()
     LOs.clear();
     LJs.clear();
     LPs.clear();
+
+    std::cout << "gerenciador de colisaos destruido\n";
 }
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()

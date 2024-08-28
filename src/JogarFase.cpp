@@ -28,7 +28,7 @@ pfasedia(NULL)//,
 
 JogarFase::~JogarFase()
 {
-
+    std::cout << "jogar fase criado\n";
 }
 
 void JogarFase::executar()

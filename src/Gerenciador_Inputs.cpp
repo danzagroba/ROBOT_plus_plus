@@ -15,6 +15,8 @@ Gerenciador_Inputs::~Gerenciador_Inputs()
 {
     tecla_comando.clear();
     tecla_soltou_comando.clear(); // Limpa o mapa para comandos de tecla solta
+
+    std::cout << "gerenciador de inputs destruido\n";
 }
 
 void Gerenciador_Inputs::vincularcomando(sf::Keyboard::Key tcl, const Command& cmnd) 
@@ -85,13 +87,12 @@ void Gerenciador_Inputs::processainput(sf::Vector2i pos)
                     map<Botao*, std::function<void()>>::iterator mapit = botao_comando.find(*it);
                     if (mapit != botao_comando.end()) 
                     {
-                        std::cout << "achou\n";
+                        std::cout << "achouasdfasdfasdfasdf\n";
                         mapit->second();
+                        break;
                     }
-                   // cout<<"esta funcionando"<<endl;
                 }
             }
-            
         }
     }
 }

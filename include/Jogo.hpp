@@ -31,7 +31,6 @@ private:
     Gerenciadores::Gerenciador_Colisoes* gerColisoes;
     Gerenciadores::Gerenciador_Estados* gerEstados;
     Gerenciadores::Gerenciador_Eventos* gerEventos;
-    Fases::FaseDia fase;
 
 public:
     Jogo();

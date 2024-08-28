@@ -4,13 +4,12 @@ Jogo::Jogo():
       gerGraf(Gerenciador_Grafico::getGerenciador_Grafico()),
       gerInputs(Gerenciador_Inputs::getGerenciador_Inputs()),
       gerColisoes(Gerenciador_Colisoes::getGerenciador_Colisoes()),
-      gerEstados(Gerenciador_Estados::getGerenciador_Estados()),
-      fase(16.0f)
+      gerEstados(Gerenciador_Estados::getGerenciador_Estados())
 {
 
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
-    gerGraf->setMaximosCamera(fase.getLargura()*fase.getComprimentoTile(), fase.getAltura()*fase.getComprimentoTile());
+    gerGraf->setMaximosCamera(800*16, 600*16);
     gerGraf->configurar();
 
     gerEstados->adicionarEstado(new MenuPrincipal());
@@ -18,7 +17,7 @@ Jogo::Jogo():
 
 Jogo::~Jogo()
 {
-
+    std::cout << "jogo destruido\n";
 }
 
 void Jogo::executar()

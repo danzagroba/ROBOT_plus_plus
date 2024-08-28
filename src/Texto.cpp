@@ -16,7 +16,7 @@ Texto::Texto()
 }
 Texto::~Texto()
 {
-
+    std::cout << "texto destruido\n";
 }
 void Texto::settexto(string txt)
 {
