@@ -9,6 +9,7 @@
 #include "Gerenciador_Estados.hpp"
 #include "Gerenciador_Eventos.hpp"
 #include "Gerenciador_Inputs.hpp"
+#include "Jogador.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -73,9 +74,6 @@ namespace Fases
         Figura.setScale(comprimentoTile / Textura.getSize().x, comprimentoTile / Textura.getSize().y);
     
         Entidades::Entidade::setGravidade(gravidade);
-
-
-        std::cout << "a criar fase\n";
     }
 
     Fase::~Fase()
@@ -183,8 +181,6 @@ namespace Fases
         gerColisoes->inserirInimigos(pprojectilebot);
         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
         //entidades.inserirNoFim(static_cast<Entidade*>());
-
-        std::cout<<"gumbot criado"<<endl;
     }
 
     void Fase::carregar(const char* caminho)
@@ -340,5 +336,8 @@ namespace Fases
         gerColisoes->checarColisoesObstaculos();
         entidades.desenhar();
         entidades.desalocar();
+    
+        sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (pjogadorum->getPos()+(pjogadordois->getPos()))/2.0f : pjogadorum->getPos();
+        gerGraf->setCamera(proxPos);
     }
 }
