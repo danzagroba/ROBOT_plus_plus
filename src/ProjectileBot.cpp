@@ -23,7 +23,7 @@ namespace Entidades
         {
             if(tempo.getElapsedTime().asSeconds()>1.5)
             {
-                Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f));
+                Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f), 20);
                 if(pprojetil)
                 {
                     projeteis.push_back(pprojetil);

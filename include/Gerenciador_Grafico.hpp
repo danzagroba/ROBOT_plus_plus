@@ -44,6 +44,7 @@ namespace Gerenciadores
             void clear();
             void display();
             void configurar();
+            void fecharjanela();
             void processarEvento();
             void setCamera(const sf::Vector2f& centro);
             void atualizarDeltaTime();

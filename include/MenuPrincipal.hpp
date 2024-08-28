@@ -30,6 +30,7 @@ namespace Estados
         public:
             void executar();
             void desenhar();
+            void sairjogo();
             MenuPrincipal();
             ~MenuPrincipal();
     };

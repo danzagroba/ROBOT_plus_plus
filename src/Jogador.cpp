@@ -1,8 +1,11 @@
 #include "Jogador.hpp"
+#include "Projetil.hpp"
 #include <iostream>
 using namespace std;
 
 bool Jogador::doisjogadores = true;
+list<Projetil*> Jogador::projeteisjogador;
+string Jogador::nome;
 
 Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
@@ -10,13 +13,13 @@ Jogador::Jogador(const sf::Vector2f& vel,
                  const string& caminhoParaVida)
     : Personagem(nVidas, pos),
       pontos(0),
-      nome(),
       texturaVida(),
       spriteVida()
 {
     id = 1; // ID utilizado pra jogadores
     texturaVida.loadFromFile(caminhoParaVida);
     spriteVida.setTexture(texturaVida);
+    recoiltime.restart();
 }
 
 Jogador::~Jogador()
@@ -36,7 +39,31 @@ void Jogador::executar()
     setXvel(0.0f);
     //desenhar();
 }
+void Jogador::atacar()
+{
+    cout<<"função chamada"<<endl;
+    if(recoiltime.getElapsedTime().asSeconds()>1.0)
+    {
+        Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.1f, -0.1f),30);
+        if(pprojetiljogador)
+        {
+            projeteisjogador.push_back(pprojetiljogador);
+            cout<<"Criando tiro"<<endl;
+        }
+        recoiltime.restart();
+    }
+}
+std::list<Projetil*>* Jogador::getprojeteisjogador() {
+    return &projeteisjogador;
+}
 
+void Jogador::removertirojogador(Projetil* ep)
+{
+    list<Projetil*>::iterator it = std::find(projeteisjogador.begin(), projeteisjogador.end(), ep);
+    if (it != projeteisjogador.end()) {
+        projeteisjogador.erase(it);
+    }
+}
 void Jogador::tomarDano(const int dano)
 {
     if((relogio.getElapsedTime()).asSeconds()>0.5)
@@ -69,26 +96,3 @@ const sf::Sprite& Jogador::getSpriteVida() const
 {
     return spriteVida;
 }
-
-/*void Jogador::processarInput(const sf::Keyboard::Key tecla, const bool pressionada)
-{
-    if(pressionada)
-    {
-        switch(tecla)
-        {
-            case sf::Keyboard::Space:
-                pulo();
-                break;
-            case sf::Keyboard::Left:
-                setXvel(-0.1f);
-                break;
-            case sf::Keyboard::Right:
-                setXvel(0.1f);
-                break;
-            default:
-                break;
-        }
-    }
-    else if(tecla == sf::Keyboard::W)
-        puloBloqueado = false;
-}*/

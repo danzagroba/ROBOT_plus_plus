@@ -44,6 +44,7 @@ namespace Fases
             gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, pjogadorum));
             gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::setXvel, pjogadorum,(-0.1)));
             gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::setXvel, pjogadorum,(0.1)));
+            gerInputs->vincularcomando(sf::Keyboard::Space, std::bind(&Jogador::atacar, pjogadorum));
             gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::W, std::bind(&Personagem::permitirPulo, pjogadorum));
 
             if(Entidades::Jogador::getdoisjogadores())
@@ -61,6 +62,7 @@ namespace Fases
                     gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::pulo, pjogadordois));
                     gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::setXvel, pjogadordois,(-0.1)));
                     gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::setXvel, pjogadordois,(0.1)));
+                    gerInputs->vincularcomando(sf::Keyboard::Enter, std::bind(&Jogador::atacar, pjogadordois));
                     gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::Up, std::bind(&Personagem::permitirPulo, pjogadordois));
                 }
             }
@@ -275,6 +277,18 @@ namespace Fases
     void Fase::atualizarprojeteis()
     {
         for(list<Projetil*>::iterator it = ProjectileBot::getprojeteis()->begin(); it!= ProjectileBot::getprojeteis()->end();it++)
+        {
+            if(*it)
+            {
+                if ((*it)->getinserido()==false)
+                {
+                    gerColisoes->inserirProjetil(*it);
+                    entidades.inserirNoFim(*it);
+                    (*it)->inseridonalista();
+                }
+            }
+        }
+        for(list<Projetil*>::iterator it = Jogador::getprojeteisjogador()->begin(); it!= Jogador::getprojeteisjogador()->end();it++)
         {
             if(*it)
             {

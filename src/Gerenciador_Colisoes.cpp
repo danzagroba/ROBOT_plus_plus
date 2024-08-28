@@ -189,7 +189,14 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
             if (calculaColisao(*it, *it2))
             {
                 (*it)->resetar();
-                ProjectileBot::removertiro(*it);
+                if((*it)->getid()==20)
+                {
+                    ProjectileBot::removertiro(*it);
+                }
+                else if((*it)->getid()==30)
+                {
+                    Jogador::removertirojogador(*it);
+                }
                 it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                 apagado = true;
                 break; // Sai do loop interno, pois o iterador foi invalidado
@@ -207,7 +214,7 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         bool apagado = false;
         for (auto it2 = LJs.begin(); it2 != LJs.end(); ++it2)
         {
-            if (calculaColisao(*it, *it2))
+            if (calculaColisao(*it, *it2) && (*it)->getid() == 20)
             {
                 (*it2)->tomarDano((*it)->getDano());
                 (*it)->resetar();

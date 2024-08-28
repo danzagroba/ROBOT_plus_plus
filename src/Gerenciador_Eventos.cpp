@@ -56,6 +56,10 @@ namespace Gerenciadores
             notificarTecla(sf::Keyboard::Down, true);
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             notificarTecla(sf::Keyboard::Right, true);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            notificarTecla(sf::Keyboard::Space, true);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+            notificarTecla(sf::Keyboard::Enter, true);
 
         if(event.type == sf::Event::KeyReleased)
         {

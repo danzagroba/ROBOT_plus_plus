@@ -23,6 +23,7 @@ void Gerenciador_Estados::adicionarEstado(Estado* ea)
 
 void Gerenciador_Estados::popEstadoatual()
 {
+    delete getEstadoatual();
     pilhaestados.pop();
 }
 Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()

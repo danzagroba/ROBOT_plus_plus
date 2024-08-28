@@ -122,6 +122,11 @@ void Gerenciador_Grafico::configurar()
     window->setFramerateLimit(limitefps);
 }
 
+void Gerenciador_Grafico::fecharjanela()
+{
+    window->close();
+}
+
 void Gerenciador_Grafico::processarEvento()
 {
     if(!window)

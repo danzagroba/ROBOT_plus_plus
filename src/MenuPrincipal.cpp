@@ -18,6 +18,7 @@ sair("Sair", sf::Vector2f(300.0f,510.0f))
     vetorbotoes.push_back(&sair);
 
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados()));
+    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&sair, std::bind(&MenuPrincipal::sairjogo, this));
     
 }
 
@@ -45,4 +46,10 @@ void MenuPrincipal::desenhar()
     continuar.desenhar();
     ranking.desenhar();
     sair.desenhar();
+}
+
+void MenuPrincipal::sairjogo()
+{
+    Gerenciador_Estados::getGerenciador_Estados()->popEstadoatual();
+    Gerenciador_Grafico::getGerenciador_Grafico()->fecharjanela();
 }

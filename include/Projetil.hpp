@@ -16,7 +16,7 @@ namespace Entidades
     public:
         Projetil(Entidade* donoDoProjetil = NULL, 
                  const int danoProjetil = 0, 
-                 const sf::Vector2f& forcaInicial = sf::Vector2f(0.0f, 0.0f));
+                 const sf::Vector2f& forcaInicial = sf::Vector2f(0.0f, 0.0f), int idd=10);
         ~Projetil();
 
         const int getDano() const;
