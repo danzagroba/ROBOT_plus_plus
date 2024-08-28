@@ -86,8 +86,6 @@ namespace Fases
         }
 
         entidades.limpar();
-
-        std::cout << "fase destruida\n";
     }
 
     void Fase::destruirTiles()
@@ -166,23 +164,6 @@ namespace Fases
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
     }
 
-    void Fase::criarEntidades()
-    {
-        if(!tiles)
-            return;
-        
-        criarPlataformas();
-
-        Gumbot* pgumbot = new Gumbot(sf::Vector2f(25.0f, 25.0f));
-        gerColisoes->inserirInimigos(pgumbot);
-        entidades.inserirNoFim(static_cast<Entidade*>(pgumbot));
-
-        ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(4.0f*comprimentoTile, 25.0f));
-        gerColisoes->inserirInimigos(pprojectilebot);
-        entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
-        //entidades.inserirNoFim(static_cast<Entidade*>());
-    }
-
     void Fase::carregar(const char* caminho)
     {
         destruirTiles();
@@ -211,7 +192,7 @@ namespace Fases
             }
         }
 
-        criarEntidades();
+        gerGraf->setMaximosCamera(largura*comprimentoTile, altura*comprimentoTile);
     }
 
     const float Fase::getComprimentoTile() const

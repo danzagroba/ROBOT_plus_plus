@@ -41,7 +41,6 @@ void Jogador::tomarDano(const int dano)
 {
     if((relogio.getElapsedTime()).asSeconds()>0.5)
     {
-        cout<<"Dano tomado! vidas:"<<num_vidas<<endl;
         num_vidas -= dano;
         no_ar = false;
         setYvel(0.0);

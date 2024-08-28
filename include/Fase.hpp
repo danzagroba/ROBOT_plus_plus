@@ -50,7 +50,7 @@ namespace Fases
         void destruirTiles();
         void criarPlataforma(const sf::Vector2i& posicaoFinal, const sf::Vector2i& posicaoInicial);
         void criarPlataformas();
-        virtual void criarEntidades();
+        virtual void criarEntidades() = 0;
 
     public:
         void carregar(const char* caminho);

@@ -17,6 +17,7 @@ namespace Entidades
                 
                 void executar();
                 void obstacular();
+                void salvar();
 
                 static const int getDano();
         };

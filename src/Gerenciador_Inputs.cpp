@@ -32,7 +32,6 @@ void Gerenciador_Inputs::vincularcomandoTeclaSolta(sf::Keyboard::Key tcl, const 
 void Gerenciador_Inputs::vincularcomandobotao(Botao* pbotao, const Command& cmnd) 
 {
     botao_comando[pbotao] = cmnd;
-    std::cout << "a vincular comando\n";
 }
 
 Gerenciador_Inputs* Gerenciador_Inputs::getGerenciador_Inputs() 
@@ -77,7 +76,6 @@ void Gerenciador_Inputs::processainput(sf::Vector2i pos)
 {
     if(pGE->getidEstadoatual() == 1)
     {
-        std::cout << "acessadndo vetor\n";
         for(vector<Botao*>::iterator it = ((pGE->getEstadoatual())->getvetorbotoes())->begin(); it!=(pGE->getEstadoatual())->getvetorbotoes()->end(); ++it)
         {
             if(*it)
@@ -87,7 +85,6 @@ void Gerenciador_Inputs::processainput(sf::Vector2i pos)
                     map<Botao*, std::function<void()>>::iterator mapit = botao_comando.find(*it);
                     if (mapit != botao_comando.end()) 
                     {
-                        std::cout << "achouasdfasdfasdfasdf\n";
                         mapit->second();
                         break;
                     }

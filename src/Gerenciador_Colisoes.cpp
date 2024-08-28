@@ -180,28 +180,46 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         }
     }   
 
-    //Serve pra interações entre projeteis, para com obstaculos
-    for(set<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
-        for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
-            if(calculaColisao(*it, *it2))
+    // Serve para interações entre projéteis e obstáculos
+    for (auto it = LPs.begin(); it != LPs.end();)
+    {
+        bool apagado = false;
+        for (auto it2 = LOs.begin(); it2 != LOs.end(); ++it2)
+        {
+            if (calculaColisao(*it, *it2))
             {
                 (*it)->resetar();
-                LPs.erase(*it);
                 ProjectileBot::removertiro(*it);
+                it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                apagado = true;
+                break; // Sai do loop interno, pois o iterador foi invalidado
             }
         }
-    }       
+        if (!apagado)
+        {
+            ++it; // Incrementa somente se não foi apagado
+        }
+    }
 
-    //Serve pra interações entre projeteis, para com jogaodres
-    for(set<Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
-        for(vector<Jogador*>::iterator it2 = LJs.begin(); it2 != LJs.end(); ++it2) {
-            if(calculaColisao(*it, *it2))
+    // Serve para interações entre projéteis e jogadores
+    for (auto it = LPs.begin(); it != LPs.end();)
+    {
+        bool apagado = false;
+        for (auto it2 = LJs.begin(); it2 != LJs.end(); ++it2)
+        {
+            if (calculaColisao(*it, *it2))
             {
                 (*it2)->tomarDano((*it)->getDano());
                 (*it)->resetar();
-                LPs.erase(*it);
                 ProjectileBot::removertiro(*it);
+                it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                apagado = true;
+                break; // Sai do loop interno, pois o iterador foi invalidado
             }
         }
-    } 
+        if (!apagado)
+        {
+            ++it; // Incrementa somente se não foi apagado
+        }
+    }
 }

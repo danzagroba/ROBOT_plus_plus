@@ -34,39 +34,30 @@ namespace Gerenciadores
         sf::Event event;
         while(window->pollEvent(event)) 
         {
-            if (event.type == sf::Event::Closed) 
+            if(event.type == sf::Event::Closed) 
                 window->close();
 
-            if(event.type == sf::Event::KeyReleased) 
-                notificarTecla(event.key.code, false);
-            else if(event.type == sf::Event::KeyPressed)
-                notificarTecla(event.key.code, true);
-
-            if (event.type == sf::Event::MouseButtonReleased) {
-                if(event.mouseButton.button == sf::Mouse::Left)
-                {
-                    notificarMouse(sf::Mouse::getPosition(*window));
-                }
-            }
+            else if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+                notificarMouse(sf::Mouse::getPosition(*window));
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             notificarTecla(sf::Keyboard::A, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
             notificarTecla(sf::Keyboard::S, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             notificarTecla(sf::Keyboard::D, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             notificarTecla(sf::Keyboard::W, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             notificarTecla(sf::Keyboard::Up, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             notificarTecla(sf::Keyboard::Left, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             notificarTecla(sf::Keyboard::Down, true);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             notificarTecla(sf::Keyboard::Right, true);
 
-        if (event.type == sf::Event::KeyReleased)
+        if(event.type == sf::Event::KeyReleased)
         {
             if (event.key.code == sf::Keyboard::Up)
                 notificarTecla(sf::Keyboard::Up, false);
@@ -79,6 +70,7 @@ namespace Gerenciadores
     {
         pGI->processainput(key, pressionado);
     }
+    
     void Gerenciador_Eventos::notificarMouse(sf::Vector2i pos)
     {
         pGI->processainput(pos);

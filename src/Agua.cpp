@@ -19,10 +19,13 @@ namespace Entidades
         
         void Agua::executar() 
         {
-            //desenhar();
         }
         
         void Agua::obstacular() 
+        {
+        }
+
+        void Agua::salvar()
         {
         }
 
