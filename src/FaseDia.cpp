@@ -37,8 +37,7 @@ namespace Fases
 
         int nGumbots = 0;
         int nProjectileBots = 0;
-        int nAgua = 0;
-
+        Agua* agua;
         rand()%5;
         rand()%5;
         rand()%5;
@@ -50,13 +49,9 @@ namespace Fases
                 switch(getTile(j, i))
                 {
                 case 2:
-                    if(nAgua < 7 || ((rand()%5) > 1))
-                    {
-                        Agua* agua = new Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
-                        gerColisoes->inserirObstaculos(agua);
-                        entidades.inserirNoFim(static_cast<Entidade*>(agua));
-                        ++nAgua;
-                    }
+                    agua = new Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
+                    gerColisoes->inserirObstaculos(agua);
+                    entidades.inserirNoFim(static_cast<Entidade*>(agua));
                     break;
                 
                 case 3:
@@ -78,7 +73,21 @@ namespace Fases
                         ++nGumbots;
                     }
                     break;
-                
+                case 6:
+                    if((rand()%5) > 1)
+                    {
+                        agua = new Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
+                        gerColisoes->inserirObstaculos(agua);
+                        entidades.inserirNoFim(static_cast<Entidade*>(agua));
+                    }
+                    break;
+                case 7:
+                {
+                    Plataforma* plat = new Plataforma(sf::Vector2f(j*comprimentoTile, i*comprimentoTile),sf::Vector2f(0.0f, 0.0f), false);
+                    entidades.inserirNoInicio(static_cast<Entidade*>(plat));
+                    break;
+                }
+
                 default:
                     break;
                 }

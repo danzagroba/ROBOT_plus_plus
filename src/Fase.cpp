@@ -32,8 +32,8 @@ namespace Fases
           largura(0),
           tiles(NULL),
           entidades(),
-          pjogadorum(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart1.png")),
-        pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 25.0f), "../assets/heart2.png") : NULL)
+          pjogadorum(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart1.png")),
+        pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart2.png") : NULL)
     {
         if(gerColisoes)
         {
@@ -107,7 +107,7 @@ namespace Fases
         sf::Vector2f posicao((float)posicaoInicial.x*comprimentoTile, (float)posicaoInicial.y*comprimentoTile);
         sf::Vector2f dimensoes((float)(posicaoFinal.x-posicaoInicial.x)*comprimentoTile, (float)(posicaoFinal.y-posicaoInicial.y)*comprimentoTile);
 
-        Plataforma* pobstaculo = new Plataforma(posicao, dimensoes);
+        Plataforma* pobstaculo = new Plataforma(posicao, dimensoes, true);
         gerColisoes->inserirObstaculos(pobstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(pobstaculo));
     }
@@ -155,11 +155,11 @@ namespace Fases
             eraMuro = false;
         }
 
-        Plataforma* obstaculo = new Plataforma(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        Plataforma* obstaculo = new Plataforma(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile), true);
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
 
-        obstaculo = new Plataforma(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile));
+        obstaculo = new Plataforma(sf::Vector2f((float)(largura-1)*comprimentoTile, 0.0f), sf::Vector2f(comprimentoTile, altura*comprimentoTile), true);
         gerColisoes->inserirObstaculos(obstaculo);
         entidades.inserirNoFim(static_cast<Entidade*>(obstaculo));
     }
