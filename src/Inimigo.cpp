@@ -15,6 +15,20 @@ namespace Entidades
         
         Inimigo::~Inimigo()
         {}
+        void Inimigo::morrer()
+        {
+            id =0;
+        }
+        bool Inimigo::atacado()
+        {
+            setNumVidas(getNumVidas()-1);
+            if(getNumVidas()==0)
+            {
+                morrer();
+                return true;
+            }
+            return false;
+        }
         
         void Inimigo::danificar(Jogador* pJog)
         {

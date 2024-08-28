@@ -41,14 +41,13 @@ void Jogador::executar()
 }
 void Jogador::atacar()
 {
-    cout<<"função chamada"<<endl;
-    if(recoiltime.getElapsedTime().asSeconds()>1.0)
+    if(recoiltime.getElapsedTime().asSeconds()>0.6)
     {
-        Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.1f, -0.1f),30);
+        Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.2f, -0.1f),30);
         if(pprojetiljogador)
         {
             projeteisjogador.push_back(pprojetiljogador);
-            cout<<"Criando tiro"<<endl;
+            cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
         }
         recoiltime.restart();
     }
@@ -59,6 +58,7 @@ std::list<Projetil*>* Jogador::getprojeteisjogador() {
 
 void Jogador::removertirojogador(Projetil* ep)
 {
+    cout<<"removendo endereço:"<< ep<<endl;
     list<Projetil*>::iterator it = std::find(projeteisjogador.begin(), projeteisjogador.end(), ep);
     if (it != projeteisjogador.end()) {
         projeteisjogador.erase(it);

@@ -181,14 +181,13 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
     }   
 
     // Serve para interações entre projéteis e obstáculos
-    for (auto it = LPs.begin(); it != LPs.end();)
+    for (set<Projetil*>::iterator it = LPs.begin(); it != LPs.end();)
     {
         bool apagado = false;
-        for (auto it2 = LOs.begin(); it2 != LOs.end(); ++it2)
+        for (list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2)
         {
             if (calculaColisao(*it, *it2))
             {
-                (*it)->resetar();
                 if((*it)->getid()==20)
                 {
                     ProjectileBot::removertiro(*it);
@@ -197,6 +196,7 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 {
                     Jogador::removertirojogador(*it);
                 }
+                (*it)->resetar();
                 it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                 apagado = true;
                 break; // Sai do loop interno, pois o iterador foi invalidado
@@ -209,16 +209,39 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
     }
 
     // Serve para interações entre projéteis e jogadores
-    for (auto it = LPs.begin(); it != LPs.end();)
+    for (set<Projetil*>::iterator it = LPs.begin(); it != LPs.end();)
     {
         bool apagado = false;
-        for (auto it2 = LJs.begin(); it2 != LJs.end(); ++it2)
+        for (vector<Jogador*>::iterator it2 = LJs.begin(); it2 != LJs.end(); ++it2)
         {
             if (calculaColisao(*it, *it2) && (*it)->getid() == 20)
             {
                 (*it2)->tomarDano((*it)->getDano());
                 (*it)->resetar();
                 ProjectileBot::removertiro(*it);
+                it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                apagado = true;
+                break; // Sai do loop interno, pois o iterador foi invalidado
+            }
+        }
+        if (!apagado)
+        {
+            ++it; // Incrementa somente se não foi apagado
+        }
+    }
+    for (set<Projetil*>::iterator it = LPs.begin(); it != LPs.end();)
+    {
+        bool apagado = false;
+        for (vector<Inimigo*>::iterator it2 = LIs.begin(); it2 != LIs.end(); ++it2)
+        {
+            if (calculaColisao(*it, *it2) && (*it)->getid() == 30)
+            {
+                if((*it2)->atacado())
+                {
+                    LIs.erase(it2);
+                }
+                (*it)->resetar();
+                Jogador::removertirojogador(*it);
                 it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                 apagado = true;
                 break; // Sai do loop interno, pois o iterador foi invalidado
