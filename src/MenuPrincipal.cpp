@@ -29,7 +29,14 @@ MenuPrincipal::~MenuPrincipal()
 }
 void MenuPrincipal::executar()
 {
-    desenhar();
+    //while(Gerenciador_Grafico::getGerenciador_Grafico()->getisOpen())
+    //{
+        //Gerenciador_Grafico::getGerenciador_Grafico()->clear();
+        //Gerenciador_Grafico::getGerenciador_Grafico()->atualizarDeltaTime();
+        //Gerenciador_Eventos::getGerenciador_Eventos()->executar(Gerenciador_Grafico::getGerenciador_Grafico()->getJanela());
+        desenhar();
+        //Gerenciador_Grafico::getGerenciador_Grafico()->display();
+    //}
 }
 void MenuPrincipal::desenhar()
 {

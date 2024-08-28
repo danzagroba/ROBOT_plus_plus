@@ -9,7 +9,7 @@ Jogo::Jogo():
 
     gerGraf->setLimiteFPS(FPS);
     gerGraf->setTamanhoJanela(WINDOW_WIDTH, WINDOW_HEIGHT);
-    gerGraf->setMaximosCamera(800*16, 600*16);
+    gerGraf->setMaximosCamera(800, 600);
     gerGraf->configurar();
 
     gerEstados->adicionarEstado(new MenuPrincipal());
@@ -31,10 +31,6 @@ void Jogo::executar()
         
         gerEstados->executar();
 
-        /*fase.executar();
-        sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (jogador.getPos()+(pjogadordois->getPos()))/2.0f : jogador.getPos();
-        gerGraf->setCamera(proxPos);*/
-        
         gerGraf->display();
     }
 }

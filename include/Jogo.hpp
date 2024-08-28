@@ -16,6 +16,8 @@
 #include "Fase.hpp"
 #include "FaseDia.hpp"
 
+#include <iostream>
+
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 

@@ -97,7 +97,7 @@ void Gerenciador_Grafico::clear()
 {
     if(window)
     {
-        window->clear();
+        window->clear(sf::Color(95, 205, 228));
     }
 }
 void Gerenciador_Grafico::display()

@@ -80,14 +80,14 @@ void Gerenciador_Colisoes::tratarColisao(Entidade* e1, Entidade* e2) {
         if(fromTop)
         {
             ponteiropersonagem->setPos(e1->getPos().x, e1->getPos().y + minspbY * -1);
-            ponteiropersonagem->setno_ar(false); 
+            ponteiropersonagem->setno_ar(false);
         }
         else
         {
             ponteiropersonagem->setPos(e1->getPos().x, e1->getPos().y + minspbY);
+
         }
-        Personagem* ponteiropersonagem = dynamic_cast<Personagem*> (e1);
-        ponteiropersonagem->setYvel(0);
+        ponteiropersonagem->setYvel(0); 
     }
 }
 

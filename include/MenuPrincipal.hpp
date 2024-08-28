@@ -8,6 +8,7 @@
 #include "Gerenciador_Inputs.hpp" 
 #include "Gerenciador_Colisoes.hpp"
 #include "Gerenciador_Estados.hpp"
+#include "Gerenciador_Eventos.hpp"
 #include "Texto.hpp"
 #include "Botao.hpp"
 
