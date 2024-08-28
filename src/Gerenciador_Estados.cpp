@@ -41,7 +41,9 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
 
 void Gerenciador_Estados::criarEstadojogar()
 {
+    std::cout << "a criar fase\n";
     adicionarEstado(new JogarFase());
+    std::cout << "criou\n";
 }
 
 Estado* Gerenciador_Estados::getEstadoatual()

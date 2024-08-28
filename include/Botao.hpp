@@ -3,6 +3,9 @@
 #include "Gerenciador_Grafico.hpp"
 #include "Texto.hpp"
 
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics.hpp>
+
 namespace Estados
 {
     namespace UIelementos

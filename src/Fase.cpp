@@ -4,9 +4,16 @@
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
 #include "Plataforma.hpp"
+#include "Gerenciador_Grafico.hpp"
+#include "Gerenciador_Colisoes.hpp"
+#include "Gerenciador_Estados.hpp"
+#include "Gerenciador_Eventos.hpp"
+#include "Gerenciador_Inputs.hpp"
 
 #include <iostream>
 #include <fstream>
+
+using namespace std;
 
 namespace Fases
 {

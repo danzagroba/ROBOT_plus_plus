@@ -1,9 +1,11 @@
 #include "Botao.hpp"
+#include "Gerenciador_Grafico.hpp"
 
 Gerenciador_Grafico* Botao::pgergraf = Gerenciador_Grafico::getGerenciador_Grafico();
 
 Botao::Botao(string txt, sf::Vector2f pos):
-selecionado(false)
+selecionado(false),
+retanguloprincipal()
 {
     retanguloprincipal.setSize(sf::Vector2f(200.0f,50.0f));
     retanguloprincipal.setPosition(pos);

@@ -1,4 +1,5 @@
 #include "Texto.hpp"
+#include "Gerenciador_Grafico.hpp"
 
 sf::Font Texto::fonte;
 Gerenciador_Grafico* Texto::pgergraf = Gerenciador_Grafico::getGerenciador_Grafico();

@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Jogador.hpp"
-#include "Gerenciador_Grafico.hpp"
 #include "ListaEntidades.hpp"
 #include "Obstaculo.hpp"
 
@@ -13,9 +12,12 @@
 
 namespace Gerenciadores
 {
+    class Gerenciador_Grafico;
+    class Gerenciador_Colisoes;
+    class Gerenciador_Estados;
     class Gerenciador_Inputs;
     class Gerenciador_Eventos;
-    class Gerenciador_Colisoes;
+    
 }
 
 namespace Fases

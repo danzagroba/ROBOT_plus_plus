@@ -1,7 +1,10 @@
 #ifndef _ENTIDADE_H_
 #define _ENTIDADE_H_
 
+#include <SFML/Graphics.hpp>
+
 #include "Ente.hpp"
+
 namespace Entidades
 {
     class Entidade: public Ente

@@ -1,9 +1,16 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+
 #include "Gerenciador_Grafico.hpp"
 
 #define FONT "../assets/zig_____.ttf"
+
+namespace Gerenciadores
+{
+    class Gerenciador_Grafico;
+}
+
 namespace Estados
 {
     namespace UIelementos
