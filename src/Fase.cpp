@@ -42,8 +42,8 @@ namespace Fases
             entidades.inserirNoFim(pjogadorum);
 
             gerInputs->vincularcomando(sf::Keyboard::W, std::bind(&Personagem::pulo, pjogadorum));
-            gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::setXvel, pjogadorum,(-0.1)));
-            gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::setXvel, pjogadorum,(0.1)));
+            gerInputs->vincularcomando(sf::Keyboard::A, std::bind(&Personagem::movereflip, pjogadorum,(-0.1), false));
+            gerInputs->vincularcomando(sf::Keyboard::D, std::bind(&Personagem::movereflip, pjogadorum,(0.1), true));
             gerInputs->vincularcomando(sf::Keyboard::Space, std::bind(&Jogador::atacar, pjogadorum));
             gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::W, std::bind(&Personagem::permitirPulo, pjogadorum));
 
@@ -60,8 +60,8 @@ namespace Fases
                     gerColisoes->inserirJogadores(pjogadordois);
                     entidades.inserirNoFim(pjogadordois);
                     gerInputs->vincularcomando(sf::Keyboard::Up, std::bind(&Personagem::pulo, pjogadordois));
-                    gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::setXvel, pjogadordois,(-0.1)));
-                    gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::setXvel, pjogadordois,(0.1)));
+                    gerInputs->vincularcomando(sf::Keyboard::Left, std::bind(&Personagem::movereflip, pjogadordois,(-0.1), false));
+                    gerInputs->vincularcomando(sf::Keyboard::Right, std::bind(&Personagem::movereflip, pjogadordois,(0.1), true));
                     gerInputs->vincularcomando(sf::Keyboard::Enter, std::bind(&Jogador::atacar, pjogadordois));
                     gerInputs->vincularcomandoTeclaSolta(sf::Keyboard::Up, std::bind(&Personagem::permitirPulo, pjogadordois));
                 }

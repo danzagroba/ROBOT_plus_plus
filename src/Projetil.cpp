@@ -9,6 +9,7 @@ namespace Entidades
     {
         id=idd;
         posicao.y+=8;
+        inserido=false;
         setFigura(PROJETIL_SPRITE_PATH);
         velocidade = forca;
     }

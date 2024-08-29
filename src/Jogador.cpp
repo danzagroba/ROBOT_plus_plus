@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+int Jogador::pontuacao = 0;
 bool Jogador::doisjogadores = true;
 list<Projetil*> Jogador::projeteisjogador;
 string Jogador::nome;
@@ -12,7 +13,6 @@ Jogador::Jogador(const sf::Vector2f& vel,
                  const sf::Vector2f& pos,
                  const string& caminhoParaVida)
     : Personagem(nVidas, pos),
-      pontos(0),
       texturaVida(),
       spriteVida()
 {
@@ -39,18 +39,42 @@ void Jogador::executar()
     setXvel(0.0f);
     //desenhar();
 }
+
+void Jogador::aumentarpontuação(int p)
+{
+    pontuacao += p;
+}
+
+const int Jogador::getpontuacao()
+{
+    return pontuacao;
+}
+
 void Jogador::atacar()
 {
-    cout<<"função chamada"<<endl;
-    if(recoiltime.getElapsedTime().asSeconds()>1.0)
+    if(recoiltime.getElapsedTime().asSeconds()>0.6)
     {
-        Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.1f, -0.1f),30);
-        if(pprojetiljogador)
+        if(ladodireito)
         {
-            projeteisjogador.push_back(pprojetiljogador);
-            cout<<"Criando tiro"<<endl;
+            cout<<"Tdste\n";
+            Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.2f, -0.1f),30);
+            if(pprojetiljogador)
+            {
+                projeteisjogador.push_back(pprojetiljogador);
+                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
+                recoiltime.restart();
+            }
+        }else
+        {
+            Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(-0.2f, -0.1f),30);
+            if(pprojetiljogador)
+            {
+                projeteisjogador.push_back(pprojetiljogador);
+                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
+                recoiltime.restart();
+            }
         }
-        recoiltime.restart();
+
     }
 }
 std::list<Projetil*>* Jogador::getprojeteisjogador() {
@@ -59,6 +83,7 @@ std::list<Projetil*>* Jogador::getprojeteisjogador() {
 
 void Jogador::removertirojogador(Projetil* ep)
 {
+    cout<<"removendo endereço:"<< ep<<endl;
     list<Projetil*>::iterator it = std::find(projeteisjogador.begin(), projeteisjogador.end(), ep);
     if (it != projeteisjogador.end()) {
         projeteisjogador.erase(it);

@@ -16,7 +16,8 @@ namespace Entidades
                     const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f),
                     const int maldade = 0);
             virtual ~Inimigo();
-
+            void morrer();
+            bool atacado();
             void danificar(Jogador* pJog);
             virtual void salvar() = 0;
             virtual void executar() =0;

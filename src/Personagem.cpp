@@ -11,6 +11,7 @@ Personagem::Personagem(const int nVidas,
       puloBloqueado(false)
 {
     id = 9;
+    ladodireito = true;
     relogio.restart();
 }
 
@@ -37,6 +38,22 @@ void Personagem::pulo()
         no_ar = true;
         puloBloqueado = true;
     }
+}
+void Personagem::movereflip(const float vel, bool direito)
+{
+    if(direito)
+    {
+        ladodireito = true;
+        Figura.setScale(1.f, 1.f);
+        Figura.setOrigin(0, 0);
+    }
+    else
+    {
+        ladodireito = false;
+        Figura.setScale(-1.f, 1.f);
+        Figura.setOrigin(Figura.getLocalBounds().width, 0);
+    }
+    velocidade.x = vel;
 }
 
 void Personagem::tomarDano(const int dano)
