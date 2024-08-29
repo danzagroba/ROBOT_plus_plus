@@ -87,6 +87,8 @@ namespace Fases
         {
             delete *it;
         }
+        
+        gerColisoes->limparlistas();
 
         entidades.limpar();
     }

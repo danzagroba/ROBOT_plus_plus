@@ -35,7 +35,7 @@ namespace Gerenciadores
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 
             bool calculaColisao(Entidade* e1, Entidade* e2);
-            
+            void limparlistas();
             void inserirInimigos(Inimigo* e);
             void inserirObstaculos(Obstaculo* e);
             void inserirJogadores(Jogador* e);
