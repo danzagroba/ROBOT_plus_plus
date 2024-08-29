@@ -5,7 +5,7 @@
 #include "Jogador.hpp"
 #include "ListaEntidades.hpp"
 #include "Obstaculo.hpp"
-
+#include "Texto.hpp"
 #define SPRITE_PATHP1 "../assets/player1.png"
 #define SPRITE_PATHP2 "../assets/player2.png"
 
@@ -38,6 +38,7 @@ namespace Fases
 
         float comprimentoTile;
 
+        Texto pontos;
         int altura;
         int largura;
         short int** tiles;

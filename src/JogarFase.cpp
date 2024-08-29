@@ -6,8 +6,6 @@ faseescolhida(1),
 pfasedia(NULL)//,
 //pfasenoite(NULL)
 {
-    pontos.tamanhofonte(70);
-    pontos.settextopos(sf::Vector2f(100.0,100.0));
 
     if(faseescolhida==1)
     {
@@ -35,9 +33,7 @@ JogarFase::~JogarFase()
 }
 
 void JogarFase::executar()
-{
-    pontos.settexto(std::to_string(Jogador::getpontuacao()));
-    pontos.desenhar();    
+{  
     if(faseescolhida==1)
     {
         pfasedia->executar();
