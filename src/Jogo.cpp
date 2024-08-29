@@ -22,7 +22,7 @@ Jogo::~Jogo()
 
 void Jogo::executar()
 {
-    while (gerGraf->getisOpen())
+    while(gerGraf->getisOpen())
     {
         gerGraf->clear();
         gerGraf->atualizarDeltaTime();

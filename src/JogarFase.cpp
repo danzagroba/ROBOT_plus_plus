@@ -3,7 +3,7 @@
 JogarFase::JogarFase():
 Estado(10),
 faseescolhida(1),
-pfasedia(NULL)//,
+pfasedia(NULL),
 pfasenoite(NULL)
 {
 
@@ -27,7 +27,7 @@ void JogarFase::irprafasedois()
     delete pfasedia;
     pfasedia = NULL;
     faseescolhida = 2;
-    pfasedia = new FaseNoite;
+    pfasenoite = new FaseNoite;
     if(pfasenoite == NULL)
     {
         cerr<<"Erro ao abrir fase noite"<<endl;
@@ -39,7 +39,10 @@ void JogarFase::executar()
 {  
     if(faseescolhida==1)
     {
-        pfasedia->executar();
+        if(pfasedia->faseConcluida())
+            irprafasedois();
+        else
+            pfasedia->executar();
     }
     else if(faseescolhida==2)
     {

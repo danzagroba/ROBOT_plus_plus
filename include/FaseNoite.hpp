@@ -1,24 +1,30 @@
-/*#pragma once
-
 #pragma once
 
 #include "Fase.hpp"
 
-#define FASE_NOITE_PATH "../levels/fase2.json"
+#define FASE_NOITE_PATH "../levels/fase1.json"
 
 namespace Fases
 {
     class FaseNoite : public Fase
     {
+    private:
+        int maxGumbots;
+        int maxProjetctileBots;
+        int maxAgua;
+        int minAguas;
+        int minProjectileBots;
+        int minGumbots;
+
     public:
-        FaseNoite(Gerenciadores::Gerenciador_Grafico* pGG = nullptr,
-                  Gerenciadores::Gerenciador_Colisoes* pCO = nullptr,
-                  Entidades::Personagens::Jogador* jgdr = nullptr,
-                  Entidades::Personagens::Jogador* jgdrdois = nullptr,
-                  float comprimento = 16.0f);
+        FaseNoite(float comprimento = 16.0f);
         ~FaseNoite();
 
-    protected:
+    private:
+        void criarGumbots();
+        void criarProjectileBots();
+        void criarAgua();
         void criarEntidades();
+        void criarPilares();
     };
-} using namespace Fases;*/
+} using namespace Fases;
