@@ -43,13 +43,27 @@ void Jogador::atacar()
 {
     if(recoiltime.getElapsedTime().asSeconds()>0.6)
     {
-        Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.2f, -0.1f),30);
-        if(pprojetiljogador)
+        if(ladodireito)
         {
-            projeteisjogador.push_back(pprojetiljogador);
-            cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
+            cout<<"Tdste\n";
+            Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.2f, -0.1f),30);
+            if(pprojetiljogador)
+            {
+                projeteisjogador.push_back(pprojetiljogador);
+                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
+                recoiltime.restart();
+            }
+        }else
+        {
+            Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(-0.2f, -0.1f),30);
+            if(pprojetiljogador)
+            {
+                projeteisjogador.push_back(pprojetiljogador);
+                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
+                recoiltime.restart();
+            }
         }
-        recoiltime.restart();
+
     }
 }
 std::list<Projetil*>* Jogador::getprojeteisjogador() {

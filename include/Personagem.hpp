@@ -14,6 +14,7 @@ namespace Entidades
                 int num_vidas;
                 bool no_ar;
                 bool puloBloqueado;
+                bool ladodireito;
                 sf::Clock relogio;
 
             public:
@@ -24,6 +25,7 @@ namespace Entidades
                 void pulo();
                 void setno_ar(bool na);
                 void permitirPulo();
+                void movereflip(const float vel, bool direito);
 
                 virtual void tomarDano(const int dano);
                 void setNumVidas(const int nVidas);
