@@ -11,7 +11,6 @@ namespace Estados
     {
         private:
             FaseDia* pfasedia;
-            Texto pontos;
             //FaseNoite* pfasenoite;
             int faseescolhida;
         public:

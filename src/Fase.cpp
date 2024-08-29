@@ -76,6 +76,7 @@ namespace Fases
         Figura.setScale(comprimentoTile / Textura.getSize().x, comprimentoTile / Textura.getSize().y);
     
         Entidades::Entidade::setGravidade(gravidade);
+        pontos.tamanhofonte(10);
     }
 
     Fase::~Fase()
@@ -333,6 +334,9 @@ namespace Fases
         entidades.desalocar();
     
         sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (pjogadorum->getPos()+(pjogadordois->getPos()))/2.0f : pjogadorum->getPos();
+        pontos.settexto(std::to_string(Jogador::getpontuacao()));
+        pontos.settextopos(sf::Vector2f(gerGraf->getCamera().getCenter().x - (pontos.gettamanho().getSize().x)/2.0, gerGraf->getCamera().getCenter().y - (gerGraf->getCamera().getSize().y)/2.0));
+        pontos.desenhar();  
         gerGraf->setCamera(proxPos);
     }
 }
