@@ -28,6 +28,16 @@ Gerenciador_Colisoes::~Gerenciador_Colisoes()
     std::cout << "gerenciador de colisaos destruido\n";
 }
 
+void Gerenciador_Colisoes::limparlistas()
+{
+    LIs.clear();
+    LOs.clear();
+    LJs.clear();
+    LPs.clear();
+
+    std::cout << "Lista limpa\n";
+}
+
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
 {
     if(pgercol == NULL)

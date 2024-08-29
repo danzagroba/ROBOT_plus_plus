@@ -61,7 +61,6 @@ void Jogador::atacar()
             if(pprojetiljogador)
             {
                 projeteisjogador.push_back(pprojetiljogador);
-                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
                 recoiltime.restart();
             }
         }else
@@ -70,7 +69,6 @@ void Jogador::atacar()
             if(pprojetiljogador)
             {
                 projeteisjogador.push_back(pprojetiljogador);
-                cout<<"Criando tiro ponteiro"<< pprojetiljogador<<endl;
                 recoiltime.restart();
             }
         }
@@ -83,7 +81,6 @@ std::list<Projetil*>* Jogador::getprojeteisjogador() {
 
 void Jogador::removertirojogador(Projetil* ep)
 {
-    cout<<"removendo endereço:"<< ep<<endl;
     list<Projetil*>::iterator it = std::find(projeteisjogador.begin(), projeteisjogador.end(), ep);
     if (it != projeteisjogador.end()) {
         projeteisjogador.erase(it);
