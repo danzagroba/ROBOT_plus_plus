@@ -21,7 +21,7 @@ namespace Entidades
         {
         }
         
-        void Agua::obstacular() 
+        void Agua::obstacular(Jogador* pJogador) 
         {
         }
 
