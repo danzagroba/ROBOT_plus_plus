@@ -33,7 +33,8 @@ namespace Fases
           tiles(NULL),
           entidades(),
           pjogadorum(new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart1.png")),
-        pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart2.png") : NULL)
+          pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart2.png") : NULL),
+          terminouFase(false)
     {
         if(gerColisoes)
         {
@@ -340,5 +341,15 @@ namespace Fases
         pontos.settextopos(sf::Vector2f(gerGraf->getCamera().getCenter().x - (pontos.gettamanho().getSize().x)/2.0, gerGraf->getCamera().getCenter().y - (gerGraf->getCamera().getSize().y)/2.0));
         pontos.desenhar();  
         gerGraf->setCamera(proxPos);
+    }
+
+    const bool Fase::faseConcluida() const
+    {
+        return terminouFase;
+    }
+
+    void Fase::terminarFase()
+    {
+        terminouFase = true;
     }
 }

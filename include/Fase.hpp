@@ -17,7 +17,6 @@ namespace Gerenciadores
     class Gerenciador_Estados;
     class Gerenciador_Inputs;
     class Gerenciador_Eventos;
-    
 }
 
 namespace Fases
@@ -42,6 +41,8 @@ namespace Fases
         int altura;
         int largura;
         short int** tiles;
+
+        bool terminouFase;
 
     public:
         Fase(const char* caminho = nullptr, float comprimento = 16.0f);
@@ -69,5 +70,7 @@ namespace Fases
         const bool eMuro(const int x, const int y) const;
     
         void executar();
+        const bool faseConcluida() const;
+        void terminarFase();
     };
 }
