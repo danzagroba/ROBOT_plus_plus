@@ -14,7 +14,7 @@ namespace Entidades
         class Jogador:public Personagem
         {
             private:
-                int pontos;
+                static int pontuacao;
                 static string nome;
                 static bool doisjogadores;
                 static list<Projetil*> projeteisjogador;
@@ -32,6 +32,8 @@ namespace Entidades
                 static bool getdoisjogadores();
                 static std::list<Projetil*>* getprojeteisjogador();
                 static void removertirojogador(Projetil* ep);
+                static void aumentarpontuação(int p);
+                static const int getpontuacao();
                 void tomarDano(const int dano);
                 void atacar();
                 void executar();

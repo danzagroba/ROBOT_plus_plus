@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+int Jogador::pontuacao = 0;
 bool Jogador::doisjogadores = true;
 list<Projetil*> Jogador::projeteisjogador;
 string Jogador::nome;
@@ -12,7 +13,6 @@ Jogador::Jogador(const sf::Vector2f& vel,
                  const sf::Vector2f& pos,
                  const string& caminhoParaVida)
     : Personagem(nVidas, pos),
-      pontos(0),
       texturaVida(),
       spriteVida()
 {
@@ -39,6 +39,17 @@ void Jogador::executar()
     setXvel(0.0f);
     //desenhar();
 }
+
+void Jogador::aumentarpontuação(int p)
+{
+    pontuacao += p;
+}
+
+const int Jogador::getpontuacao()
+{
+    return pontuacao;
+}
+
 void Jogador::atacar()
 {
     if(recoiltime.getElapsedTime().asSeconds()>0.6)

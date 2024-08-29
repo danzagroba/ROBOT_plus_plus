@@ -17,6 +17,7 @@ namespace Entidades
         {}
         void Inimigo::morrer()
         {
+            Jogador::aumentarpontuação(100);
             id =0;
         }
         bool Inimigo::atacado()
