@@ -36,6 +36,7 @@ namespace Fases
           pjogadordois(Entidades::Jogador::getdoisjogadores() ? new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f), 3, sf::Vector2f(25.0f, 160.0f), "../assets/heart2.png") : NULL),
           terminouFase(false)
     {
+        entidades.limpar();
         if(gerColisoes)
         {
             pjogadorum->setFigura(SPRITE_PATHP1);
@@ -92,6 +93,11 @@ namespace Fases
         gerColisoes->limparlistas();
 
         entidades.limpar();
+
+        Jogador::getprojeteisjogador()->clear();
+        ProjectileBot::getprojeteis()->clear();
+
+        std::cout << "fase destruida\n";
     }
 
     void Fase::destruirTiles()
@@ -338,7 +344,7 @@ namespace Fases
     
         sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (pjogadorum->getPos()+(pjogadordois->getPos()))/2.0f : pjogadorum->getPos();
         pontos.settexto(std::to_string(Jogador::getpontuacao()));
-        pontos.settextopos(sf::Vector2f(gerGraf->getCamera().getCenter().x - (pontos.gettamanho().getSize().x)/2.0, gerGraf->getCamera().getCenter().y - (gerGraf->getCamera().getSize().y)/2.0));
+        pontos.settextopos(sf::Vector2f(gerGraf->getCamera().getCenter().x - (pontos.gettamanho().width)/2.0, gerGraf->getCamera().getCenter().y - (gerGraf->getCamera().getSize().y)/2.0));
         pontos.desenhar();  
         gerGraf->setCamera(proxPos);
     }

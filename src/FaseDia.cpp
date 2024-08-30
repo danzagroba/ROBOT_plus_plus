@@ -54,7 +54,7 @@ namespace Fases
 
         for(int i = 0; i < altura && nProjectileBots < maxProjetctileBots; ++i)
             for(int j = 0; j < largura && nProjectileBots < maxProjetctileBots; ++j)
-                if(getTile(j, i) == 4)
+                if(getTile(j, i) == 3)
                     if(nProjectileBots < minProjectileBots || ((rand()%5) > 1))
                     {
                         ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));

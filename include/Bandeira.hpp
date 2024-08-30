@@ -16,6 +16,7 @@ namespace Entidades
     {
     private:
         Fases::Fase* pFase;
+
         Jogador* jogadorUm;
         Jogador* jogadorDois;
 
