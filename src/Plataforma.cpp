@@ -1,4 +1,7 @@
 #include "Plataforma.hpp"
+#include "Gerenciador_Colisoes.hpp"
+
+Gerenciadores::Gerenciador_Colisoes* Plataforma::pGC(Gerenciador_Colisoes::getGerenciador_Colisoes());
 
 Plataforma::Plataforma(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, bool cldv)
     : Obstaculo(pos, dimensoes, false),
@@ -14,15 +17,14 @@ Plataforma::Plataforma(const sf::Vector2f& pos, const sf::Vector2f& dimensoes, b
 Plataforma::~Plataforma()
 {}
 
-const bool Plataforma::getcolidivel() const
-{
-    return colidivel;
-}
 void Plataforma::executar() 
 {}
 
-void Plataforma::obstacular() 
-{}
+void Plataforma::obstacular(Jogador* pJogador) 
+{
+    if(colidivel)
+        pGC->tratarColisao(pJogador, this);
+}
 
 void Plataforma::salvar()
 {}   

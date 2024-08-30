@@ -18,11 +18,13 @@ namespace Estados
                 sf::RectangleShape retanguloprincipal;
                 sf::RectangleShape retangulosecundario;
                 bool selecionado;
+
             public:
                 Botao(string txt, sf::Vector2f pos);
                 ~Botao();
                 sf::RectangleShape getretangulo();
                 void setbotaopos(sf::Vector2f pos);
+                void trocarTexto(const string& novoTexto);
                 void desenhar();
                 void executar();
         };

@@ -63,3 +63,21 @@ void Botao::executar()
 {
     desenhar();
 }
+
+void Botao::trocarTexto(const string& novoTexto)
+{
+    textobotao.settexto(novoTexto);
+
+    sf::FloatRect textBounds = textobotao.gettamanho();
+    sf::FloatRect rectpBounds = retanguloprincipal.getGlobalBounds();
+    sf::FloatRect rectsBounds = retangulosecundario.getGlobalBounds();
+
+    float x = rectpBounds.left + (rectpBounds.width - rectsBounds.width) / 2.0f;
+    float y = rectpBounds.top + (rectpBounds.height - rectsBounds.height) / 2.0f;
+    retangulosecundario.setPosition(x,y);
+
+    x = rectpBounds.left + (rectpBounds.width - textBounds.width) / 2.0f;
+    y = rectpBounds.top + (rectpBounds.height - textBounds.height) / 2.0f;
+    y-=5;
+    textobotao.settextopos(sf::Vector2f(x,y));
+}

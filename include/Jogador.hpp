@@ -30,6 +30,7 @@ namespace Entidades
                 ~Jogador();
                 
                 static bool getdoisjogadores();
+                static void setDoisJogadores();
                 static std::list<Projetil*>* getprojeteisjogador();
                 static void removertirojogador(Projetil* ep);
                 static void aumentarpontuação(int p);
