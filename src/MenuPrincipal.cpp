@@ -61,7 +61,6 @@ void MenuPrincipal::sairjogo()
 
 void MenuPrincipal::doisjogadores()
 {
-    std::cout << "dois jogadores chamado\n";
     Jogador::setDoisJogadores();
     numjogadores.trocarTexto(Jogador::getdoisjogadores() ? "Dois Jogadores" : "Um Jogador");
 }

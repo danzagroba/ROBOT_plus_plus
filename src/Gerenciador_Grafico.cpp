@@ -156,6 +156,11 @@ void Gerenciador_Grafico::setCamera(const sf::Vector2f& centro)
     window->setView(camera);
 }
 
+void Gerenciador_Grafico::setCameraSize(const float width, const float height)
+{
+    camera.setSize(width, height);
+}
+
 void Gerenciador_Grafico::atualizarDeltaTime()
 {
     deltaTime = clock.restart().asMilliseconds();
