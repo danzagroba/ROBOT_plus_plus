@@ -1,8 +1,7 @@
 #include "FaseNoite.hpp"
-#include "ProjectileBot.hpp"
 #include "Gumbot.hpp"
 #include "Agua.hpp"
-#include "ProjectileBot.hpp"
+#include "Maquina_Projeteis.hpp"
 #include "Plataforma.hpp"
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Colisoes.hpp"
@@ -18,7 +17,7 @@ namespace Fases
     FaseNoite::FaseNoite(float comprimento)
         : Fase(FASE_NOITE_PATH, comprimento),
           maxGumbots(6),
-          maxProjetctileBots(6),
+          maxMaquinaProjeteis(6),
           maxAgua(6),
           minAguas(3),
           minProjectileBots(3)
@@ -47,19 +46,19 @@ namespace Fases
                     }
     }
     
-    void FaseNoite::criarProjectileBots()
+    void FaseNoite::criarMaquinaProjeteis()
     {
-        int nProjectileBots = 0;
+        int nMaquinaProjeteis = 0;
 
-        for(int i = 0; i < altura && nProjectileBots < maxProjetctileBots; ++i)
-            for(int j = 0; j < largura && nProjectileBots < maxProjetctileBots; ++j)
-                if(getTile(j, i) == 3)
-                    if(nProjectileBots < minProjectileBots || ((rand()%5) > 1))
+        for(int i = 0; i < altura && nMaquinaProjeteis < maxMaquinaProjeteis; ++i)
+            for(int j = 0; j < largura && nMaquinaProjeteis < maxMaquinaProjeteis; ++j)
+                if(getTile(j, i) == 5)
+                    if(nMaquinaProjeteis < minProjectileBots || ((rand()%5) > 1))
                     {
-                        ProjectileBot* pprojectilebot = new ProjectileBot(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
-                        gerColisoes->inserirInimigos(pprojectilebot);
-                        entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
-                        ++nProjectileBots;
+                        Maquina_Projeteis* pmaquinaprojeteis = new Maquina_Projeteis(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
+                        gerColisoes->inserirObstaculos(pmaquinaprojeteis);
+                        entidades.inserirNoFim(static_cast<Entidade*>(pmaquinaprojeteis));
+                        ++nMaquinaProjeteis;
                     }
     }
 
@@ -101,6 +100,6 @@ namespace Fases
         criarPilares();
         criarAgua();
         criarGumbots();
-        criarProjectileBots();
+        criarMaquinaProjeteis();
     }
 }

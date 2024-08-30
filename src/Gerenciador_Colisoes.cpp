@@ -2,6 +2,7 @@
 #include "Entidade.hpp"
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
+#include "Maquina_Projeteis.hpp"
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
 
@@ -206,6 +207,10 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 else if((*it)->getid()==30)
                 {
                     Jogador::removertirojogador(*it);
+                }
+                else if((*it)->getid()==40)
+                {
+                    Maquina_Projeteis::removertiromaquina(*it);
                 }
                 (*it)->resetar();
                 it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
