@@ -20,7 +20,7 @@ namespace Estados
                 bool selecionado;
 
             public:
-                Botao(string txt, sf::Vector2f pos);
+                Botao(string txt = "", sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f));
                 ~Botao();
                 sf::RectangleShape getretangulo();
                 void setbotaopos(sf::Vector2f pos);

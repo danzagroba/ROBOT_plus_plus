@@ -1,6 +1,11 @@
 #include "FimJogo.hpp"
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Estados.hpp"
+#include "Jogador.hpp"
+#include "json.hpp"
+
+#include <fstream>
+#include <string>
 
 namespace Estados
 {
@@ -9,24 +14,29 @@ namespace Estados
           fimDeJogo(),
           nome(),
           inserirNome(),
-          irAoMenu("Ir ao menu", sf::Vector2f(150.0f,250.0f)),
+          irAoMenu(),
           input("")
     {
         Gerenciador_Grafico* pgergraf = Gerenciador_Grafico::getGerenciador_Grafico();
 
-        pgergraf->setCameraSize(800.0f, 600.0f);
-        pgergraf->setCamera(sf::Vector2f(400.0f, 300.0f));
+        //pgergraf->setCameraSize(800.0f, 600.0f);
+        //pgergraf->setCamera(sf::Vector2f(0.0f, 0.0f));
+
+        pgergraf->resetCamera();
+
+        irAoMenu.trocarTexto("Ir ao menu");
+        irAoMenu.setbotaopos(sf::Vector2f(300.0f, 500.0f));
 
         fimDeJogo.settexto(terminou ? "Parabens" : "Tente de novo");
         fimDeJogo.tamanhofonte(70);
-        fimDeJogo.settextopos(sf::Vector2f(pgergraf->getCamera().getCenter().x - (fimDeJogo.gettamanho().width)/2.0, 70.0f));
+        fimDeJogo.settextopos(sf::Vector2f(250.0f, 70.0f));
 
         inserirNome.settexto("Insira seu nome:");
         inserirNome.tamanhofonte(40);
-        inserirNome.settextopos(sf::Vector2f(pgergraf->getCamera().getCenter().x - (fimDeJogo.gettamanho().width)/2.0, 140.0f));
+        inserirNome.settextopos(sf::Vector2f(250.0f, 140.0f));
     
         nome.tamanhofonte(40);
-        nome.settextopos(sf::Vector2f(pgergraf->getCamera().getCenter().x - (fimDeJogo.gettamanho().width)/2.0, 210.0f));
+        nome.settextopos(sf::Vector2f(250.0f, 210.0f));
         vetorbotoes.push_back(&irAoMenu);
         
     }
@@ -39,6 +49,8 @@ namespace Estados
         sf::Event event;
         sf::Window* window = Gerenciador_Grafico::getGerenciador_Grafico()->getJanela();
 
+        bool criouMenu = false;
+
         while (window->pollEvent(event)) 
         {
             if (event.type == sf::Event::TextEntered)
@@ -49,7 +61,6 @@ namespace Estados
                     cout<<"Caractere pressionado"<<endl;
                     if (event.text.unicode == '\b' && !input.empty())
                     {
-                        // Handle backspace (remove last character)
                         input.pop_back();
                     }
                     else if (event.text.unicode >= 32 && event.text.unicode < 128)
@@ -68,24 +79,20 @@ namespace Estados
                 << irAoMenu.getretangulo().getGlobalBounds().width << ", " 
                 << irAoMenu.getretangulo().getGlobalBounds().height << ")" << std::endl;
                 if(irAoMenu.getretangulo().getGlobalBounds().contains(mousePos))
-                {
-                    cout <<"Funciona"<<endl;
-                    menu();
-                }
+                    criouMenu = true;
             }
         }
 
-        // Limit input length to 3 characters
         if (input.length() > 3)
-        {
             input = input.substr(0, 3);
-        }
-
-        // Update the text display
         nome.settexto(input);
-
-        // Call the drawing function
         desenhar();
+    
+        if(criouMenu)
+        {
+            salvarPontuacao();
+            menu();
+        }
     }
 
     void FimJogo::desenhar()
@@ -98,8 +105,94 @@ namespace Estados
 
     void FimJogo::menu()
     {
-        cout<<"veio CHAMAAA"<<endl;
         Gerenciador_Estados* gerEstados = Gerenciador_Estados::getGerenciador_Estados();
         gerEstados->popEstadoatual();
     }
+
+    void FimJogo::salvarPontuacao() 
+    {
+        try 
+        {
+            int pontos = Jogador::getpontuacao();
+
+            std::string folderPath = "../ranking";
+            std::string filePath = folderPath + "/data.json";
+
+            // Ensure the directory exists
+            std::filesystem::create_directory(folderPath);
+
+            nlohmann::json rankings;
+
+            // Attempt to read the existing rankings from the file
+            std::ifstream fileIn(filePath);
+            if (fileIn.is_open()) 
+            {
+                fileIn >> rankings;
+                fileIn.close();
+
+                if (!rankings.is_array()) 
+                {
+                    // If the JSON is not an array, reset it to an empty array
+                    rankings = nlohmann::json::array();
+                }
+            } 
+            else 
+            {
+                std::cerr << "No existing ranking file found. Creating a new one." << std::endl;
+                rankings = nlohmann::json::array(); // Initialize rankings as an empty array
+            }
+
+            // Convert JSON to vector of pairs (name, points)
+            std::vector<std::pair<std::string, int>> rankList;
+            for (const auto& entry : rankings) 
+            {
+                if (entry.contains("nome") && entry.contains("pontos")) 
+                {
+                    rankList.emplace_back(entry["nome"], entry["pontos"]);
+                }
+            }
+
+            // Add the new score
+            rankList.emplace_back(input, pontos);
+
+            // Sort the rankings by points in descending order
+            std::sort(rankList.begin(), rankList.end(), [](const auto& a, const auto& b) {
+                return a.second > b.second;
+            });
+
+            // Keep only the top 3
+            if (rankList.size() > 3) {
+                rankList.resize(3);
+            }
+
+            // Convert back to JSON
+            rankings.clear();
+            for (const auto& entry : rankList) 
+            {
+                nlohmann::json jsonEntry;
+                jsonEntry["nome"] = entry.first;
+                jsonEntry["pontos"] = entry.second;
+                rankings.push_back(jsonEntry);
+            }
+
+            // Save updated rankings to the file
+            std::ofstream fileOut(filePath);
+            if (fileOut.is_open()) 
+            {
+                fileOut << rankings.dump(4); // Pretty print with 4 spaces indentation
+                fileOut.close();
+                std::cout << "Ranking updated successfully in " << filePath << std::endl;
+            } 
+            else 
+            {
+                std::cerr << "Failed to open file for writing: " << filePath << std::endl;
+            }
+        } 
+        catch (const std::exception& e) 
+        {
+            std::cerr << "An error occurred: " << e.what() << std::endl;
+        }
+    }
+
+
 }

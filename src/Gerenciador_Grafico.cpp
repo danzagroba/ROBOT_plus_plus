@@ -15,10 +15,12 @@ limitefps(60),
 window(NULL),
 camera(),
 deltaTime(0.0f),
-clock()
+clock(),
+posInicial()
 {
     cout<<"Gerenciador Gráfico criado"<<endl;
 }
+
 Gerenciador_Grafico::~Gerenciador_Grafico()
 {
     if(window)
@@ -120,6 +122,7 @@ void Gerenciador_Grafico::configurar()
         exit(1);
     }
     window->setFramerateLimit(limitefps);
+    posInicial = window->getView();
 }
 
 void Gerenciador_Grafico::fecharjanela()
@@ -174,4 +177,10 @@ const float Gerenciador_Grafico::getDeltaTime() const
 const sf::View& Gerenciador_Grafico::getCamera() const
 {
     return camera;
+}
+
+void Gerenciador_Grafico::resetCamera()
+{
+    posInicial.setCenter(400.0f, 300.0f);
+    window->setView(posInicial);
 }

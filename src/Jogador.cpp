@@ -86,9 +86,8 @@ std::list<Projetil*>* Jogador::getprojeteisjogador() {
 void Jogador::removertirojogador(Projetil* ep)
 {
     list<Projetil*>::iterator it = std::find(projeteisjogador.begin(), projeteisjogador.end(), ep);
-    if (it != projeteisjogador.end()) {
+    if (it != projeteisjogador.end())
         projeteisjogador.erase(it);
-    }
 }
 void Jogador::tomarDano(const int dano)
 {

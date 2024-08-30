@@ -25,5 +25,6 @@ namespace Estados
         void desenhar();
 
         void menu();
+        void salvarPontuacao();
     };
 }

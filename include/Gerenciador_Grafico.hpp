@@ -22,7 +22,10 @@ namespace Gerenciadores
             int limitefps;
             static Gerenciador_Grafico* pgergraf;
             sf::RenderWindow* window;
+            
             sf::View camera;
+            sf::View posInicial;
+
             float deltaTime;
             sf::Clock clock;    // Usado para medir deltaTime
 
@@ -52,6 +55,7 @@ namespace Gerenciadores
             void atualizarDeltaTime();
             const float getDeltaTime() const;
             const sf::View& getCamera() const;
+            void resetCamera();
     };
 } using namespace Gerenciadores;
 
