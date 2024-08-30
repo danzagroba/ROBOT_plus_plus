@@ -22,7 +22,7 @@ sair("Sair", sf::Vector2f(300.0f,510.0f))
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&numjogadores, std::bind(&MenuPrincipal::doisjogadores, this));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados()));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&sair, std::bind(&MenuPrincipal::sairjogo, this));
-    
+    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&ranking, std::bind(&Gerenciador_Estados::criarEstadoRanking, Gerenciador_Estados::getGerenciador_Estados()));
 }
 
 

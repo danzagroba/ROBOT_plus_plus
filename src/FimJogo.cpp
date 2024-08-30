@@ -198,6 +198,4 @@ namespace Estados
             std::cerr << "An error occurred: " << e.what() << std::endl;
         }
     }
-
-
 }
