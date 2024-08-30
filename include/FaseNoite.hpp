@@ -10,7 +10,7 @@ namespace Fases
     {
     private:
         int maxGumbots;
-        int maxProjetctileBots;
+        int maxMaquinaProjeteis;
         int maxAgua;
         int minAguas;
         int minProjectileBots;
@@ -22,7 +22,7 @@ namespace Fases
 
     private:
         void criarGumbots();
-        void criarProjectileBots();
+        void criarMaquinaProjeteis();
         void criarAgua();
         void criarEntidades();
         void criarPilares();

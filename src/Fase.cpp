@@ -3,6 +3,7 @@
 #include "Gumbot.hpp"
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
+#include "Maquina_Projeteis.hpp"
 #include "Plataforma.hpp"
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Colisoes.hpp"
@@ -96,6 +97,7 @@ namespace Fases
 
         Jogador::getprojeteisjogador()->clear();
         ProjectileBot::getprojeteis()->clear();
+        Maquina_Projeteis::getprojeteismaquina()->clear();
 
         std::cout << "fase destruida\n";
     }
@@ -299,6 +301,18 @@ namespace Fases
             }
         }
         for(list<Projetil*>::iterator it = Jogador::getprojeteisjogador()->begin(); it!= Jogador::getprojeteisjogador()->end();it++)
+        {
+            if(*it)
+            {
+                if ((*it)->getinserido()==false)
+                {
+                    gerColisoes->inserirProjetil(*it);
+                    entidades.inserirNoFim(*it);
+                    (*it)->inseridonalista();
+                }
+            }
+        }
+        for(list<Projetil*>::iterator it = Maquina_Projeteis::getprojeteismaquina()->begin(); it!= Maquina_Projeteis::getprojeteismaquina()->end();it++)
         {
             if(*it)
             {
