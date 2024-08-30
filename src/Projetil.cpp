@@ -8,7 +8,15 @@ namespace Entidades
           dano(danoProjetil)
     {
         id=idd;
-        posicao.y+=8;
+        if(id == 20 || id == 30)
+        {
+            posicao.y+=8;
+
+        }
+        if(id == 40)
+        {
+            posicao.x -=4;
+        }
         inserido=false;
         setFigura(PROJETIL_SPRITE_PATH);
         velocidade = forca;

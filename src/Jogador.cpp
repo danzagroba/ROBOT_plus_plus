@@ -61,7 +61,6 @@ void Jogador::atacar()
     {
         if(ladodireito)
         {
-            cout<<"Tdste\n";
             Projetil* pprojetiljogador = new Projetil(this, 1, sf::Vector2f(0.2f, -0.1f),30);
             if(pprojetiljogador)
             {

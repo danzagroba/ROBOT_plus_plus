@@ -1,11 +1,12 @@
 #include "Maquina_Projeteis.hpp"
 
+list<Projetil*> Maquina_Projeteis::projeteismaquina;
+
 Maquina_Projeteis::Maquina_Projeteis(const sf::Vector2f& pos):
-Obstaculo()
+Obstaculo(pos, sf::Vector2f(8.0f, 11.0f), false)
 {
     timer.restart();
     setFigura(SPRITE_PATHMAQUINAPROJETEIS);
-    setPos(pos.x, pos.y);
 }
 Maquina_Projeteis::~Maquina_Projeteis()
 {
@@ -40,7 +41,7 @@ std::list<Projetil*>* Maquina_Projeteis::getprojeteismaquina()
 
 void Maquina_Projeteis::executar()
 {
-
+    criartiromaquina();
 }
 void Maquina_Projeteis::salvar()
 {

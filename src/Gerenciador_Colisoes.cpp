@@ -230,14 +230,26 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         bool apagado = false;
         for (vector<Jogador*>::iterator it2 = LJs.begin(); it2 != LJs.end(); ++it2)
         {
-            if (calculaColisao(*it, *it2) && (*it)->getid() == 20)
+            if (calculaColisao(*it, *it2))
             {
-                (*it2)->tomarDano((*it)->getDano());
-                (*it)->resetar();
-                ProjectileBot::removertiro(*it);
-                it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
-                apagado = true;
-                break; // Sai do loop interno, pois o iterador foi invalidado
+                if((*it)->getid() == 20)
+                {
+                    (*it2)->tomarDano((*it)->getDano());
+                    (*it)->resetar();
+                    ProjectileBot::removertiro(*it);
+                    it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                    apagado = true;
+                    break; // Sai do loop interno, pois o iterador foi invalidado
+                }
+                else if((*it)->getid() == 40)
+                {
+                    (*it2)->tomarDano((*it)->getDano());
+                    (*it)->resetar();
+                    ProjectileBot::removertiro(*it);
+                    it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                    apagado = true;
+                    break; // Sai do loop interno, pois o iterador foi invalidado
+                }
             }
         }
         if (!apagado)

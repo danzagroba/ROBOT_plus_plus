@@ -55,9 +55,8 @@ namespace Fases
                 if(getTile(j, i) == 5)
                     if(nMaquinaProjeteis < minProjectileBots || ((rand()%5) > 1))
                     {
-                        Maquina_Projeteis* pmaquinaprojeteis = new Maquina_Projeteis(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
-                        gerColisoes->inserirObstaculos(pmaquinaprojeteis);
-                        entidades.inserirNoFim(static_cast<Entidade*>(pmaquinaprojeteis));
+                        Maquina_Projeteis* pmaquinaprojeteis = new Maquina_Projeteis(sf::Vector2f(j*comprimentoTile, i*comprimentoTile+6));
+                        entidades.inserirNoInicio(static_cast<Entidade*>(pmaquinaprojeteis));
                         ++nMaquinaProjeteis;
                     }
     }
