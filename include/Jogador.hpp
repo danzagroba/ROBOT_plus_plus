@@ -15,7 +15,6 @@ namespace Entidades
         {
             private:
                 static int pontuacao;
-                static string nome;
                 static bool doisjogadores;
                 static list<Projetil*> projeteisjogador;
                 sf::Texture texturaVida;

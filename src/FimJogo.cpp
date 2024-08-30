@@ -9,8 +9,8 @@ namespace Estados
           fimDeJogo(),
           nome(),
           inserirNome(),
-          irAoMenu("Ir ao menu", sf::Vector2f(300.0f,510.0f)),
-          input("abc")
+          irAoMenu("Ir ao menu", sf::Vector2f(150.0f,250.0f)),
+          input("")
     {
         Gerenciador_Grafico* pgergraf = Gerenciador_Grafico::getGerenciador_Grafico();
 
@@ -27,8 +27,8 @@ namespace Estados
     
         nome.tamanhofonte(40);
         nome.settextopos(sf::Vector2f(pgergraf->getCamera().getCenter().x - (fimDeJogo.gettamanho().width)/2.0, 210.0f));
-
         vetorbotoes.push_back(&irAoMenu);
+        
     }
 
     FimJogo::~FimJogo()
@@ -46,6 +46,7 @@ namespace Estados
                 // Handle ASCII characters
                 if (event.text.unicode < 128)
                 {
+                    cout<<"Caractere pressionado"<<endl;
                     if (event.text.unicode == '\b' && !input.empty())
                     {
                         // Handle backspace (remove last character)
@@ -56,6 +57,20 @@ namespace Estados
                         // Add the new character to the input string
                         input += static_cast<char>(event.text.unicode);
                     }
+                }
+            }
+            else if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+            {
+                sf::Vector2f mousePos =static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window));
+                cout <<"Funciona1 pos:x e y  "<< mousePos.x<<"   "<<mousePos.y <<endl;
+                std::cout << "Retângulo Bounds: (" << irAoMenu.getretangulo().getGlobalBounds().left << ", " 
+                << irAoMenu.getretangulo().getGlobalBounds().top << ", " 
+                << irAoMenu.getretangulo().getGlobalBounds().width << ", " 
+                << irAoMenu.getretangulo().getGlobalBounds().height << ")" << std::endl;
+                if(irAoMenu.getretangulo().getGlobalBounds().contains(mousePos))
+                {
+                    cout <<"Funciona"<<endl;
+                    menu();
                 }
             }
         }
@@ -83,8 +98,8 @@ namespace Estados
 
     void FimJogo::menu()
     {
+        cout<<"veio CHAMAAA"<<endl;
         Gerenciador_Estados* gerEstados = Gerenciador_Estados::getGerenciador_Estados();
-    
         gerEstados->popEstadoatual();
     }
 }

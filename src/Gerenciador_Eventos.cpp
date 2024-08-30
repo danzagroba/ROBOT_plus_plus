@@ -31,6 +31,10 @@ namespace Gerenciadores
 
     void Gerenciador_Eventos::executar(sf::RenderWindow* window)
     {
+        if(Gerenciador_Estados::getGerenciador_Estados()->getidEstadoatual() == 3)
+        {
+            return;
+        }
         sf::Event event;
         while(window->pollEvent(event)) 
         {
@@ -40,6 +44,7 @@ namespace Gerenciadores
             else if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
                 notificarMouse(sf::Mouse::getPosition(*window));
         }
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             notificarTecla(sf::Keyboard::A, true);
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))

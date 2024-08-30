@@ -3,7 +3,7 @@
 
 MenuPrincipal::MenuPrincipal():
 Estado(1),
-numjogadores(Jogador::getdoisjogadores() ? "Dois Jogadores" : "Um Jogador", sf::Vector2f(300.0f, 230.0f)),
+numjogadores(Jogador::getdoisjogadores() ? "2 Jogadores" : "1 Jogador", sf::Vector2f(300.0f, 230.0f)),
 novojogo("Novo Jogo",sf::Vector2f(300.0f,300.0f)),
 continuar("Continuar",sf::Vector2f(300.0f,370.0f)),
 ranking("Ranking",sf::Vector2f(300.0f,440.0f)),
@@ -62,5 +62,5 @@ void MenuPrincipal::sairjogo()
 void MenuPrincipal::doisjogadores()
 {
     Jogador::setDoisJogadores();
-    numjogadores.trocarTexto(Jogador::getdoisjogadores() ? "Dois Jogadores" : "Um Jogador");
+    numjogadores.trocarTexto(Jogador::getdoisjogadores() ? "2 Jogadores" : "1 Jogador");
 }

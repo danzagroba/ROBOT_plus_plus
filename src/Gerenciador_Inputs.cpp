@@ -49,7 +49,7 @@ Gerenciador_Inputs* Gerenciador_Inputs::getGerenciador_Inputs()
 }
 
 void Gerenciador_Inputs::processainput(sf::Keyboard::Key key, const bool pressionado) 
-{
+{   
     // Check if the key is pressed
     if(pGE->getidEstadoatual()==10)
     {

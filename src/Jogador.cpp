@@ -6,7 +6,7 @@ using namespace std;
 int Jogador::pontuacao = 0;
 bool Jogador::doisjogadores = true;
 list<Projetil*> Jogador::projeteisjogador;
-string Jogador::nome;
+
 
 Jogador::Jogador(const sf::Vector2f& vel, 
                  const int nVidas, 
