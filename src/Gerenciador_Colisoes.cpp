@@ -245,7 +245,7 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 {
                     (*it2)->tomarDano((*it)->getDano());
                     (*it)->resetar();
-                    ProjectileBot::removertiro(*it);
+                    Maquina_Projeteis::removertiromaquina(*it);
                     it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                     apagado = true;
                     break; // Sai do loop interno, pois o iterador foi invalidado
