@@ -32,6 +32,11 @@ bool Jogador::getdoisjogadores()
     return doisjogadores;
 }
 
+void Jogador::setDoisJogadores()
+{
+    doisjogadores = !doisjogadores;
+}
+
 void Jogador::executar()
 {
     aplicarForcaY(gravidade);

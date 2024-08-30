@@ -165,10 +165,11 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
+                (*it2)->obstacular(*it); /*
                 if((*it2)->eDanoso())
                     (*it)->tomarDano(Entidades::Obstaculos::Agua::getDano());
                 else
-                    tratarColisao(*it, *it2);  
+                    tratarColisao(*it, *it2); */  
             }
         }
     }

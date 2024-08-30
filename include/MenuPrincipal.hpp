@@ -21,6 +21,7 @@ namespace Estados
     {
         private:
             Texto titulo;
+            Botao numjogadores;
             Botao novojogo;
             Botao continuar;
             Botao ranking;
@@ -31,6 +32,7 @@ namespace Estados
             void executar();
             void desenhar();
             void sairjogo();
+            void doisjogadores();
             MenuPrincipal();
             ~MenuPrincipal();
     };

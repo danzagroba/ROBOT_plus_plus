@@ -21,17 +21,14 @@ namespace Entidades
         {
         }
         
-        void Agua::obstacular() 
+        void Agua::obstacular(Jogador* pJogador) 
         {
+            if(pJogador)
+                pJogador->tomarDano(dano);
         }
 
         void Agua::salvar()
         {
-        }
-
-        const int Agua::getDano()
-        {
-            return dano;
         }
     }
 }
