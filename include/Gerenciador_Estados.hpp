@@ -16,6 +16,7 @@ namespace Gerenciadores {
             void adicionarEstado(Estado* ea);
             void popEstadoatual();            
             void criarEstadojogar();
+            void criarEstadoRanking();
             //void criarMenuprincipal();
             Estado* getEstadoatual();
             const int getidEstadoatual();

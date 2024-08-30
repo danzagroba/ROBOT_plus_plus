@@ -1,4 +1,5 @@
 #include "Gerenciador_Estados.hpp"
+#include "Ranking.hpp"
 
 Gerenciador_Estados* Gerenciador_Estados::pgerestados = NULL;
 Gerenciador_Estados::Gerenciador_Estados():
@@ -43,6 +44,11 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
 void Gerenciador_Estados::criarEstadojogar()
 {
     adicionarEstado(new JogarFase());
+}
+
+void Gerenciador_Estados::criarEstadoRanking()
+{
+    adicionarEstado(new Ranking());
 }
 
 Estado* Gerenciador_Estados::getEstadoatual()

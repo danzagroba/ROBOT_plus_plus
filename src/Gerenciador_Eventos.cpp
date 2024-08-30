@@ -31,7 +31,7 @@ namespace Gerenciadores
 
     void Gerenciador_Eventos::executar(sf::RenderWindow* window)
     {
-        if(Gerenciador_Estados::getGerenciador_Estados()->getidEstadoatual() == 3)
+        if(Gerenciador_Estados::getGerenciador_Estados()->getidEstadoatual() == 3 || Gerenciador_Estados::getGerenciador_Estados()->getidEstadoatual() == 4)
         {
             return;
         }
