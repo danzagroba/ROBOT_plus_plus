@@ -1,5 +1,8 @@
 #include "JogarFase.hpp"
 #include "Jogador.hpp"
+#include "FimJogo.hpp"
+#include "Gerenciador_Estados.hpp"
+
 JogarFase::JogarFase():
 Estado(10),
 faseescolhida(1),
@@ -20,8 +23,19 @@ pfasenoite(NULL)
 
 JogarFase::~JogarFase()
 {
-    std::cout << "jogar fase criado\n";
+    if(pfasedia)
+    {
+        delete pfasedia;
+        pfasedia = NULL;
+    }
+
+    if(pfasenoite)
+    {
+        delete pfasenoite;
+        pfasenoite = NULL;
+    }
 }
+
 void JogarFase::irprafasedois()
 {
     delete pfasedia;
@@ -46,7 +60,14 @@ void JogarFase::executar()
     }
     else if(faseescolhida==2)
     {
-        pfasenoite->executar();
+        if(pfasenoite->faseConcluida())
+        {
+            bool concluiu = pfasenoite->faseConcluida();
+            pGE->popEstadoatual();
+            pGE->adicionarEstado(new FimJogo(concluiu));
+        }
+        else
+            pfasenoite->executar();
     }
 
 }

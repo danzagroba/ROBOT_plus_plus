@@ -8,6 +8,7 @@
 #include "Gerenciador_Estados.hpp"
 #include "Gerenciador_Eventos.hpp"
 #include "Gerenciador_Inputs.hpp"
+#include "Bandeira.hpp"
 
 #include <cstdlib>
 #include <ctime>
@@ -100,5 +101,7 @@ namespace Fases
         criarAgua();
         criarGumbots();
         criarMaquinaProjeteis();
+
+        entidades.inserirNoFim(new Bandeira(sf::Vector2f(1*16.0f, 6*16.0f), this, pjogadorum, pjogadordois));
     }
 }

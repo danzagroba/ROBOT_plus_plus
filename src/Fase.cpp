@@ -192,7 +192,7 @@ namespace Fases
         nlohmann::json jsonObj;
         arquivo >> jsonObj;
 
-        auto jsonTiles = jsonObj["tiles"];
+        nlohmann::json jsonTiles = jsonObj["tiles"];
         altura = jsonTiles.size();
         largura = jsonTiles.empty() ? 0 : jsonTiles[0].size();
 
@@ -206,8 +206,9 @@ namespace Fases
             }
         }
 
-        gerGraf->setMaximosCamera(largura*comprimentoTile, altura*comprimentoTile);
+        gerGraf->setMaximosCamera(largura * comprimentoTile, altura * comprimentoTile);
     }
+
 
     const float Fase::getComprimentoTile() const
     {
