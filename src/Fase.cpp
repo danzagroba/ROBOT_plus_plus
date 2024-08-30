@@ -4,6 +4,7 @@
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
 #include "Maquina_Projeteis.hpp"
+#include "ByteCrusher.hpp"
 #include "Plataforma.hpp"
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Colisoes.hpp"

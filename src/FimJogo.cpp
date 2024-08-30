@@ -53,7 +53,12 @@ namespace Estados
 
         while (window->pollEvent(event)) 
         {
-            if (event.type == sf::Event::TextEntered)
+            if(event.type == sf::Event::Closed) 
+            {
+                window->close();
+            }
+            else if (event.type == sf::Event::TextEntered)
+            
             {
                 // Handle ASCII characters
                 if (event.text.unicode < 128)

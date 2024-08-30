@@ -1,6 +1,7 @@
 #include "FaseNoite.hpp"
 #include "Gumbot.hpp"
 #include "Agua.hpp"
+#include "ByteCrusher.hpp"
 #include "Maquina_Projeteis.hpp"
 #include "Plataforma.hpp"
 #include "Gerenciador_Grafico.hpp"
