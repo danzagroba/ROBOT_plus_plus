@@ -2,7 +2,7 @@
 
 #include "Fase.hpp"
 
-#define FASE_NOITE_PATH "../levels/fase1.json"
+#define FASE_NOITE_PATH "../levels/fase2.json"
 
 namespace Fases
 {

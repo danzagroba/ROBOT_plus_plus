@@ -118,3 +118,4 @@ const sf::Sprite& Jogador::getSpriteVida() const
 {
     return spriteVida;
 }
+

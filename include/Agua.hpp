@@ -16,7 +16,7 @@ namespace Entidades
                 ~Agua();
                 
                 void executar();
-                void obstacular(Jogador* pJogador);
+                void obstacular();
                 void salvar();
 
                 static const int getDano();
