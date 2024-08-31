@@ -26,6 +26,7 @@ namespace Gerenciadores
             sf::View camera;
             sf::View posInicial;
 
+            bool fundodia;
             float deltaTime;
             sf::Clock clock;    // Usado para medir deltaTime
 
@@ -45,6 +46,7 @@ namespace Gerenciadores
             void setTamanhoJanela(int lar, int alt);
             void setMaximosCamera(float x, float y);
             void setLimiteFPS(int lfps);
+            void setfundo(bool fundod);
             void clear();
             void display();
             void configurar();

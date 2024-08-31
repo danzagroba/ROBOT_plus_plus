@@ -19,10 +19,13 @@ namespace Fases
     FaseNoite::FaseNoite(float comprimento)
         : Fase(FASE_NOITE_PATH, comprimento),
           maxGumbots(6),
+          maxByteCrushers(4),
           maxMaquinaProjeteis(6),
           maxAgua(6),
           minAguas(3),
-          minProjectileBots(3)
+          minGumbots(3),
+          minByteCrushers(3),
+          minMaquinaProjeteis(3)
     {
         criarEntidades();
     }
@@ -47,6 +50,21 @@ namespace Fases
                         ++nGumbots;
                     }
     }
+    void FaseNoite::criarByteCrushers()
+    {
+        int nByteCrushers = 0;
+
+        for(int i = 0; i < altura && nByteCrushers < maxByteCrushers; ++i)
+            for(int j = 0; j < largura && nByteCrushers < maxByteCrushers; ++j)
+                if(getTile(j, i) == 8)
+                    if(nByteCrushers < minByteCrushers || ((rand()%5) > 1))
+                    {
+                        ByteCrusher* pbytecrusher = new ByteCrusher(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
+                        gerColisoes->inserirInimigos(pbytecrusher);
+                        entidades.inserirNoFim(static_cast<Entidade*>(pbytecrusher));
+                        ++nByteCrushers;
+                    }
+    }
     
     void FaseNoite::criarMaquinaProjeteis()
     {
@@ -55,7 +73,7 @@ namespace Fases
         for(int i = 0; i < altura && nMaquinaProjeteis < maxMaquinaProjeteis; ++i)
             for(int j = 0; j < largura && nMaquinaProjeteis < maxMaquinaProjeteis; ++j)
                 if(getTile(j, i) == 5)
-                    if(nMaquinaProjeteis < minProjectileBots || ((rand()%5) > 1))
+                    if(nMaquinaProjeteis < minMaquinaProjeteis || ((rand()%5) > 1))
                     {
                         Maquina_Projeteis* pmaquinaprojeteis = new Maquina_Projeteis(sf::Vector2f(j*comprimentoTile, i*comprimentoTile+6));
                         entidades.inserirNoInicio(static_cast<Entidade*>(pmaquinaprojeteis));
@@ -101,6 +119,7 @@ namespace Fases
         criarPilares();
         criarAgua();
         criarGumbots();
+        criarByteCrushers();
         criarMaquinaProjeteis();
 
         entidades.inserirNoFim(new Bandeira(sf::Vector2f(1*16.0f, 6*16.0f), this, pjogadorum, pjogadordois));

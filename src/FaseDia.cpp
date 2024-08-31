@@ -21,10 +21,13 @@ namespace Fases
     FaseDia::FaseDia(float comprimento)
         : Fase(FASE_DIA_PATH, comprimento),
           maxGumbots(6),
-          maxProjetctileBots(6),
+          maxProjectileBots(6),
+          maxMaquinaProjeteis(5),
           maxAgua(6),
           minAguas(3),
-          minProjectileBots(3)
+          minProjectileBots(3),
+          minMaquinaProjeteis(3),
+          minGumbots(3)
     {
         criarEntidades();
     }
@@ -54,8 +57,8 @@ namespace Fases
     {
         int nProjectileBots = 0;
 
-        for(int i = 0; i < altura && nProjectileBots < maxProjetctileBots; ++i)
-            for(int j = 0; j < largura && nProjectileBots < maxProjetctileBots; ++j)
+        for(int i = 0; i < altura && nProjectileBots < maxProjectileBots; ++i)
+            for(int j = 0; j < largura && nProjectileBots < maxProjectileBots; ++j)
                 if(getTile(j, i) == 3)
                     if(nProjectileBots < minProjectileBots || ((rand()%5) > 1))
                     {
@@ -63,6 +66,21 @@ namespace Fases
                         gerColisoes->inserirInimigos(pprojectilebot);
                         entidades.inserirNoFim(static_cast<Entidade*>(pprojectilebot));
                         ++nProjectileBots;
+                    }
+    }
+
+    void FaseDia::criarMaquinaProjeteis()
+    {
+        int nMaquinaProjeteis = 0;
+
+        for(int i = 0; i < altura && nMaquinaProjeteis < maxMaquinaProjeteis; ++i)
+            for(int j = 0; j < largura && nMaquinaProjeteis < maxMaquinaProjeteis; ++j)
+                if(getTile(j, i) == 5)
+                    if(nMaquinaProjeteis < minMaquinaProjeteis || ((rand()%5) > 1))
+                    {
+                        Maquina_Projeteis* pmaquinaprojeteis = new Maquina_Projeteis(sf::Vector2f(j*comprimentoTile, i*comprimentoTile+6));
+                        entidades.inserirNoInicio(static_cast<Entidade*>(pmaquinaprojeteis));
+                        ++nMaquinaProjeteis;
                     }
     }
 
@@ -102,6 +120,7 @@ namespace Fases
 
         criarPlataformas();
         criarPilares();
+        criarMaquinaProjeteis();
         criarAgua();
         criarGumbots();
         criarProjectileBots();

@@ -16,7 +16,8 @@ window(NULL),
 camera(),
 deltaTime(0.0f),
 clock(),
-posInicial()
+posInicial(),
+fundodia(true)
 {
     cout<<"Gerenciador Gráfico criado"<<endl;
 }
@@ -95,11 +96,21 @@ void Gerenciador_Grafico::setLimiteFPS(int lfps)
 {
     limitefps = lfps;
 }
+void Gerenciador_Grafico::setfundo(const bool fundod)
+{
+    fundodia = fundod;
+}
 void Gerenciador_Grafico::clear()
 {
     if(window)
     {
-        window->clear(sf::Color(95, 205, 228));
+        if(fundodia)
+        {
+            window->clear(sf::Color(95, 205, 228));
+        } else
+        {
+            window->clear(sf::Color(4, 0, 48));
+        }
     }
 }
 void Gerenciador_Grafico::display()

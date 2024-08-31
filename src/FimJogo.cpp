@@ -17,10 +17,9 @@ namespace Estados
           irAoMenu(),
           input("")
     {
+        
         Gerenciador_Grafico* pgergraf = Gerenciador_Grafico::getGerenciador_Grafico();
-
-        //pgergraf->setCameraSize(800.0f, 600.0f);
-        //pgergraf->setCamera(sf::Vector2f(0.0f, 0.0f));
+        pgergraf->setfundo(true);
 
         pgergraf->resetCamera();
 
@@ -63,7 +62,6 @@ namespace Estados
                 // Handle ASCII characters
                 if (event.text.unicode < 128)
                 {
-                    cout<<"Caractere pressionado"<<endl;
                     if (event.text.unicode == '\b' && !input.empty())
                     {
                         input.pop_back();
@@ -78,11 +76,6 @@ namespace Estados
             else if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
             {
                 sf::Vector2f mousePos =static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window));
-                cout <<"Funciona1 pos:x e y  "<< mousePos.x<<"   "<<mousePos.y <<endl;
-                std::cout << "Retângulo Bounds: (" << irAoMenu.getretangulo().getGlobalBounds().left << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().top << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().width << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().height << ")" << std::endl;
                 if(irAoMenu.getretangulo().getGlobalBounds().contains(mousePos))
                     criouMenu = true;
             }

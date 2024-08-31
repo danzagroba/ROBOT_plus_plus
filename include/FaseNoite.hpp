@@ -10,11 +10,13 @@ namespace Fases
     {
     private:
         int maxGumbots;
+        int minGumbots;
+        int maxByteCrushers;
+        int minByteCrushers;
         int maxMaquinaProjeteis;
+        int minMaquinaProjeteis;
         int maxAgua;
         int minAguas;
-        int minProjectileBots;
-        int minGumbots;
 
     public:
         FaseNoite(float comprimento = 16.0f);
@@ -22,6 +24,7 @@ namespace Fases
 
     private:
         void criarGumbots();
+        void criarByteCrushers();
         void criarMaquinaProjeteis();
         void criarAgua();
         void criarEntidades();

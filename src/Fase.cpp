@@ -326,6 +326,18 @@ namespace Fases
                 }
             }
         }
+        for(list<Projetil*>::iterator it = ByteCrusher::getprojeteischefao()->begin(); it!= ByteCrusher::getprojeteischefao()->end();it++)
+        {
+            if(*it)
+            {
+                if ((*it)->getinserido()==false)
+                {
+                    gerColisoes->inserirProjetil(*it);
+                    entidades.inserirNoFim(*it);
+                    (*it)->inseridonalista();
+                }
+            }
+        }
     }
 
     const bool Fase::posicaoValida(const int x, const int y) const

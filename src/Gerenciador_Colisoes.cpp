@@ -2,6 +2,7 @@
 #include "Entidade.hpp"
 #include "Agua.hpp"
 #include "ProjectileBot.hpp"
+#include "ByteCrusher.hpp"
 #include "Maquina_Projeteis.hpp"
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::pgercol = NULL;
@@ -212,6 +213,10 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                 {
                     Maquina_Projeteis::removertiromaquina(*it);
                 }
+                else if((*it)->getid()==45 || (*it)->getid()==50)
+                {
+                    ByteCrusher::removertirochefao(*it);
+                }
                 (*it)->resetar();
                 it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                 apagado = true;
@@ -246,6 +251,15 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
                     (*it2)->tomarDano((*it)->getDano());
                     (*it)->resetar();
                     Maquina_Projeteis::removertiromaquina(*it);
+                    it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
+                    apagado = true;
+                    break; // Sai do loop interno, pois o iterador foi invalidado
+                }
+                else if((*it)->getid() == 45 || (*it)->getid() == 50)
+                {
+                    (*it2)->tomarDano((*it)->getDano());
+                    (*it)->resetar();
+                    ByteCrusher::removertirochefao(*it);
                     it = LPs.erase(it);  // Apaga e obtém o próximo iterador válido
                     apagado = true;
                     break; // Sai do loop interno, pois o iterador foi invalidado
