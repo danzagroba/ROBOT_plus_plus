@@ -13,9 +13,19 @@ namespace Entidades
             posicao.y+=8;
 
         }
-        if(id == 40)
+        else if(id == 40)
         {
             posicao.x -=4;
+        }
+        else if(id == 45)
+        {
+            posicao.x -= 3;
+            posicao.y +=10;
+        }
+        else if(id == 50)
+        {
+            posicao.x += 13;
+            posicao.y += 10;
         }
         inserido=false;
         setFigura(PROJETIL_SPRITE_PATH);

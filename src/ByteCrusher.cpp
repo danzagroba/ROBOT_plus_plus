@@ -6,6 +6,7 @@ ByteCrusher::ByteCrusher(const sf::Vector2f& pos):
 Inimigo(8, pos, 1)
 {
     id= 15;
+    etapaataque = 1;
     setFigura(BYTECRUSHER_SPRITE_PATH);
     tempo.restart();
 }
@@ -16,14 +17,70 @@ ByteCrusher::~ByteCrusher()
 
 void ByteCrusher::criartirochefao()
 {
-    if(tempo.getElapsedTime().asSeconds()>1.5)
+    if(tempo.getElapsedTime().asSeconds()>1.0)
     {
-        Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f), 20);
-        if(pprojetil)
+        if(etapaataque == 1)
         {
-            projeteischefao.push_back(pprojetil);
+            Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.05f, -0.1f), 45);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            pprojetil = new Projetil(this, 1, sf::Vector2f(0.05f, -0.1f), 50);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            tempo.restart();
+            etapaataque++;
         }
-        tempo.restart();
+        else if(etapaataque == 2)
+        {
+            Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.08f, -0.15f), 45);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            pprojetil = new Projetil(this, 1, sf::Vector2f(0.08f, -0.15f), 50);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            tempo.restart();
+            etapaataque++;
+        }
+        else if(etapaataque == 3)
+        {
+            Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.2f), 45);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            pprojetil = new Projetil(this, 1, sf::Vector2f(0.1f, -0.2f), 50);
+            if(pprojetil)
+            {
+                projeteischefao.push_back(pprojetil);
+            }
+            tempo.restart();
+            etapaataque++;
+        }
+        else if(etapaataque == 6)
+        {
+            etapaataque = 0;
+            tempo.restart();
+        }
+        else 
+        {
+            if(rand()%2)
+            {
+                posicao.x+=(rand()%5)+1;
+            } else
+            {
+                posicao.x-=(rand()%5)+1;
+            }
+            etapaataque++;
+            tempo.restart();
+        }
     }
 }
 

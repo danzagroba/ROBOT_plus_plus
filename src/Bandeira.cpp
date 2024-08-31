@@ -23,11 +23,17 @@ namespace Entidades
 
         if(jogadorUm)
             if(getBoundingBox().intersects(jogadorUm->getBoundingBox()))
+            {
                 pFase->terminarFase();
+                pGG->setfundo(false);
+            }
     
         if(jogadorDois)
             if(getBoundingBox().intersects(jogadorDois->getBoundingBox()))
+            {
                 pFase->terminarFase();
+                pGG->setfundo(false);
+            }
     }
 
     void Bandeira::salvar()

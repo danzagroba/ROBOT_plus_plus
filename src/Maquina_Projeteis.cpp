@@ -17,7 +17,6 @@ void Maquina_Projeteis::criartiromaquina()
     if(timer.getElapsedTime().asSeconds()>2.5)
     {
         Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f), 40);
-        cout<<"projetil criado endereco"<<pprojetil<<endl;
         if(pprojetil)
         {   
             projeteismaquina.push_back(pprojetil);
@@ -29,7 +28,6 @@ void Maquina_Projeteis::criartiromaquina()
 void Maquina_Projeteis::removertiromaquina(Projetil* ep)
 {
     list<Projetil*>::iterator it = std::find(projeteismaquina.begin(), projeteismaquina.end(), ep);
-    cout<<"projetil removido endereco"<<*it<<endl;
     if (it != projeteismaquina.end()) {
         projeteismaquina.erase(it);
     }
