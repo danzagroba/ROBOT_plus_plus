@@ -17,21 +17,22 @@ using namespace std;
 
 namespace Estados
 {
-    class MenuPrincipal: public Estado
+    class MenuPrincipal: public Estado, public Ente
     {
         private:
             Texto titulo;
             Botao numjogadores;
+            Botao escolhefase;
             Botao novojogo;
-            Botao continuar;
             Botao ranking;
             Botao sair;
-            
+            int fase;
 
         public:
             void executar();
             void desenhar();
             void sairjogo();
+            void trocarfase();
             void doisjogadores();
             MenuPrincipal();
             ~MenuPrincipal();

@@ -4,23 +4,25 @@
 MenuPrincipal::MenuPrincipal():
 Estado(1),
 numjogadores(Jogador::getdoisjogadores() ? "2 Jogadores" : "1 Jogador", sf::Vector2f(300.0f, 230.0f)),
-novojogo("Novo Jogo",sf::Vector2f(300.0f,300.0f)),
-continuar("Continuar",sf::Vector2f(300.0f,370.0f)),
+escolhefase("Fase Dia",sf::Vector2f(300.0f,300.0f)),
+novojogo("Novo Jogo",sf::Vector2f(300.0f,370.0f)),
 ranking("Ranking",sf::Vector2f(300.0f,440.0f)),
 sair("Sair", sf::Vector2f(300.0f,510.0f))
 {
+    fase = 1;
     titulo.settexto("ROBOT++");
     titulo.tamanhofonte(70);
     titulo.settextopos(sf::Vector2f(100,100));
 
     vetorbotoes.push_back(&numjogadores);
     vetorbotoes.push_back(&novojogo);
-    vetorbotoes.push_back(&continuar);
+    vetorbotoes.push_back(&escolhefase);
     vetorbotoes.push_back(&ranking);
     vetorbotoes.push_back(&sair);
 
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&numjogadores, std::bind(&MenuPrincipal::doisjogadores, this));
-    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados()));
+    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&escolhefase, std::bind(&MenuPrincipal::trocarfase, this));
+    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados(), fase));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&sair, std::bind(&MenuPrincipal::sairjogo, this));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&ranking, std::bind(&Gerenciador_Estados::criarEstadoRanking, Gerenciador_Estados::getGerenciador_Estados()));
 }
@@ -34,21 +36,14 @@ MenuPrincipal::~MenuPrincipal()
 
 void MenuPrincipal::executar()
 {
-    //while(Gerenciador_Grafico::getGerenciador_Grafico()->getisOpen())
-    //{
-        //Gerenciador_Grafico::getGerenciador_Grafico()->clear();
-        //Gerenciador_Grafico::getGerenciador_Grafico()->atualizarDeltaTime();
-        //Gerenciador_Eventos::getGerenciador_Eventos()->executar(Gerenciador_Grafico::getGerenciador_Grafico()->getJanela());
         desenhar();
-        //Gerenciador_Grafico::getGerenciador_Grafico()->display();
-    //}
 }
 void MenuPrincipal::desenhar()
 {
     numjogadores.desenhar();
     titulo.desenhar();
     novojogo.desenhar();
-    continuar.desenhar();
+    escolhefase.desenhar();
     ranking.desenhar();
     sair.desenhar();
 }
@@ -63,4 +58,20 @@ void MenuPrincipal::doisjogadores()
 {
     Jogador::setDoisJogadores();
     numjogadores.trocarTexto(Jogador::getdoisjogadores() ? "2 Jogadores" : "1 Jogador");
+}
+
+void MenuPrincipal::trocarfase()
+{
+    cout<<"Apertado amigo fase esta em:"<<fase <<endl;
+    if(fase == 1)
+    {
+        fase = 2;
+        escolhefase.trocarTexto( "Fase Dia");
+    }
+    else if(fase == 2)
+    {
+        fase = 1;
+        escolhefase.trocarTexto( "Fase Noite");
+    }
+    cout<<"Terminou em"<<fase<<endl;
 }

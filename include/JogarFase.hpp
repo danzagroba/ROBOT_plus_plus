@@ -14,7 +14,7 @@ namespace Estados
             FaseNoite* pfasenoite;
             int faseescolhida;
         public:
-            JogarFase();
+            JogarFase(int numf);
             ~JogarFase();
             void irprafasedois();
             void executar();

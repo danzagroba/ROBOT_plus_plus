@@ -41,9 +41,10 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
     return pgerestados;
 }
 
-void Gerenciador_Estados::criarEstadojogar()
+void Gerenciador_Estados::criarEstadojogar(int numfase)
 {
-    adicionarEstado(new JogarFase());
+    cout<<"O que veio aqui mulesta:"<<numfase<<endl;
+    adicionarEstado(new JogarFase(numfase));
 }
 
 void Gerenciador_Estados::criarEstadoRanking()

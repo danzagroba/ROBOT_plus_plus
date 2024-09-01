@@ -3,19 +3,29 @@
 #include "FimJogo.hpp"
 #include "Gerenciador_Estados.hpp"
 
-JogarFase::JogarFase():
+JogarFase::JogarFase(int numf):
 Estado(10),
-faseescolhida(1),
+faseescolhida(numf),
 pfasedia(NULL),
 pfasenoite(NULL)
 {
 
+    cout<<"Fase esoclhida [e a numero]"<<faseescolhida<<endl;
     if(faseescolhida==1)
     {
         pfasedia = new FaseDia;
         if(pfasedia == NULL)
         {
             cerr<<"Erro ao abrir fase dia"<<endl;
+            exit(1);
+        }
+    }
+    if(faseescolhida==2)
+    {
+        pfasenoite = new FaseNoite;
+        if(pfasenoite == NULL)
+        {
+            cerr<<"Erro ao abrir fase noite"<<endl;
             exit(1);
         }
     }
