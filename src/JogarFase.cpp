@@ -10,7 +10,7 @@ pfasedia(NULL),
 pfasenoite(NULL)
 {
 
-    cout<<"Fase esoclhida [e a numero]"<<faseescolhida<<endl;
+
     if(faseescolhida==1)
     {
         cout << "fase 1 selecionada\n";
@@ -24,6 +24,7 @@ pfasenoite(NULL)
     if(faseescolhida==2)
     {
         cout << "fase dois selecionada\n";
+        Gerenciador_Grafico::getGerenciador_Grafico()->setfundo(false);
         pfasenoite = new FaseNoite;
         if(pfasenoite == NULL)
         {

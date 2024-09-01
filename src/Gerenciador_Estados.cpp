@@ -43,7 +43,6 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
 
 void Gerenciador_Estados::criarEstadojogar(int *numfase)
 {
-    cout<<"O que veio aqui mulesta:"<<numfase<<endl;
     adicionarEstado(new JogarFase(*numfase));
 }
 

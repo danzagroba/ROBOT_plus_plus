@@ -62,7 +62,6 @@ void MenuPrincipal::doisjogadores()
 
 void MenuPrincipal::trocarfase()
 {
-    cout<<"Apertado amigo fase esta em:"<<fase <<endl;
     if(fase == 1)
     {
         fase = 2;
@@ -73,5 +72,4 @@ void MenuPrincipal::trocarfase()
         fase = 1;
         escolhefase.trocarTexto( "Fase Dia");
     }
-    cout<<"Terminou em"<<fase<<endl;
 }
