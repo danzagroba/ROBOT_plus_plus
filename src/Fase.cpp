@@ -86,7 +86,8 @@ namespace Fases
     Fase::~Fase()
     {
         std::cout << "fase cdsendo destruida\n";
-
+        pjogadorum = NULL;
+        pjogadordois = NULL;
         destruirTiles();
 
         gerColisoes->limparlistas();
