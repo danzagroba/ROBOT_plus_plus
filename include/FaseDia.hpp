@@ -16,7 +16,7 @@ namespace Fases
         int maxMaquinaProjeteis;
         int minMaquinaProjeteis;
         int maxAgua;
-        int minAguas;
+        int minAgua;
 
     public:
         FaseDia(float comprimento = 16.0f);

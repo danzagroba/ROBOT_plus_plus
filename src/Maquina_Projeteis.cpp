@@ -50,5 +50,5 @@ void Maquina_Projeteis::salvar()
 }
 void Maquina_Projeteis::obstacular(Jogador* pJogador)
 {
-
+    //Dá dano
 }

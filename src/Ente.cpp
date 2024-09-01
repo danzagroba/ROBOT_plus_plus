@@ -8,8 +8,6 @@
 
 Gerenciadores::Gerenciador_Grafico* Ente::pGG = Gerenciador_Grafico::getGerenciador_Grafico();
 
-int Ente::contador(0);
-//A principio não está sendo utilizado
 
 Ente::Ente():
 id(0),

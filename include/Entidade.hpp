@@ -34,8 +34,6 @@ namespace Entidades
             void setFigura(const std::string& Sprite_Path);
             sf::FloatRect getBoundingBox();
             static void setGravidade(float g);
-            //virtual bool colidecomEntidade();
-            //virtual void aocolidir();
     };
 }using namespace Entidades;
 

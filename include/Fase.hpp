@@ -45,7 +45,7 @@ namespace Fases
         bool terminouFase;
 
     public:
-        Fase(const char* caminho = nullptr, float comprimento = 16.0f);
+        Fase(const char* caminho = NULL, float comprimento = 16.0f);
         virtual ~Fase();
 
     protected:

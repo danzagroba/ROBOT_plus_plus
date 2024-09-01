@@ -116,7 +116,7 @@ namespace Fases
             delete[] tiles[i];
         delete[] tiles;
 
-        tiles = nullptr;
+        tiles = NULL;
         altura = 0;
         largura = 0;
     }

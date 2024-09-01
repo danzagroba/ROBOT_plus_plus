@@ -11,13 +11,13 @@ namespace Gerenciadores
     private:
         static Gerenciador_Inputs* pGI;
         static Gerenciador_Eventos* pGE;
-
-    public:
         Gerenciador_Eventos();
         ~Gerenciador_Eventos();
 
-        static Gerenciador_Eventos* getGerenciador_Eventos();
 
+    public:
+
+        static Gerenciador_Eventos* getGerenciador_Eventos();
         void executar(sf::RenderWindow* window);
 
         void notificarTecla(sf::Keyboard::Key key, const bool pressionado);

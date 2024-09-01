@@ -22,7 +22,7 @@ namespace Fases
           maxByteCrushers(4),
           maxMaquinaProjeteis(6),
           maxAgua(6),
-          minAguas(3),
+          minAgua(3),
           minGumbots(3),
           minByteCrushers(3),
           minMaquinaProjeteis(3)
@@ -88,7 +88,7 @@ namespace Fases
         for(int i = 0; i < altura && nAgua < maxAgua; ++i)
             for(int j = 0; j < largura && nAgua < maxAgua; ++j)
                 if(getTile(j, i) == 2)
-                    if(nAgua < minAguas || ((rand()%5) > 1))
+                    if(nAgua < minAgua || ((rand()%5) > 1))
                     {
                         Agua* agua = new Agua(sf::Vector2f(j*comprimentoTile, i*comprimentoTile));
                         gerColisoes->inserirObstaculos(agua);

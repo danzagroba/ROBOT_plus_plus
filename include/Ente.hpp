@@ -11,7 +11,6 @@ class Ente
         static Gerenciadores::Gerenciador_Grafico* pGG;
         sf::Texture Textura;
         sf::Sprite Figura;
-        static int contador;
 
     public:
         Ente();
