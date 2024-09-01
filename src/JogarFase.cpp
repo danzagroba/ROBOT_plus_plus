@@ -13,6 +13,7 @@ pfasenoite(NULL)
     cout<<"Fase esoclhida [e a numero]"<<faseescolhida<<endl;
     if(faseescolhida==1)
     {
+        cout << "fase 1 selecionada\n";
         pfasedia = new FaseDia;
         if(pfasedia == NULL)
         {
@@ -22,6 +23,7 @@ pfasenoite(NULL)
     }
     if(faseescolhida==2)
     {
+        cout << "fase dois selecionada\n";
         pfasenoite = new FaseNoite;
         if(pfasenoite == NULL)
         {

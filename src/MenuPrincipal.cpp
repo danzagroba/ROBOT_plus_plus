@@ -22,7 +22,7 @@ sair("Sair", sf::Vector2f(300.0f,510.0f))
 
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&numjogadores, std::bind(&MenuPrincipal::doisjogadores, this));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&escolhefase, std::bind(&MenuPrincipal::trocarfase, this));
-    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados(), fase));
+    (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&novojogo, std::bind(&Gerenciador_Estados::criarEstadojogar, Gerenciador_Estados::getGerenciador_Estados(), &fase));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&sair, std::bind(&MenuPrincipal::sairjogo, this));
     (Gerenciador_Inputs::getGerenciador_Inputs())->vincularcomandobotao(&ranking, std::bind(&Gerenciador_Estados::criarEstadoRanking, Gerenciador_Estados::getGerenciador_Estados()));
 }
@@ -66,12 +66,12 @@ void MenuPrincipal::trocarfase()
     if(fase == 1)
     {
         fase = 2;
-        escolhefase.trocarTexto( "Fase Dia");
+        escolhefase.trocarTexto( "Fase Noite");
     }
     else if(fase == 2)
     {
         fase = 1;
-        escolhefase.trocarTexto( "Fase Noite");
+        escolhefase.trocarTexto( "Fase Dia");
     }
     cout<<"Terminou em"<<fase<<endl;
 }
