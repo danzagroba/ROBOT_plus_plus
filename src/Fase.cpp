@@ -360,6 +360,18 @@ namespace Fases
         return tiles[y][x] == 1;
     }
 
+    bool Fase::playersvivos()
+    {
+        if(pjogadorum || pjogadordois)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     void Fase::executar()
     {
         desenhar();

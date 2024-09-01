@@ -22,6 +22,7 @@ namespace Entidades
                            const sf::Vector2f& pos = sf::Vector2f(0.0f, 0.0f));
                 virtual ~Personagem();
                 
+                virtual void morrer();
                 void pulo();
                 void setno_ar(bool na);
                 void permitirPulo();

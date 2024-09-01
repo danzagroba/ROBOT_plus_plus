@@ -188,7 +188,7 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
         for(vector<Inimigo*>::iterator it2 = LIs.begin(); it2!=LIs.end(); ++it2) {
             if(calculaColisao(*it, *it2))
             {
-                tratarColisaoJogadorInimigo(*it, *it2);             
+                tratarColisaoJogadorInimigo(*it, *it2);        
             }
         }
     }   
@@ -294,4 +294,14 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
             ++it; // Incrementa somente se não foi apagado
         }
     }
+    for(vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ++it) {
+        if(*it)
+        {
+            if((*it)->getNumVidas() == 0)
+            {
+                LJs.erase(it);
+                (*it)->morrer();
+            }
+        }
+    } 
 }

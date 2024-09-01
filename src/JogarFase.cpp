@@ -56,7 +56,14 @@ void JogarFase::executar()
         if(pfasedia->faseConcluida())
             irprafasedois();
         else
+        {
             pfasedia->executar();
+            if(pfasedia->playersvivos() == false)
+            {
+                bool concluiu = pfasedia->faseConcluida();
+                pGE->adicionarEstado(new FimJogo(concluiu));
+            }
+        }
     }
     else if(faseescolhida==2)
     {
@@ -67,7 +74,14 @@ void JogarFase::executar()
             pGE->adicionarEstado(new FimJogo(concluiu));
         }
         else
+        {
             pfasenoite->executar();
+            if(pfasenoite->playersvivos() == false)
+            {
+                bool concluiu = pfasenoite->faseConcluida();
+                pGE->adicionarEstado(new FimJogo(concluiu));
+            }
+        }
     }
 
 }

@@ -20,6 +20,11 @@ Personagem::~Personagem()
 
 }
 
+void Personagem::morrer()
+{
+    id= 0;
+}
+
 void Personagem::setno_ar(bool na)
 {
     no_ar = na;

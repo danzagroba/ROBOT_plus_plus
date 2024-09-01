@@ -69,6 +69,7 @@ namespace Fases
         const short int getTile(const int x, const int y) const;
         const bool eMuro(const int x, const int y) const;
     
+        bool playersvivos();
         void executar();
         const bool faseConcluida() const;
         void terminarFase();
