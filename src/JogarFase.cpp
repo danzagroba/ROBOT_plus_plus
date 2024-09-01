@@ -53,35 +53,38 @@ void JogarFase::executar()
 {  
     if(faseescolhida==1)
     {
-        if(pfasedia->faseConcluida())
+        if(pfasedia->playersvivos() == false)
+        {
+            bool concluiu = pfasedia->faseConcluida();
+            delete pfasedia;
+            pfasedia = NULL;
+            pGE->popEstadoatual();
+            pGE->adicionarEstado(new FimJogo(concluiu));
+        }
+        else if(pfasedia->faseConcluida())
             irprafasedois();
         else
-        {
             pfasedia->executar();
-            if(pfasedia->playersvivos() == false)
-            {
-                bool concluiu = pfasedia->faseConcluida();
-                pGE->adicionarEstado(new FimJogo(concluiu));
-            }
-        }
     }
     else if(faseescolhida==2)
     {
-        if(pfasenoite->faseConcluida())
+        if(pfasenoite->playersvivos() == false)
+        {
+            bool concluiu = pfasenoite->faseConcluida();
+            delete pfasenoite;
+            pfasenoite = NULL;
+            pGE->popEstadoatual();
+            pGE->adicionarEstado(new FimJogo(concluiu));
+            std::cout << "player nao estao vivos\n";
+        }
+        else if(pfasenoite->faseConcluida())
         {
             bool concluiu = pfasenoite->faseConcluida();
             pGE->popEstadoatual();
             pGE->adicionarEstado(new FimJogo(concluiu));
-        }
+        } 
         else
-        {
             pfasenoite->executar();
-            if(pfasenoite->playersvivos() == false)
-            {
-                bool concluiu = pfasenoite->faseConcluida();
-                pGE->adicionarEstado(new FimJogo(concluiu));
-            }
-        }
     }
 
 }

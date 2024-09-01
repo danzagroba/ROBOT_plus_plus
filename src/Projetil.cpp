@@ -33,9 +33,7 @@ namespace Entidades
     }
 
     Projetil::~Projetil()
-    {
-        std::cout << "projetil destruido\n";
-    }
+    {}
 
     const int Projetil::getDano() const
     {

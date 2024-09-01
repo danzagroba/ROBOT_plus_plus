@@ -26,7 +26,7 @@ namespace Estados
         irAoMenu.trocarTexto("Ir ao menu");
         irAoMenu.setbotaopos(sf::Vector2f(300.0f, 500.0f));
 
-        fimDeJogo.settexto(terminou ? "Parabens" : "Tente de novo");
+        fimDeJogo.settexto(terminou ? "Parabens" : "Perdeu");
         fimDeJogo.tamanhofonte(70);
         fimDeJogo.settextopos(sf::Vector2f(250.0f, 70.0f));
 
@@ -103,6 +103,7 @@ namespace Estados
 
     void FimJogo::menu()
     {
+        std::cout << "funçao menu chamada\n";
         Gerenciador_Estados* gerEstados = Gerenciador_Estados::getGerenciador_Estados();
         gerEstados->popEstadoatual();
     }

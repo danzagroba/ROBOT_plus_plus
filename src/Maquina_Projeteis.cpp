@@ -16,6 +16,7 @@ void Maquina_Projeteis::criartiromaquina()
 {
     if(timer.getElapsedTime().asSeconds()>2.5)
     {
+        std::cout << "tiro criado\n";
         Projetil* pprojetil = new Projetil(this, 1, sf::Vector2f(-0.1f, -0.1f), 40);
         if(pprojetil)
         {   

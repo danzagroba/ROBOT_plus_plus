@@ -162,6 +162,19 @@ void Gerenciador_Colisoes::inserirProjetil(Projetil* e)
 
 void Gerenciador_Colisoes::checarColisoesObstaculos()
 {
+    for (std::vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ) {
+        if (*it) {
+            if ((*it)->getNumVidas() == 0) {
+                (*it)->morrer();  // Chama morrer() antes de apagar o iterador
+                it = LJs.erase(it);  // Erase retorna o próximo iterador válido
+            } else {
+                ++it;
+            }
+        } else {
+            ++it;
+        }
+    }
+
     //Serve pra interações entre players e entidades, para com obstaculos
     for(vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ++it) {
         for(list<Obstaculo*>::iterator it2 = LOs.begin(); it2 != LOs.end(); ++it2) {
@@ -294,14 +307,17 @@ void Gerenciador_Colisoes::checarColisoesObstaculos()
             ++it; // Incrementa somente se não foi apagado
         }
     }
-    for(vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ++it) {
-        if(*it)
-        {
-            if((*it)->getNumVidas() == 0)
-            {
-                LJs.erase(it);
-                (*it)->morrer();
+
+    for (std::vector<Jogador*>::iterator it = LJs.begin(); it != LJs.end(); ) {
+        if (*it) {
+            if ((*it)->getNumVidas() == 0) {
+                (*it)->morrer();  // Chama morrer() antes de apagar o iterador
+                it = LJs.erase(it);  // Erase retorna o próximo iterador válido
+            } else {
+                ++it;
             }
+        } else {
+            ++it;
         }
-    } 
+    }
 }

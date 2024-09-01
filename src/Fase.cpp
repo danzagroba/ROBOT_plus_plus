@@ -85,20 +85,23 @@ namespace Fases
 
     Fase::~Fase()
     {
+        std::cout << "fase cdsendo destruida\n";
+
         destruirTiles();
 
+        gerColisoes->limparlistas();
+        
         for(Listas::Lista<Entidade*>::Iterator it = entidades.inicio(); it != entidades.fim(); ++it)
         {
             delete *it;
         }
-        
-        gerColisoes->limparlistas();
 
         entidades.limpar();
 
         Jogador::getprojeteisjogador()->clear();
         ProjectileBot::getprojeteis()->clear();
         Maquina_Projeteis::getprojeteismaquina()->clear();
+        ByteCrusher::getprojeteischefao()->clear();
 
         std::cout << "fase destruida\n";
     }
@@ -380,9 +383,24 @@ namespace Fases
         entidades.executar();
         gerColisoes->checarColisoesObstaculos();
         entidades.desenhar();
+
+        if(pjogadorum)
+            if(pjogadorum->getNumVidas() <= 0)
+                pjogadorum = NULL;
+
+        if(pjogadordois)
+            if(pjogadordois->getNumVidas() <= 0)
+                pjogadordois = NULL;
+     
         entidades.desalocar();
     
-        sf::Vector2f proxPos = Entidades::Jogador::getdoisjogadores() ? (pjogadorum->getPos()+(pjogadordois->getPos()))/2.0f : pjogadorum->getPos();
+        sf::Vector2f proxPos;
+        if(pjogadorum && pjogadordois)
+            proxPos = (pjogadorum->getPos()+(pjogadordois->getPos()))/2.0f; 
+        else if(pjogadorum)
+            proxPos = pjogadorum->getPos();
+        else if(pjogadordois)
+            proxPos = pjogadordois->getPos();
         pontos.settexto(std::to_string(Jogador::getpontuacao()));
         pontos.settextopos(sf::Vector2f(gerGraf->getCamera().getCenter().x - (pontos.gettamanho().width)/2.0, gerGraf->getCamera().getCenter().y - (gerGraf->getCamera().getSize().y)/2.0));
         pontos.desenhar();  
