@@ -9,3 +9,4 @@ mingw32/
 
 # Ignore bin folder
 bin/
+/obj
