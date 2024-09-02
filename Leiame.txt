@@ -1,0 +1,4 @@
+Compilador: g++ (MinGW-W64 x86_64-ucrt-mcf-seh, built by Brecht Sanders) 13.2.0
+Biblioteca Gráfica: SFML 2.6.1
+SO: Windows
+Fonte usada para elementos de UI: https://www.1001fonts.com/zig-font.html
