@@ -13,7 +13,6 @@ pfasenoite(NULL)
 
     if(faseescolhida==1)
     {
-        cout << "fase 1 selecionada\n";
         pfasedia = new FaseDia;
         if(pfasedia == NULL)
         {
@@ -23,7 +22,6 @@ pfasenoite(NULL)
     }
     if(faseescolhida==2)
     {
-        cout << "fase dois selecionada\n";
         Gerenciador_Grafico::getGerenciador_Grafico()->setfundo(false);
         pfasenoite = new FaseNoite;
         if(pfasenoite == NULL)
@@ -88,7 +86,6 @@ void JogarFase::executar()
             pfasenoite = NULL;
             pGE->popEstadoatual();
             pGE->adicionarEstado(new FimJogo(concluiu));
-            std::cout << "player nao estao vivos\n";
         }
         else if(pfasenoite->faseConcluida())
         {

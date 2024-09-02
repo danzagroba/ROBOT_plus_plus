@@ -31,9 +31,7 @@ namespace Fases
     }
 
     FaseNoite::~FaseNoite()
-    {
-        std::cout << "fase Noite destruida\n";
-    }
+    {}
 
     void FaseNoite::criarGumbots()
     {

@@ -72,11 +72,6 @@ namespace Estados
             if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
             {
                 sf::Vector2f mousePos =static_cast<sf::Vector2f>(sf::Mouse::getPosition(*window));
-                cout <<"Funciona1 pos:x e y  "<< mousePos.x<<"   "<<mousePos.y <<endl;
-                std::cout << "Retângulo Bounds: (" << irAoMenu.getretangulo().getGlobalBounds().left << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().top << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().width << ", " 
-                << irAoMenu.getretangulo().getGlobalBounds().height << ")" << std::endl;
                 if(irAoMenu.getretangulo().getGlobalBounds().contains(mousePos))
                     criouMenu = true;
             }

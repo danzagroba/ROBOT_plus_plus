@@ -8,15 +8,12 @@ Gerenciador_Inputs::Gerenciador_Inputs()
 {
     tecla_comando.clear();
     tecla_soltou_comando.clear(); // Inicializa o mapa para comandos de tecla solta
-    cout<<"Gerenciador de Inputs criado"<<endl;
 }
 
 Gerenciador_Inputs::~Gerenciador_Inputs() 
 {
     tecla_comando.clear();
     tecla_soltou_comando.clear(); // Limpa o mapa para comandos de tecla solta
-
-    std::cout << "gerenciador de inputs destruido\n";
 }
 
 void Gerenciador_Inputs::vincularcomando(sf::Keyboard::Key tcl, const Command& cmnd) 
@@ -41,7 +38,6 @@ Gerenciador_Inputs* Gerenciador_Inputs::getGerenciador_Inputs()
         pGI = new Gerenciador_Inputs();
         if(pGI == NULL) 
         {
-            cout<<"Erro ao alocar gerenciador de inputs, fechando execução"<<endl;
             exit(1);
         }
     }

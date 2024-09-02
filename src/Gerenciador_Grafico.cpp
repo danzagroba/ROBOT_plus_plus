@@ -18,9 +18,7 @@ deltaTime(0.0f),
 clock(),
 posInicial(),
 fundodia(true)
-{
-    cout<<"Gerenciador Gráfico criado"<<endl;
-}
+{}
 
 Gerenciador_Grafico::~Gerenciador_Grafico()
 {
@@ -33,8 +31,6 @@ Gerenciador_Grafico::~Gerenciador_Grafico()
         delete pgergraf;
     }
     pgergraf = NULL;
-
-    std::cout << "gerenciador grafico destruido\n";
 }
 
 const float Gerenciador_Grafico::lerp(const float a, const float b, const float t) const
@@ -49,7 +45,6 @@ Gerenciador_Grafico* Gerenciador_Grafico::getGerenciador_Grafico()
         pgergraf = new Gerenciador_Grafico();
         if(pgergraf == NULL)
         {
-            cout<<"Erro ao alocar gerenciador grafico, fechando execução"<<endl;
             exit(1);
         }
     }
@@ -129,7 +124,6 @@ void Gerenciador_Grafico::configurar()
     window = new sf::RenderWindow(sf::VideoMode(largura, altura), "ROBOT++", sf::Style::Titlebar | sf::Style::Close);
     if(!window)
     {
-        cout<<"Erro ao configurar janela, fechando execução"<<endl;
         exit(1);
     }
     window->setFramerateLimit(limitefps);

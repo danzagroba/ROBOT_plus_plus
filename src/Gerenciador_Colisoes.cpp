@@ -17,7 +17,6 @@ Gerenciador_Colisoes::Gerenciador_Colisoes():
     LOs.clear();
     LJs.clear();
     LPs.clear();
-    cout<<"Gerenciador de Colisões criado"<<endl;
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
@@ -26,8 +25,6 @@ Gerenciador_Colisoes::~Gerenciador_Colisoes()
     LOs.clear();
     LJs.clear();
     LPs.clear();
-
-    std::cout << "gerenciador de colisaos destruido\n";
 }
 
 void Gerenciador_Colisoes::limparlistas()
@@ -37,7 +34,6 @@ void Gerenciador_Colisoes::limparlistas()
     LJs.clear();
     LPs.clear();
 
-    std::cout << "Lista limpa\n";
 }
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
@@ -47,7 +43,6 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciador_Colisoes()
         pgercol = new Gerenciador_Colisoes;
         if(pgercol == NULL)
         {
-            cout<<"Erro ao alocar gerenciador de colisões, fechando execução"<<endl;
             exit(1);
         }
     }

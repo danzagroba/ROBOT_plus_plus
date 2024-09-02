@@ -85,7 +85,6 @@ namespace Fases
 
     Fase::~Fase()
     {
-        std::cout << "fase cdsendo destruida\n";
         pjogadorum = NULL;
         pjogadordois = NULL;
         destruirTiles();
@@ -103,8 +102,6 @@ namespace Fases
         ProjectileBot::getprojeteis()->clear();
         Maquina_Projeteis::getprojeteismaquina()->clear();
         ByteCrusher::getprojeteischefao()->clear();
-
-        std::cout << "fase destruida\n";
     }
 
     void Fase::destruirTiles()
@@ -190,7 +187,6 @@ namespace Fases
         std::ifstream arquivo(caminho);
         if(!arquivo.is_open())
         {
-            std::cout << "Erro, mapa nao pode ser aberto\n";
             return;
         }
 

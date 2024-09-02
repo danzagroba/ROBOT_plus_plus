@@ -16,9 +16,7 @@ Jogo::Jogo():
 }
 
 Jogo::~Jogo()
-{
-    std::cout << "jogo destruido\n";
-}
+{}
 
 void Jogo::executar()
 {

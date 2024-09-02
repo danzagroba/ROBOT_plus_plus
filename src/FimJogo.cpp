@@ -103,7 +103,6 @@ namespace Estados
 
     void FimJogo::menu()
     {
-        std::cout << "funçao menu chamada\n";
         Gerenciador_Estados* gerEstados = Gerenciador_Estados::getGerenciador_Estados();
         gerEstados->popEstadoatual();
     }
@@ -180,7 +179,6 @@ namespace Estados
             {
                 fileOut << rankings.dump(4); // Pretty print with 4 spaces indentation
                 fileOut.close();
-                std::cout << "Ranking updated successfully in " << filePath << std::endl;
             } 
             else 
             {

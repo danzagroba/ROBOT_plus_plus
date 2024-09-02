@@ -10,7 +10,6 @@ namespace Listas
     ListaEntidades::~ListaEntidades()
     {
         limpar();
-        std::cout << "lista destruido";
     }
 
     void ListaEntidades::limpar()

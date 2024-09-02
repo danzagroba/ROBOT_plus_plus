@@ -30,9 +30,7 @@ sair("Sair", sf::Vector2f(300.0f,510.0f))
 
 
 MenuPrincipal::~MenuPrincipal()
-{
-    std::cout << "menu principal destruido\n";
-}
+{}
 
 void MenuPrincipal::executar()
 {

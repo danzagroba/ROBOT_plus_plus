@@ -11,9 +11,7 @@ namespace Gerenciadores
     {}
 
     Gerenciador_Eventos::~Gerenciador_Eventos()
-    {
-        std::cout << "gerenciador de eventos destruido\n";
-    }
+    {}
 
     Gerenciador_Eventos* Gerenciador_Eventos::getGerenciador_Eventos() 
     {
@@ -22,7 +20,6 @@ namespace Gerenciadores
             pGE = new Gerenciador_Eventos();
             if(pGE == NULL) 
             {
-                cout<<"Erro ao alocar gerenciador de eventos, fechando execução"<<endl;
                 exit(1);
             }
         }

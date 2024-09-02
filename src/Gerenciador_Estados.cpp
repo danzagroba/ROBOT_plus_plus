@@ -9,12 +9,11 @@ pilhaestados()
 
 }
 Gerenciador_Estados::~Gerenciador_Estados()
-{
-    std::cout << "gerenciador de estados destruido\n";
-}
+{}
 void Gerenciador_Estados::executar()
 {
-    getEstadoatual()->executar();
+    if(!pilhaestados.empty())
+        getEstadoatual()->executar();
 }
 
 void Gerenciador_Estados::adicionarEstado(Estado* ea)
@@ -34,7 +33,6 @@ Gerenciador_Estados* Gerenciador_Estados::getGerenciador_Estados()
         pgerestados = new Gerenciador_Estados();
         if(pgerestados == NULL)
         {
-            cout<<"Erro ao alocar gerenciador grafico, fechando execução"<<endl;
             exit(1);
         }
     }

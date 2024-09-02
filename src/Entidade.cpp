@@ -82,7 +82,6 @@ void Entidade::setFigura(const std::string& Sprite_Path)
 {
     if (!Textura.loadFromFile(Sprite_Path))
     {
-        cout<<"Erro no caminho da pasta do sprite, textura não carregada"<<endl;
         return;
     }
     Figura.setTexture(Textura);
