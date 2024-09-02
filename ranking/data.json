@@ -1,14 +1,14 @@
 [
     {
+        "nome": "",
+        "pontos": 700
+    },
+    {
         "nome": "dan",
         "pontos": 500
     },
     {
         "nome": "aaa",
-        "pontos": 400
-    },
-    {
-        "nome": "tru",
         "pontos": 400
     }
 ]
