@@ -41,7 +41,7 @@ std::list<Projetil*>* Maquina_Projeteis::getprojeteismaquina()
 
 void Maquina_Projeteis::executar()
 {
-    criartiromaquina();
+    obstacular(NULL);
 }
 void Maquina_Projeteis::salvar()
 {
@@ -49,5 +49,5 @@ void Maquina_Projeteis::salvar()
 }
 void Maquina_Projeteis::obstacular(Jogador* pJogador)
 {
-    //Dá dano
+    criartiromaquina();
 }
