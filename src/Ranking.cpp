@@ -33,14 +33,12 @@ namespace Estados
         std::string filePath = "../ranking/data.json";
         nlohmann::json rankings;
 
-        // Load ranking data from file
         std::ifstream fileIn(filePath);
         if(fileIn.is_open()) 
         {
             fileIn >> rankings;
             fileIn.close();
             
-            // Ensure the JSON is an array
             if (rankings.is_array()) 
             {
                 if (rankings.size() > 0) 

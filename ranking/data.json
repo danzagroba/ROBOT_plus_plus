@@ -1,14 +1,14 @@
 [
     {
-        "nome": "dan",
-        "pontos": 700
+        "nome": "abc",
+        "pontos": 100
     },
     {
-        "nome": "sam",
-        "pontos": 500
+        "nome": "aaa",
+        "pontos": 0
     },
     {
-        "nome": "",
-        "pontos": 500
+        "nome": "bbb",
+        "pontos": 0
     }
 ]

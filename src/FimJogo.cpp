@@ -59,7 +59,6 @@ namespace Estados
             else if (event.type == sf::Event::TextEntered)
             
             {
-                // Handle ASCII characters
                 if (event.text.unicode < 128)
                 {
                     if (event.text.unicode == '\b' && !input.empty())
@@ -68,7 +67,6 @@ namespace Estados
                     }
                     else if (event.text.unicode >= 32 && event.text.unicode < 128)
                     {
-                        // Add the new character to the input string
                         input += static_cast<char>(event.text.unicode);
                     }
                 }
@@ -116,12 +114,10 @@ namespace Estados
             std::string folderPath = "../ranking";
             std::string filePath = folderPath + "/data.json";
 
-            // Ensure the directory exists
             std::filesystem::create_directory(folderPath);
 
             nlohmann::json rankings;
 
-            // Attempt to read the existing rankings from the file
             std::ifstream fileIn(filePath);
             if (fileIn.is_open()) 
             {
@@ -130,17 +126,15 @@ namespace Estados
 
                 if (!rankings.is_array()) 
                 {
-                    // If the JSON is not an array, reset it to an empty array
                     rankings = nlohmann::json::array();
                 }
             } 
             else 
             {
                 std::cerr << "No existing ranking file found. Creating a new one." << std::endl;
-                rankings = nlohmann::json::array(); // Initialize rankings as an empty array
+                rankings = nlohmann::json::array();
             }
 
-            // Convert JSON to vector of pairs (name, points)
             std::vector<std::pair<std::string, int>> rankList;
             for (const auto& entry : rankings) 
             {
@@ -150,20 +144,16 @@ namespace Estados
                 }
             }
 
-            // Add the new score
             rankList.emplace_back(input, pontos);
 
-            // Sort the rankings by points in descending order
             std::sort(rankList.begin(), rankList.end(), [](const auto& a, const auto& b) {
                 return a.second > b.second;
             });
 
-            // Keep only the top 3
             if (rankList.size() > 3) {
                 rankList.resize(3);
             }
 
-            // Convert back to JSON
             rankings.clear();
             for (const auto& entry : rankList) 
             {
@@ -173,11 +163,10 @@ namespace Estados
                 rankings.push_back(jsonEntry);
             }
 
-            // Save updated rankings to the file
             std::ofstream fileOut(filePath);
             if (fileOut.is_open()) 
             {
-                fileOut << rankings.dump(4); // Pretty print with 4 spaces indentation
+                fileOut << rankings.dump(4); 
                 fileOut.close();
             } 
             else 
