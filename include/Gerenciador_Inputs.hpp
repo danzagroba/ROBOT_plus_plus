@@ -10,6 +10,15 @@
 using namespace std;
 
 // Padrão de projeto Singleton Command 
+//Encapsula solicitações como objetos:
+// Isso é feito no std::function<void()> para encapsular comandos
+//Separação do Emissor e do Executor:
+//A classe Gerenciador de Inputs atua como emissor, enquanto os comandos encapsulados são os executores
+//Mapeamento de Comandos: 
+//O uso de mapas (map<sf::Keyboard::Key, Command> e map<Botao*, Command>
+//Flexibilidade e Extensibilidade: 
+//novos comandos podem ser facilmente adicionados através dos métodos vincularcomando, vincularcomandoTeclaSolta e vincularcomandobotao.
+
 namespace Gerenciadores {
     class Gerenciador_Inputs {
     public:
@@ -18,7 +27,7 @@ namespace Gerenciadores {
         static Gerenciador_Inputs* getGerenciador_Inputs();
 
         void vincularcomando(sf::Keyboard::Key tcl, const Command& cmnd);
-        void vincularcomandoTeclaSolta(sf::Keyboard::Key tcl, const Command& cmnd); // Adicionado para teclas soltas
+        void vincularcomandoTeclaSolta(sf::Keyboard::Key tcl, const Command& cmnd);
         void vincularcomandobotao(Botao* pbotao, const Command& cmnd);
 
         void processainput(sf::Keyboard::Key key, const bool pressionado);
@@ -34,7 +43,7 @@ namespace Gerenciadores {
         Gerenciador_Inputs& operator=(const Gerenciador_Inputs&) = delete;
 
         map<sf::Keyboard::Key, Command> tecla_comando;
-        map<sf::Keyboard::Key, Command> tecla_soltou_comando; // Adicionado para comandos de teclas soltas
+        map<sf::Keyboard::Key, Command> tecla_soltou_comando;
         map<Botao*, Command> botao_comando;
     };
 
