@@ -15,7 +15,12 @@ using namespace std;
 
 using namespace std;
 
-//Padrão de projeto singleton e mediator
+//Padrão de projeto singleton e mediator (não tem abstrata de mediator)
+//Centralização da lógica de interação: Gerenciador_Colisoes centraliza toda a lógica de colisão e interação entre entidades
+//Intermediação da comunicação as entidades : Projetil, jogador, e outras entidades se comunicam INDIRETAMENTE através do gerenciador.
+//Redução do acoplamento: as entidades não precisam conhecer os detalhes uma das outras pois o gerenciador lida com as interações.
+//Flexibilidade e extensibilidade: novas entidades(desde que numa das classes definidas nos containers) podem ser adicionadas
+//Sem afetar as classes existentes tornando o sistema flexivel e extensivel.
 namespace Gerenciadores
 {
     class Gerenciador_Colisoes
