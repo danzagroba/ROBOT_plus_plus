@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+// Iterator define um interface para iterar sobre a lista:
+//    1: permite acessar atual, 2: verificar fim, 3: pegar prox elemento
+// Encapsula estrutura da coleção
+// Iterador é separado da coleção de maneira que mais de um iterador itere a lista ao mesmo tempo
+
 namespace Listas
 {
     template <class T>
