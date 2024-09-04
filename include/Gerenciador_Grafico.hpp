@@ -1,5 +1,8 @@
 #pragma once
 
+//Site do sfml usado para implementação da classe:
+//https://www.sfml-dev.org/learn.php.
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 

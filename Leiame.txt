@@ -2,3 +2,5 @@ Compilador: g++ (MinGW-W64 x86_64-ucrt-mcf-seh, built by Brecht Sanders) 13.2.0
 Biblioteca Gráfica: SFML 2.6.1
 SO: Windows
 Fonte usada para elementos de UI: https://www.1001fonts.com/zig-font.html
+Videos do monitor Giovane, no qual nos baseamos o Gerenciador de Eventos: https://www.youtube.com/playlist?list=PLR17O9xbTbIBBoL3lli44N8LdZVvg-_uZ
+Site do SFML, do qual nos baseamos para implementar o Gerenciador Grafico: https://www.sfml-dev.org/learn.php

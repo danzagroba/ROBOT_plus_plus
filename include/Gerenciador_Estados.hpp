@@ -7,6 +7,9 @@
 #include <stack>
 using namespace std;
 
+// video do monitor Giovane usado como base para implementação da classe:
+//https://www.youtube.com/playlist?list=PLR17O9xbTbIBBoL3lli44N8LdZVvg-_uZ.
+
 //Padrão de projeto singleton 
 namespace Gerenciadores {
     class Gerenciador_Estados {

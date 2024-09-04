@@ -2,7 +2,7 @@
 #include "Gerenciador_Grafico.hpp"
 #include "Gerenciador_Estados.hpp"
 #include "Jogador.hpp"
-#include "json.hpp"
+//#include "json.hpp"
 
 #include <fstream>
 #include <string>
@@ -111,18 +111,18 @@ namespace Estados
         {
             int pontos = Jogador::getpontuacao();
 
-            std::string folderPath = "../ranking";
-            std::string filePath = folderPath + "/data.json";
+            std::string caminhoPasta = "../ranking";
+            std::string caminhoArquivo = caminhoPasta + "/data.json";
 
-            std::filesystem::create_directory(folderPath);
+            std::filesystem::create_directory(caminhoPasta);
 
             nlohmann::json rankings;
 
-            std::ifstream fileIn(filePath);
-            if (fileIn.is_open()) 
+            std::ifstream arquivoEntrada(caminhoArquivo);
+            if (arquivoEntrada.is_open()) 
             {
-                fileIn >> rankings;
-                fileIn.close();
+                arquivoEntrada >> rankings;
+                arquivoEntrada.close();
 
                 if (!rankings.is_array()) 
                 {
@@ -131,53 +131,54 @@ namespace Estados
             } 
             else 
             {
-                std::cerr << "No existing ranking file found. Creating a new one." << std::endl;
+                std::cerr << "Nenhum arquivo de ranking existente encontrado. Criando um novo." << std::endl;
                 rankings = nlohmann::json::array();
             }
 
-            std::vector<std::pair<std::string, int>> rankList;
-            for (const auto& entry : rankings) 
+            std::vector<std::pair<std::string, int>> listaRanking;
+            for (const nlohmann::json& entrada : rankings) 
             {
-                if (entry.contains("nome") && entry.contains("pontos")) 
+                if (entrada.contains("nome") && entrada.contains("pontos")) 
                 {
-                    rankList.emplace_back(entry["nome"], entry["pontos"]);
+                    listaRanking.emplace_back(entrada["nome"], entrada["pontos"]);
                 }
             }
 
-            rankList.emplace_back(input, pontos);
+            listaRanking.emplace_back(input, pontos);
 
-            std::sort(rankList.begin(), rankList.end(), [](const auto& a, const auto& b) {
+            std::sort(listaRanking.begin(), listaRanking.end(), [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
                 return a.second > b.second;
             });
 
-            if (rankList.size() > 3) {
-                rankList.resize(3);
+            if (listaRanking.size() > 3) {
+                listaRanking.resize(3);
             }
 
             rankings.clear();
-            for (const auto& entry : rankList) 
+            for (const std::pair<std::string, int>& entrada : listaRanking) 
             {
-                nlohmann::json jsonEntry;
-                jsonEntry["nome"] = entry.first;
-                jsonEntry["pontos"] = entry.second;
-                rankings.push_back(jsonEntry);
+                nlohmann::json jsonEntrada;
+                jsonEntrada["nome"] = entrada.first;
+                jsonEntrada["pontos"] = entrada.second;
+                rankings.push_back(jsonEntrada);
             }
 
-            std::ofstream fileOut(filePath);
-            if (fileOut.is_open()) 
+            std::ofstream arquivoSaida(caminhoArquivo);
+            if (arquivoSaida.is_open()) 
             {
-                fileOut << rankings.dump(4); 
-                fileOut.close();
+                arquivoSaida << rankings.dump(4); 
+                arquivoSaida.close();
             } 
             else 
             {
-                std::cerr << "Failed to open file for writing: " << filePath << std::endl;
+                std::cerr << "Falha ao abrir o arquivo para escrita: " << caminhoArquivo << std::endl;
             }
         } 
         catch (const std::exception& e) 
         {
-            std::cerr << "An error occurred: " << e.what() << std::endl;
+            std::cerr << "Ocorreu um erro: " << e.what() << std::endl;
         }
         Jogador::aumentarpontuação(-(Jogador::getpontuacao()));
     }
+
 }
