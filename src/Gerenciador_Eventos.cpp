@@ -44,22 +44,31 @@ namespace Gerenciadores
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             notificarTecla(sf::Keyboard::A, true);
+            
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
             notificarTecla(sf::Keyboard::S, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             notificarTecla(sf::Keyboard::D, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             notificarTecla(sf::Keyboard::W, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             notificarTecla(sf::Keyboard::Up, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             notificarTecla(sf::Keyboard::Left, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             notificarTecla(sf::Keyboard::Down, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             notificarTecla(sf::Keyboard::Right, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             notificarTecla(sf::Keyboard::Space, true);
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
             notificarTecla(sf::Keyboard::Enter, true);
 
